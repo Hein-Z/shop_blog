@@ -4,7 +4,9 @@
 
     <!-- Page Content -->
     <div class="page-heading about-heading header-text"
-         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});" id="offset-pos">
+         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});"
+         id="offset-pos"
+    >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -16,44 +18,9 @@
             </div>
         </div>
     </div>
-    <div class="container h5">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item " ><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
-                <li class="breadcrumb-item "><a href="#" class="text-danger">Shop</a></li>
-            </ol>
-        </nav>
-    </div>
-    <div class="products">
-        <div class="container">
-            <div class="row">
-                @foreach($products as $product)
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-item">
-                            <a href="{{route('shop.show',$product->slug)}}"><img src="https://picsum.photos/200" alt=""></a>
-                            <div class="down-content">
-                                <a href="{{route('shop.show',$product->slug)}}"><h4>{{$product->name}}</h4></a>
-                                <h6><small>
-                                     {{$product->presetPrice}}</small>
-                                </h6>
-                                <p>{{$product->details}}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-                <div class="col-md-12">
-                    <ul class="pages">
-                        <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="container text-center">
+        <h1 class="py-5">Thank You for your payment</h1>
+        <a href="{{route('landing-page')}}" class="btn btn-lg btn-outline-dark">Go Back Home</a>
     </div>
 
     <footer>

@@ -4,7 +4,7 @@
 
     <!-- Page Content -->
     <div class="page-heading about-heading header-text"
-         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});">
+         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});" id="offset-pos">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -45,53 +45,8 @@
 
                     </div>
                     <div class="col-12 " style="height: 2px; background-color: #1a202c2f"></div>
-                    @if($items->isEmpty())
-                        <div class="col-12 my-5"> There is no item in your shopping cart</div>
-                    @endif
-                    @foreach($items as $item)
-                        <div class="col-12">
-                            <div class="row mt-3">
-                                <div class="col-2 ">
-                                    <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                            src="http://127.0.0.1:8000/images/product-1-370x270.jpg" class="img-fluid"
-                                            alt=""></a>
-                                </div>
-                                <div class="col-4">
-                                    <a href="{{route('shop.show',$item->model->slug)}}"> {{$item->name}}</a>
-                                    <p>{{$item->model->details}}</p>
-                                </div>
-                                <div class="col-1"></div>
-                                <div class="col-2">{{$item->model->presetPrice}}</div>
-                                <div class="col-3 text-right">
-                                    <form action="{{route('shop.saved.remove',$item->rowId)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href='#' class="text-danger"
-                                           onclick='this.parentNode.submit(); return false;'>Remove</a>
-                                    </form>
-                                    <form action="{{route('shop.saved.switchToCart',$item->rowId)}}" method="post">
-                                        @csrf
-                                        <a href='#' class="text-info"
-                                           onclick='this.parentNode.submit(); return false;'>Move to cast</a>
-                                    </form>
-                                </div>
 
-                                <div class="col-12 mt-2" style="height: 2px; background-color: #1a202c2f"></div>
 
-                            </div>
-
-                        </div>
-                    @endforeach
-                    @if(!$items->isEmpty())
-
-                        <div class="col-12 mt-2 text-right">
-                            <form action="{{route('shop.cart.empty')}}" method="post">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger">Clear saved items</button>
-                            </form>
-                        </div>
-                    @endif
                 </div>
             </div>
             <div class="col-md-4 col-12">

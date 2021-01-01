@@ -43,7 +43,7 @@
                         </div>
                     </li>
 
-                    <li class="nav-item @if($name==='landing-page') active @endif"><a class="nav-link"
+                    <li class="nav-item @if($name==='') active @endif"><a class="nav-link"
                                                                                       href="contact.html">Contact Us</a>
                     </li>
                 </ul>

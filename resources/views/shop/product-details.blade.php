@@ -4,7 +4,7 @@
 
     <!-- Page Content -->
     <div class="page-heading about-heading header-text"
-         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});">
+         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});" id="offset-pos">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

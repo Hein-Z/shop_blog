@@ -13,30 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('landing-page');
-Route::get('/shop',[\App\Http\Controllers\ShopController::class,'index'] )->name('shop.index');
-Route::get('/shop/{product}',[\App\Http\Controllers\ShopController::class,'show'])->name('shop.show');
-
-Route::get('/cart', [\App\Http\Controllers\CartController::class,'index'])->name('shop.cart');
-Route::post('/cart', [\App\Http\Controllers\CartController::class,'store'])->name('shop.cart.store');
-Route::delete('/cart/empty', [\App\Http\Controllers\CartController::class,'empty'])->name('shop.cart.empty');
-Route::delete('/cart/{id}/remove', [\App\Http\Controllers\CartController::class,'remove'])->name('shop.cart.remove');
-
-Route::get('/saved', [\App\Http\Controllers\SavedItemsController::class,'index'])->name('shop.saved');
-Route::post('/switchToSaved/{id}', [\App\Http\Controllers\SavedItemsController::class,'switchToSaved'])->name('shop.saved.switchToSaved');
-Route::post('/switchToCart/{id}', [\App\Http\Controllers\SavedItemsController::class,'switchToCart'])->name('shop.saved.switchToCart');
-Route::delete('/saved/empty', [\App\Http\Controllers\SavedItemsController::class,'empty'])->name('shop.saved.empty');
-Route::delete('/saved/{id}/remove', [\App\Http\Controllers\SavedItemsController::class,'remove'])->name('shop.saved.remove');
+Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
 
 
+//Cart
+Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('shop.cart');
+Route::post('/cart', [\App\Http\Controllers\CartController::class, 'store'])->name('shop.cart.store');
+Route::patch('/cart/{product}', [\App\Http\Controllers\CartController::class, 'update'])->name('shop.cart.update');
+Route::delete('/cart/empty', [\App\Http\Controllers\CartController::class, 'empty'])->name('shop.cart.empty');
+Route::delete('/cart/{id}/remove', [\App\Http\Controllers\CartController::class, 'remove'])->name('shop.cart.remove');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('shop.checkout');
 
-Route::get('/terms', function () {
-    return view('terms');
-});
+//Save for later
+//Route::get('/saved', [\App\Http\Controllers\SavedItemsController::class,'index'])->name('shop.saved');Route::get('/saved', [\App\Http\Controllers\SavedItemsController::class,'index'])->name('shop.saved');
+Route::post('/switchToSaved/{id}', [\App\Http\Controllers\SavedItemsController::class, 'switchToSaved'])->name('shop.saved.switchToSaved');
+Route::post('/switchToCart/{id}', [\App\Http\Controllers\SavedItemsController::class, 'switchToCart'])->name('shop.saved.switchToCart');
+Route::delete('/saved/empty', [\App\Http\Controllers\SavedItemsController::class, 'empty'])->name('shop.saved.empty');
+Route::delete('/saved/{id}/remove', [\App\Http\Controllers\SavedItemsController::class, 'remove'])->name('shop.saved.remove');
+
+
+//checkout
+Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('shop.checkout');
+Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('shop.checkout.store');
+
+Route::get('/thank-you', [\App\Http\Controllers\ConfirmationController::class,'index'])->name('confirmation.index');
 Route::get('/testimonials', function () {
     return view('testimonials');
 });

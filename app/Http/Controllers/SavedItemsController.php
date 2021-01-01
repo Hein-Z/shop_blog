@@ -11,21 +11,21 @@ class SavedItemsController extends Controller
     use PriceFormatter;
 
 
-    public function index()
-    {
-
-        $mayLikes = Product::inRandomOrder()->take(3)->get();
-        $items = \Cart::instance('save')->content();
-        $bills['total'] = $this->priceFormat(\Cart::total(false, '', ''));
-        $bills['subtotal'] = $this->priceFormat(\Cart::subtotal(false, '', ''));
-        $bills['tax'] = $this->priceFormat(\Cart::tax(false, '', ''));
-
-        return view('shop.save-for-later')->with(['mayLikes' => $mayLikes, 'items' => $items, 'bills' => $bills]);
-    }
+//    public function index()
+//    {
+//
+//        $mayLikes = Product::inRandomOrder()->take(3)->get();
+//        $items = \Cart::instance('save')->content();
+//        $bills['total'] = $this->priceFormat(\Cart::total(false, '', ''));
+//        $bills['subtotal'] = $this->priceFormat(\Cart::subtotal(false, '', ''));
+//        $bills['tax'] = $this->priceFormat(\Cart::tax(false, '', ''));
+//
+//        return view('shop.save-for-later')->with(['mayLikes' => $mayLikes, 'items' => $items, 'bills' => $bills]);
+//    }
 
     public function switchToSaved($id)
     {
-        $item = \Cart::get($id);
+        $item = \Cart::instance('default')->get($id);
         \Cart::remove($id);
 
 
@@ -33,7 +33,7 @@ class SavedItemsController extends Controller
             return $rowId === $id;
         });
         if ((int)$duplicate->isNotEmpty()) {
-            return redirect()->route('shop.saved')->with('success', 'This item is already saved');
+            return redirect()->route('shop.cart')->with('success', 'This item is already saved');
         }
 
         \Cart::instance('save')->add($item->id,
@@ -45,7 +45,7 @@ class SavedItemsController extends Controller
         )->associate('App\Models\Product');
 
 
-        return redirect()->route('shop.saved')->with('success', 'Successfully added to your saved items');
+        return redirect()->route('shop.cart')->with('success', 'Successfully added to your saved items');
     }
 
     public function switchToCart($id)
@@ -78,12 +78,12 @@ class SavedItemsController extends Controller
     public function empty()
     {
         \Cart::instance('save')->destroy();
-        return redirect()->route('shop.saved')->with('success', 'Successfully clear your saved items');
+        return redirect()->route('shop.cart')->with('success', 'Successfully clear your saved items');
     }
 
     public function remove($id)
     {
         \Cart::instance('save')->remove($id);
-        return redirect()->route('shop.saved')->with('success', 'Successfully remove item');
+        return redirect()->route('shop.cart')->with('success', 'Successfully remove item');
     }
 }
