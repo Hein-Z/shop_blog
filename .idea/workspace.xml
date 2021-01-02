@@ -2,140 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df7ef52c-31d6-423d-ae2e-97d5b42da1f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/appliance-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/camera-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/desktop-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-16.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-17.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-18.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-19.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-20.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-21.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-22.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-23.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-24.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-25.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-26.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-27.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-28.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-29.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-30.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/laptop-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/macbook-pro.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/phone-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tablet-large.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/images/products/tv-large.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/pagination/custom.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_29_135523_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_29_135523_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProductSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProductSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/about-1-570x350.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-1-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-2-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-3-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-4-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-5-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-6-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/blog-image-fullscren-1-1920x700.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/heading-1-1920x500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/heading-2-1920x500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/heading-3-1920x500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/heading-4-1920x500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/heading-5-1920x500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/heading-6-1920x500.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/other-image-fullscren-1-1920x900.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/product-1-370x270.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/products/product-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/product-2-370x270.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/products/product-2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/product-3-370x270.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/products/product-3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/product-4-370x270.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/products/product-4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/product-5-370x270.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/products/product-5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/product-6-370x270.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/products/product-6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/slider-image-1-1920x600.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/slider-image-2-1920x600.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/slider-image-3-1920x600.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/team_01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/product-1-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/product-2-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/product-3-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/product-4-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/product-5-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/product-6-370x270.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shop/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/cart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shop/product-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/product-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shop/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/shop.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -322,7 +192,8 @@
       <workItem from="1609488782535" duration="5315000" />
       <workItem from="1609513906804" duration="1055000" />
       <workItem from="1609515608816" duration="1782000" />
-      <workItem from="1609533020521" duration="14320000" />
+      <workItem from="1609533020521" duration="14423000" />
+      <workItem from="1609579051443" duration="1064000" />
     </task>
     <servers />
   </component>

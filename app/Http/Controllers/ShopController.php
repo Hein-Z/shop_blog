@@ -29,7 +29,7 @@ class ShopController extends Controller
                 $categoryName = $categories->where('slug', \request()->category)->first()->name;
             }
         } else {
-            $products = Product::inRandomOrder()->get();
+            $products = Product::inRandomOrder()->paginate(12);
             $categoryName = 'Feature';
         }
 
