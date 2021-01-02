@@ -61,7 +61,7 @@
                             <div class="row mt-3">
                                 <div class="col-2 ">
                                     <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                            src="http://127.0.0.1:8000/images/product-1-370x270.jpg" class="img-fluid"
+                                            src="{{asset($item->model->image)}}" class="img-fluid"
                                             alt=""></a>
                                 </div>
                                 <div class="col-4">
@@ -156,7 +156,7 @@
                             <div class="row mt-3">
                                 <div class="col-2 ">
                                     <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                            src="http://127.0.0.1:8000/images/product-1-370x270.jpg" class="img-fluid"
+                                            src="{{asset($item->model->image)}}" class="img-fluid"
                                             alt=""></a>
                                 </div>
                                 <div class="col-4">
@@ -204,7 +204,7 @@
                         <div class="col-md-6 col-3">
                             <div class="product-item">
                                 <a href="{{route('shop.show',$mayLike->slug)}}"><img
-                                        src="{{asset('images/product-1-370x270.jpg')}}" alt=""></a>
+                                        src="{{asset($mayLike->image)}}" alt=""></a>
                                 <div class="down-content py-1 pl-1">
                                     <a href="{{route('shop.show',$mayLike->slug)}}"><h4>{{$mayLike->name}}</h4></a>
                                     <h6><small>
@@ -229,6 +229,7 @@
                 element.addEventListener('change', function () {
                     axios.patch(`/cart/${id}`, {quantity: this.value}).then(res => {
                         window.location.href = '{{route('shop.cart')}}';
+                        f
                     }).catch(err => {
                         console.log(err);
                     })

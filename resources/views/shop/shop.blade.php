@@ -19,28 +19,69 @@
     <div class="container h5">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item " ><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item "><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
                 <li class="breadcrumb-item "><a href="#" class="text-danger">Shop</a></li>
             </ol>
         </nav>
     </div>
-    <div class="products">
+    <div class="products mt-5">
         <div class="container">
             <div class="row">
-                @foreach($products as $product)
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-item">
-                            <a href="{{route('shop.show',$product->slug)}}"><img src="https://picsum.photos/200" alt=""></a>
-                            <div class="down-content">
-                                <a href="{{route('shop.show',$product->slug)}}"><h4>{{$product->name}}</h4></a>
-                                <h6><small>
-                                     {{$product->presetPrice}}</small>
-                                </h6>
-                                <p>{{$product->details}}</p>
+                <div class="col-md-10 ">
+                    <div class="row">
+                        <div class="mb-5 col-12 ">
+                        <span
+                            class="bg-dark h3 text-light px-3 py-2 border border-danger border-right-0 border-left-0">{{$categoryName}}</span>
+                        </div>
+                        @forelse($products as $product)
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
+                                    <a href="{{route('shop.show',$product->slug)}}"><img
+                                            src="{{asset($product->image)}}"
+                                            alt=""></a>
+                                    <div class="down-content">
+                                        <a class="text-danger h4"
+                                           href="{{route('shop.show',$product->slug)}}">{{$product->name}}</a>
+                                        <h6><small>
+                                                {{$product->presetPrice}}</small>
+                                        </h6>
+                                        <p>{{$product->details}}</p>
+                                    </div>
+                                </div>
                             </div>
+                        @empty
+                            <div class="col-lg-4 col-sm-6 h5 py-5 my-5">No Items Found</div>
+                        @endforelse
+                    </div>
+                </div>
+                <div class="col-md-2 px-md-0">
+                    <div class="d-flex flex-column text-md-right my-5">
+                        <h5 class="text-danger pb-2 px-3 px-md-0" style="text-decoration: underline">By Price 💸</h5>
+                        <div class="d-flex flex-md-column flex-wrap justify-content-start text-right">
+                            <a class="pt-1 text-dark h5 px-3 px-md-0"
+                               href="{{route('shop.index',['category'=>request()->category,'sort'=>'low_high'])}}">Low
+                                to High</a>
+                            <a class="pt-1 text-dark h5 px-3 px-md-0"
+                               href="{{route('shop.index',['category'=>request()->category,'sort'=>'high_low'])}}">High
+                                to Low</a>
                         </div>
                     </div>
-                @endforeach
+                    <div class="d-flex flex-column text-md-right">
+                        <h5 class="text-danger pb-2 px-1 px-md-0"
+                            style="text-decoration: underline">
+                            By Category 🙋</h5>
+                        <div class="d-flex flex-md-column flex-wrap justify-content-start text-right">
+                            <a class="pt-1 text-dark h5 px-1 px-md-0"
+                               href="{{route('shop.index')}}">All</a>
+                            @foreach($categories as $category)
+                                <a class="pt-1 text-dark h5 px-1 px-md-0"
+                                   href="{{route('shop.index',['category'=>$category->slug])}}">{{$category->name}}</a>
+                            @endforeach
+                            <a class="pt-1 text-dark h5 px-1 px-md-0"
+                               href="{{route('shop.index',['category'=>'others'])}}">Others</a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-md-12">
                     <ul class="pages">

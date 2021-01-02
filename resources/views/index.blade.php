@@ -3,7 +3,7 @@
     @include('layouts.header')
     <!-- Page Content -->
     <!-- Banner Starts Here -->
-    <div class="banner header-text" >
+    <div class="banner header-text">
         <div class="owl-banner owl-carousel">
             <div class="banner-item-01">
                 <div class="text-content">
@@ -39,11 +39,13 @@
                 @foreach($products as $product)
                     <div class="col-md-4 col-sm-6 ">
                         <div class="product-item">
-                            <a href="{{route('shop.show',$product->slug)}}"><img src="https://picsum.photos/200" alt=""></a>
-                            <div class="down-content border border-danger border-bottom-0  border-left-0 border-right-0">
+                            <a href="{{route('shop.show',$product->slug)}}"><img src="{{asset($product->image)}}"
+                                                                                 alt=""></a>
+                            <div
+                                class="down-content border border-danger border-bottom-0  border-left-0 border-right-0">
                                 <a href="{{route('shop.show',$product->slug)}}"><h4>{{$product->name}}</h4></a>
                                 <h6><small>
-                                     {{$product->presetPrice}}</small>
+                                        {{$product->presetPrice}}</small>
                                 </h6>
                                 <p>{{$product->details}}</p>
                             </div>

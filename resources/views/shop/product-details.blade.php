@@ -30,25 +30,25 @@
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <div>
-                        <img src="{{asset('images/product-1-370x270.jpg')}}" alt="" class="img-fluid wc-image">
+                        <img src="{{asset($product->image)}}" alt="" class="img-fluid wc-image">
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-4 col-xs-6">
                             <div>
-                                <img src="{{asset('images/product-1-370x270.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{asset($product->image)}}" alt="" class="img-fluid">
                             </div>
                             <br>
                         </div>
                         <div class="col-sm-4 col-xs-6">
                             <div>
-                                <img src="{{asset('images/product-2-370x270.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{asset($product->image)}}" alt="" class="img-fluid">
                             </div>
                             <br>
                         </div>
                         <div class="col-sm-4 col-xs-6">
                             <div>
-                                <img src="{{asset('images/product-3-370x270.jpg')}}" alt="" class="img-fluid">
+                                <img src="{{asset($product->image)}}" alt="" class="img-fluid">
                             </div>
                             <br>
                         </div>
@@ -124,7 +124,7 @@
                     <div class="col-md-4">
                         <div class="product-item">
                             <a href="{{route('shop.show',$mayLike->slug)}}"><img
-                                    src="{{asset('images/product-1-370x270.jpg')}}" alt=""></a>
+                                    src="{{asset($mayLike->image)}}" alt=""></a>
                             <div class="down-content">
                                 <a href="{{route('shop.show',$mayLike->slug)}}"><h4>{{$mayLike->name}}</h4></a>
                                 <br>
