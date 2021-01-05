@@ -16,18 +16,17 @@
                     <li class="nav-item @if($name==='landing-page') active @endif">
                         <a class="nav-link" href="{{route('landing-page')}}">Home</a>
                     </li>
-
-                    <li class="nav-item @if($name==='shop.index') active @endif"><a class="nav-link"
-                                                                                    href="{{route('shop.index')}}">Products</a>
-                    </li>
-
-                    <li class="nav-item dropdown ">
+                    <li class="nav-item dropdown @if($name==='shop.index') active @endif">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="false">Shop</a>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('shop.checkout')}}"><i class="fa fa-check-circle-o"></i> Checkout</a>
-                            <a class="dropdown-item" href="{{route('shop.cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
+                            <a class="dropdown-item" href="{{route('shop.index')}}"> 🛍 Products</a>
+                            <a class="dropdown-item" href="{{route('shop.checkout')}}"><i
+                                    class="fa fa-check-circle-o"></i> Checkout</a>
+                            <a class="dropdown-item" href="{{route('shop.cart')}}"><i class="fa fa-shopping-cart"></i>
+                                Cart @if(\Cart::instance('default')->count())<span
+                                    class="text-danger px-3 h5">{{\Cart::instance('default')->count()}}</span>@endif</a>
                         </div>
                     </li>
 
@@ -44,7 +43,7 @@
                     </li>
 
                     <li class="nav-item @if($name==='') active @endif"><a class="nav-link"
-                                                                                      href="contact.html">Contact Us</a>
+                                                                          href="contact.html">Contact Us</a>
                     </li>
                 </ul>
             </div>

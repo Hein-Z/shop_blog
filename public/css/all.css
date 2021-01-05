@@ -839,17 +839,17 @@ footer .inner-content p a {
 	position:relative;
 	z-index: 2;
 }
-.products ul.pages {
+ ul.pages {
 	margin-top: 30px;
 	text-align: center;
 }
 
-.products ul.pages li {
+ ul.pages li {
 	display: inline-block;
 	margin: 0px 2px;
 }
 
-.products ul.pages li a {
+ ul.pages li a {
 	width: 44px;
 	height: 44px;
 	display: inline-block;
@@ -861,8 +861,8 @@ footer .inner-content p a {
 	transition: all .3s;
 }
 
-.products ul.pages li a:hover,
-.products ul.pages li.active a {
+ ul.pages li a:hover,
+ ul.pages li.active a {
 	background-color: #f33f3f;
 	border-color: #f33f3f;
 	color: #fff;

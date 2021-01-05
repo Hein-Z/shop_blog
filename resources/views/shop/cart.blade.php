@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        <h4><span class="text-light">{{$qty}} items </span> in shopping cart</h4>
+                        <h4><span class="text-light">{{\Cart::instance('default')->count()}} items </span> in shopping cart</h4>
                         <h2>Shopping Cart</h2>
                         @if ($message = session()->has('success'))
                             <div class="alert alert-dark" role="alert">
@@ -48,20 +48,20 @@
 
     <div class="container-fluid px-5">
         <div class="row">
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-8 px-5">
                 <div class="row">
                     <h5 class="col-12 py-3"><span class="text-danger">Items</span> in your cart...</h5>
 
                     <div class="col-12 " style="height: 2px; background-color: #1a202c2f"></div>
-                    @if($items->isEmpty())
+                    @if(\Cart::instance('default')->content()->isEmpty())
                         <div class="col-12 my-5"> There is no item in your shopping cart</div>
                     @endif
-                    @foreach($items as $item)
+                    @foreach(\Cart::instance('default')->content() as $item)
                         <div class="col-12">
                             <div class="row mt-3">
                                 <div class="col-2 ">
                                     <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                            src="{{asset($item->model->image)}}" class="img-fluid"
+                                            src="{{productImage($item->model->image)}}" class="img-fluid"
                                             alt=""></a>
                                 </div>
                                 <div class="col-4">
@@ -94,17 +94,8 @@
 
                         </div>
                     @endforeach
-                    @if(!$items->isEmpty())
-                        <h5 class="col-12 mt-5 ">Have a code?</h5>
-                        <div class="col-8 mb-3">
-                            <form action=""><input class="border-dark py-1 border" type="text">
-                                <button type="submit" class="btn btn-outline-dark">Submit</button>
-                            </form>
-                        </div>
-
-
-
-                        <div class="col-4 text-right">
+                    @if(!\Cart::instance('default')->content()->isEmpty())
+                        <div class="col-12 text-right mt-5">
                             <form action="{{route('shop.cart.empty')}}" method="post">
                                 @method('DELETE')
                                 @csrf
@@ -135,7 +126,7 @@
                                 </div>
                             </div>
                             <hr>
-                            @if(!$items->isEmpty())
+                            @if(!\Cart::instance('default')->content()->isEmpty())
                                 <div class="col-12">
                                     <div class="d-flex justify-content-between">
                                         <a href="{{route('shop.index')}}" class="btn btn-outline-dark">Continue
@@ -148,15 +139,18 @@
                             @endif
                         </div>
                     </div>
-                    @if($saved_items->isEmpty())
+                    @if(\Cart::instance('save')->content()->isEmpty())
                         <div class="col-12 my-5"> There is no item saved for later</div>
                     @endif
-                    @foreach($saved_items as $item)
+                    @foreach(\Cart::instance('save')->content() as $item)
                         <div class="col-12">
                             <div class="row mt-3">
+                                <h5 class="col-12 py-3"><span class="text-danger">Saved items</span> in your cart...</h5>
+
+                                <div class="col-12 mb-1" style="height: 2px; background-color: #1a202c2f"></div>
                                 <div class="col-2 ">
                                     <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                            src="{{asset($item->model->image)}}" class="img-fluid"
+                                            src="{{productImage($product->image)}}" class="img-fluid"
                                             alt=""></a>
                                 </div>
                                 <div class="col-4">
@@ -185,7 +179,7 @@
 
                         </div>
                     @endforeach
-                    @if(!$saved_items->isEmpty())
+                    @if(!\Cart::instance('save')->content()->isEmpty())
 
                         <div class="col-12 mt-2 text-right mb-5">
                             <form action="{{route('shop.cart.empty')}}" method="post">
@@ -197,14 +191,14 @@
                     @endif
                 </div>
             </div>
-            <div class="col-md-4 col-12">
+            <div class="col-md-4 col-12 px-5">
                 <div class="row">
                     <h5 class="col-md-12 py-3">You might also like...</h5>
                     @foreach($mayLikes as $mayLike)
                         <div class="col-md-6 col-3">
                             <div class="product-item">
                                 <a href="{{route('shop.show',$mayLike->slug)}}"><img
-                                        src="{{asset($mayLike->image)}}" alt=""></a>
+                                        src="{{productImage($mayLike->image)}}" alt=""></a>
                                 <div class="down-content py-1 pl-1">
                                     <a href="{{route('shop.show',$mayLike->slug)}}"><h4>{{$mayLike->name}}</h4></a>
                                     <h6><small>

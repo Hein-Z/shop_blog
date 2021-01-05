@@ -15,14 +15,12 @@ class CartController extends Controller
     {
 
         $mayLikes = Product::inRandomOrder()->take(4)->get();
-        $items = \Cart::content();
+
         $bills['total'] = $this->priceFormat(\Cart::total(false, '', ''));
         $bills['subtotal'] = $this->priceFormat(\Cart::subtotal(false, '', ''));
         $bills['tax'] = $this->priceFormat(\Cart::tax(false, '', ''));
-        $qty = \Cart::count();
-        $saved_items = \Cart::instance('save')->content();
 
-        return view('shop.cart')->with(['mayLikes' => $mayLikes, 'items' => $items, 'bills' => $bills, 'saved_items' => $saved_items, 'qty' => $qty]);
+        return view('shop.cart')->with(['mayLikes' => $mayLikes, 'bills' => $bills]);
     }
 
     public function store(Request $request)
@@ -43,7 +41,7 @@ class CartController extends Controller
             $request->price,
 //            ['extra' => $request->extra],
             [],
-            0.5
+            5
         )->associate('App\Models\Product');
 
         return redirect()->route('shop.cart')->with('success', 'Successfully added to your shopping cast');

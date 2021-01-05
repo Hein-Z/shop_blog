@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,9 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $table = 'category';
+
     public function products()
     {
-        return $this->belongsToMany(Product::class,'category_product');
+        return $this->belongsToMany(Product::class, 'category_product');
     }
 }
 //App\Models\Category::all();

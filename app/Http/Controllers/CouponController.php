@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Http\Controllers\Traits\PriceFormatter;
+use App\Models\Coupon;
+use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
 
-class LandingPageController extends Controller
+class CouponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
-        return view('index', compact('products'));
-    }
+    use PriceFormatter;
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +29,18 @@ class LandingPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        if (!$coupon) {
+            return redirect()->back()->withErrors('Invalid coupon code. Please try again.');
+        }
+
+//        dd($coupon->discount(\Cart::subtotal()));
+        session()->put('coupon', [
+            'name' => $coupon->code,
+            'discount' => $coupon->discount(\Cart::subtotal(false, '', '')),
+        ]);
+
+        return redirect()->route('shop.checkout')->with('success', 'Coupon has been applied');
     }
 
     /**
@@ -79,8 +83,9 @@ class LandingPageController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        session()->forget('coupon');
+        return redirect()->route('shop.checkout')->with('success', 'Coupon has been removed');
     }
 }

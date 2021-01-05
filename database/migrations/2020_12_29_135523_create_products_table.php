@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->text('description');
             $table->string('image')->nullable()->unique();
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }

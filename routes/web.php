@@ -39,20 +39,14 @@ Route::delete('/saved/{id}/remove', [\App\Http\Controllers\SavedItemsController:
 Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('shop.checkout');
 Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('shop.checkout.store');
 
+//confirmation
 Route::get('/thank-you', [\App\Http\Controllers\ConfirmationController::class,'index'])->name('confirmation.index');
-Route::get('/testimonials', function () {
-    return view('testimonials');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
 
-Route::get('/blog', function () {
-    return view('blog');
-});
-Route::get('/blog-details', function () {
-    return view('blog-details');
-});
-Route::get('/about-us', function () {
-    return view('about-us');
+//coupon
+Route::post('/coupon',[\App\Http\Controllers\CouponController::class,'store'])->name('coupon.store');
+Route::delete('/coupon',[\App\Http\Controllers\CouponController::class,'destroy'])->name('coupon.destroy');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });

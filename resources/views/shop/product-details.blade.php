@@ -1,4 +1,17 @@
 @extends('layouts.master')
+@section('extra-css')
+    <style>
+        /*product detail gallery*/
+        .product-section-image {
+            opacity: 0;
+            transition: 0.2s ease-in-out;
+        }
+
+        img.active-img {
+            opacity: 1;
+        }
+
+    </style>
 @section('content')
     @include('layouts.header')
 
@@ -29,29 +42,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <div>
-                        <img src="{{asset($product->image)}}" alt="" class="img-fluid wc-image">
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 300px">
+                        <img src="{{productImage($product->image)}}" alt="" id="current-image"
+                             class="img-fluid wc-image product-section-image active-img">
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-4 col-xs-6">
-                            <div>
-                                <img src="{{asset($product->image)}}" alt="" class="img-fluid">
+                            <div class="product-section-thumbnail">
+                                <img src="{{productImage($product->image)}}"  alt="" class="img-fluid thumbnail-image">
                             </div>
                             <br>
                         </div>
-                        <div class="col-sm-4 col-xs-6">
-                            <div>
-                                <img src="{{asset($product->image)}}" alt="" class="img-fluid">
-                            </div>
-                            <br>
-                        </div>
-                        <div class="col-sm-4 col-xs-6">
-                            <div>
-                                <img src="{{asset($product->image)}}" alt="" class="img-fluid">
-                            </div>
-                            <br>
-                        </div>
+                        @if($product->images)
+                            @foreach(json_decode($product->images,true) as $image)
+                                <div class="col-sm-4 col-xs-6">
+                                    <div class="product-section-thumbnail">
+                                        <img src="{{productImage($image)}}"  alt="" class="img-fluid img-thumbnail thumbnail-image">
+                                    </div>
+                                    <br>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
@@ -73,7 +85,7 @@
                         <br>
 
                         <p class="lead">
-                            {{$product->description}}
+                            {!!$product->description!!}
                         </p>
 
                         <br>
@@ -124,7 +136,7 @@
                     <div class="col-md-4">
                         <div class="product-item">
                             <a href="{{route('shop.show',$mayLike->slug)}}"><img
-                                    src="{{asset($mayLike->image)}}" alt=""></a>
+                                    src="{{productImage($mayLike->image)}}" alt=""></a>
                             <div class="down-content">
                                 <a href="{{route('shop.show',$mayLike->slug)}}"><h4>{{$mayLike->name}}</h4></a>
                                 <br>
@@ -141,90 +153,26 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="inner-content">
-                        <p>Copyright © 2020 Company Name - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
 
-    {{--    <!-- Modal -->--}}
-    {{--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"--}}
-    {{--         aria-hidden="true">--}}
-    {{--        <div class="modal-dialog modal-lg" role="document">--}}
-    {{--            <div class="modal-content">--}}
-    {{--                <div class="modal-header">--}}
-    {{--                    <h5 class="modal-title" id="exampleModalLabel">Book Now</h5>--}}
-    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-    {{--                        <span aria-hidden="true">&times;</span>--}}
-    {{--                    </button>--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-body">--}}
-    {{--                    <div class="contact-form">--}}
-    {{--                        <form action="#" id="contact">--}}
-    {{--                            <div class="row">--}}
-    {{--                                <div class="col-md-6">--}}
-    {{--                                    <fieldset>--}}
-    {{--                                        <input type="text" class="form-control" placeholder="Pick-up location"--}}
-    {{--                                               required="">--}}
-    {{--                                    </fieldset>--}}
-    {{--                                </div>--}}
+@section('extra-js')
+    <script>
 
-    {{--                                <div class="col-md-6">--}}
-    {{--                                    <fieldset>--}}
-    {{--                                        <input type="text" class="form-control" placeholder="Return location"--}}
-    {{--                                               required="">--}}
-    {{--                                    </fieldset>--}}
-    {{--                                </div>--}}
-    {{--                            </div>--}}
+        const currentImg=document.getElementById('current-image');
+        const thumbnailImg=document.querySelectorAll(".product-section-thumbnail");
+        thumbnailImg.forEach(element=>{
+            element.addEventListener('click',showImage);
+        });
 
-    {{--                            <div class="row">--}}
-    {{--                                <div class="col-md-6">--}}
-    {{--                                    <fieldset>--}}
-    {{--                                        <input type="text" class="form-control" placeholder="Pick-up date/time"--}}
-    {{--                                               required="">--}}
-    {{--                                    </fieldset>--}}
-    {{--                                </div>--}}
+        function showImage(){
+            currentImg.classList.remove('active-img');
 
-    {{--                                <div class="col-md-6">--}}
-    {{--                                    <fieldset>--}}
-    {{--                                        <input type="text" class="form-control" placeholder="Return date/time"--}}
-    {{--                                               required="">--}}
-    {{--                                    </fieldset>--}}
-    {{--                                </div>--}}
-    {{--                            </div>--}}
-    {{--                            <input type="text" class="form-control" placeholder="Enter full name" required="">--}}
+            currentImg.addEventListener('transitionend',()=>{
+                currentImg.src=this.querySelector('.thumbnail-image').src;
+                currentImg.classList.add('active-img');
 
-    {{--                            <div class="row">--}}
-    {{--                                <div class="col-md-6">--}}
-    {{--                                    <fieldset>--}}
-    {{--                                        <input type="text" class="form-control" placeholder="Enter email address"--}}
-    {{--                                               required="">--}}
-    {{--                                    </fieldset>--}}
-    {{--                                </div>--}}
+            })
+        }
 
-    {{--                                <div class="col-md-6">--}}
-    {{--                                    <fieldset>--}}
-    {{--                                        <input type="text" class="form-control" placeholder="Enter phone" required="">--}}
-    {{--                                    </fieldset>--}}
-    {{--                                </div>--}}
-    {{--                            </div>--}}
-    {{--                        </form>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-footer">--}}
-    {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>--}}
-    {{--                    <button type="button" class="btn btn-primary">Book Now</button>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-
+    </script>
 @endsection

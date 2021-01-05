@@ -17,27 +17,30 @@ class ShopController extends Controller
      */
     public function index()
     {
+        $pagination = 9;
         $categories = Category::all();
         if (\request()->category) {
-            if (\request()->category === 'others') {
-                $products = Product::doesntHave('categories')->get();
-                $categoryName = 'Other';
+            if (\request()->category === 'uncategorized') {
+                $products = Product::doesntHave('categories');
+                $categoryName = 'Uncategorized';
             } else {
                 $products = Product::with('categories')->whereHas('categories', function ($query) {
                     $query->where('slug', \request()->category);
-                })->get();
-                $categoryName = $categories->where('slug', \request()->category)->first()->name;
+                });
+                $categoryName = optional($categories->where('slug', \request()->category)->first())->name;
             }
         } else {
-            $products = Product::inRandomOrder()->paginate(12);
+            $products = Product::where('featured', true)->inRandomOrder();
             $categoryName = 'Feature';
         }
 
 
         if (\request()->sort === 'low_high') {
-            $products = $products->sortBy('price');
+            $products = $products->inRandomOrder()->orderBy('price')->paginate($pagination);
         } elseif (\request()->sort === 'high_low') {
-            $products = $products->sortByDesc('price');
+            $products = $products->inRandomOrder()->orderBy('price', 'desc')->paginate($pagination);
+        } else {
+            $products = $products->inRandomOrder()->paginate($pagination);
         }
 
         return view('shop.shop', compact('products', 'categories', 'categoryName'));

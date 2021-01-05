@@ -12,15 +12,19 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        $items = \Cart::content();
-        $bills['total'] = $this->priceFormat(\Cart::total(false, '', ''));
-        $bills['subtotal'] = $this->priceFormat(\Cart::subtotal(false, '', ''));
-        $bills['tax'] = $this->priceFormat(\Cart::tax(false, '', ''));
-        return view('shop.checkout')->with(['items' => $items, 'bills' => $bills]);
+        $billArray = $this->getBills();
+
+        $bills = array_map(function ($bill) {
+            return $this->priceFormat($bill);
+        }, $billArray);
+
+        return view('shop.checkout')->with([ 'bills' => $bills]);
     }
 
     public function store(ChcekoutRequest $request)
     {
+        $bills = $this->getBills();
+
         $contents = \Cart::instance('default')->content()->map(
             function ($item) {
                 return $item->model->slug . ',' . $item->qty . ',' . 'Details : ' . $item->model->details;
@@ -29,7 +33,7 @@ class CheckoutController extends Controller
 
         try {
             $charge = \Stripe::charges()->create([
-                'amount' => \Cart::instance('default')->total(false, '', '') / 100,
+                'amount' => $bills['newTotal'] / 100,
                 'currency' => 'CAD',
                 'source' => $request->stripeToken,
                 'description' => 'Order',
@@ -37,12 +41,31 @@ class CheckoutController extends Controller
                 'metadata' => [
                     'contents' => $contents,
                     'quantity' => \Cart::instance('default')->count(),
+                    'discount' => $bills['discount']/100
                 ],
             ]);
+            //successful
             \Cart::instance('default')->destroy();
+            session()->forget('coupon');
             return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         } catch (CardErrorException $e) {
             return back()->withErrors('Error! ' . $e->getMessage());
         }
     }
+
+    protected function getBills()
+    {
+        $tax = 5 / 100;
+        $bills['discount'] = session()->get('coupon')['discount'] ?? 0;
+        $bills['newSubtotal'] = (int)\Cart::subTotal(false, '', '') - (int)$bills['discount'];
+        $bills['newTax'] = $bills['newSubtotal'] * $tax;
+        $bills['newTotal'] = $bills['newSubtotal'] * (1 + $tax);
+        $bills['total'] = \Cart::total(false, '', '');
+        $bills['subtotal'] = \Cart::subtotal(false, '', '');
+        $bills['tax'] = \Cart::tax(false, '', '');
+
+        return $bills;
+    }
+
+
 }

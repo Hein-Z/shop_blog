@@ -21,8 +21,11 @@ class DatabaseSeeder extends Seeder
         );
 
         $this->call(
-           'Database\Seeders\ProductSeeder'
+            'Database\Seeders\ProductSeeder'
         );
 
+        $this->call(
+            'Database\Seeders\CouponSeeder'
+        );
     }
 }

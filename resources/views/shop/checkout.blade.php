@@ -84,14 +84,14 @@
                     <div class="row">
                         <div class="col-12">
                             <h5 class="text-danger pb-4">Shopping Cart</h5>
-                            @if($items->isEmpty())
+                            @if(\Cart::instance('default')->content()->isEmpty())
                                 <div class="my-5"> There is no item in your shopping cart</div>
                             @endif
                             <div class="row">
-                                @foreach($items as $item)
+                                @foreach(\Cart::instance('default')->content() as $item)
                                     <div class="col-4">
                                         <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                                src="http://127.0.0.1:8000/images/product-1-370x270.jpg"
+                                                src="{{productImage($item->model->image)}}"
                                                 class="img-fluid"
                                                 alt=""></a>
                                     </div>
@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                <ul class="col-12 list-group  list-group-flush">
+                                <ul class="col-12 list-group mt-5 list-group-flush">
                                     <li class="list-group-item">
                                         <div class="row">
                                             <div class="col-6">
@@ -121,42 +121,116 @@
                                         </div>
                                     </li>
 
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <em>Extra</em>
+                                    @if(session()->has('coupon'))
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <em>Discount ({{session()->get('coupon')['name']}})</em>
+                                                    <form action="{{route('coupon.destroy')}}" class="mb-0"
+                                                          method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a href='#' class="text-danger"
+                                                           onclick='this.parentNode.submit(); return false;'>remove</a>
+                                                    </form>
+                                                </div>
+                                                <div class="col-4 text-right">
+                                                    <strong>-{{$bills['discount']}}</strong>
+                                                </div>
                                             </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <em>New subtotal</em>
+                                                </div>
 
-                                            <div class="col-6 text-right">
-                                                <strong>$ 0.00</strong>
+                                                <div class="col-6 text-right">
+                                                    <strong>{{$bills['newSubtotal']}}</strong>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endif
+                                    @if(!session()->has('coupon'))
 
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <em>Tax</em>
-                                            </div>
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <em>Tax</em>
+                                                </div>
 
-                                            <div class="col-6 text-right">
-                                                <strong>{{$bills['tax']}}</strong>
+                                                <div class="col-6 text-right">
+                                                    <strong>{{$bills['tax']}}</strong>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
 
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <em>Total</em>
-                                            </div>
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <strong>Total</strong>
+                                                </div>
 
-                                            <div class="col-6 text-right">
-                                                <strong>{{$bills['total']}}</strong>
+                                                <div class="col-6 text-right">
+                                                    <strong>{{$bills['total']}}</strong>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @elseif(session()->has('coupon'))
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <em>New Tax</em>
+                                                </div>
+
+                                                <div class="col-6 text-right">
+                                                    <strong>{{$bills['newTax']}}</strong>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <strong>Total</strong>
+                                                </div>
+
+                                                <div class="col-6 text-right">
+                                                    <strong>{{$bills['newTotal']}}</strong>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endif
                                 </ul>
+
+                                @if(!\Cart::instance('default')->content()->isEmpty())
+                                    <h5 class="col-12 mt-5 ">Have a coupon?</h5>
+                                    <div class="col-12 my-3">
+                                        <form class="row" action="{{route('coupon.store')}}" method="post">
+                                            @csrf
+                                            <input
+                                                class="col-8 border-dark py-1 border" name="coupon_code" type="text">
+                                            <button type="submit" class="col-4 btn btn-outline-dark">Submit</button>
+                                        </form>
+                                    </div>
+                                @endif
+                                @if($errors->any())
+                                    <div class="alert alert-danger col-12" role="alert">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{$error}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if ($message = session()->has('success'))
+                                    <div class="alert alert-dark col-12" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{ session()->get('success') }}
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>

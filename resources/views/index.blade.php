@@ -33,13 +33,13 @@
                 <div class="col-md-12">
                     <div class="section-heading">
                         <h2>Featured Products</h2>
-                        <a href="products.html">view more <i class="fa fa-angle-right"></i></a>
+                        <a href="{{route('shop.index')}}">view more <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
                 @foreach($products as $product)
                     <div class="col-md-4 col-sm-6 ">
                         <div class="product-item">
-                            <a href="{{route('shop.show',$product->slug)}}"><img src="{{asset($product->image)}}"
+                            <a href="{{route('shop.show',$product->slug)}}"><img src="{{productImage($product->image)}}"
                                                                                  alt=""></a>
                             <div
                                 class="down-content border border-danger border-bottom-0  border-left-0 border-right-0">
