@@ -18,7 +18,7 @@
 </head>
 
 <body>
-
+<div id="app">
 <!-- ***** Preloader Start ***** -->
 <div id="preloader">
     <div class="jumper">
@@ -31,7 +31,7 @@
 
 
 @yield('content')
-
+</div>
 <script src="{{asset('js/app.js')}}"></script>
 <script>
     $(document).ready(function () {

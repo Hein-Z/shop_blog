@@ -57,7 +57,7 @@
                             <div class="alert alert-danger" role="alert">
                                 <ul>
                                     @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
+                                        <li>{!! $error!!}</li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -116,7 +116,7 @@
                                             </div>
 
                                             <div class="col-6 text-right">
-                                                <strong>{{$bills['subtotal']}}</strong>
+                                                <strong>{{priceFormat($bills['subtotal'])}}</strong>
                                             </div>
                                         </div>
                                     </li>
@@ -135,7 +135,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="col-4 text-right">
-                                                    <strong>-{{$bills['discount']}}</strong>
+                                                    <strong>-{{priceFormat($bills['discount'])}}</strong>
                                                 </div>
                                             </div>
                                         </li>
@@ -146,7 +146,7 @@
                                                 </div>
 
                                                 <div class="col-6 text-right">
-                                                    <strong>{{$bills['newSubtotal']}}</strong>
+                                                    <strong>{{priceFormat($bills['newSubtotal'])}}</strong>
                                                 </div>
                                             </div>
                                         </li>
@@ -160,7 +160,7 @@
                                                 </div>
 
                                                 <div class="col-6 text-right">
-                                                    <strong>{{$bills['tax']}}</strong>
+                                                    <strong>{{priceFormat($bills['tax'])}}</strong>
                                                 </div>
                                             </div>
                                         </li>
@@ -172,7 +172,7 @@
                                                 </div>
 
                                                 <div class="col-6 text-right">
-                                                    <strong>{{$bills['total']}}</strong>
+                                                    <strong>{{priceFormat($bills['total'])}}</strong>
                                                 </div>
                                             </div>
                                         </li>
@@ -184,7 +184,7 @@
                                                 </div>
 
                                                 <div class="col-6 text-right">
-                                                    <strong>{{$bills['newTax']}}</strong>
+                                                    <strong>{{priceFormat($bills['newTax'])}}</strong>
                                                 </div>
                                             </div>
                                         </li>
@@ -195,7 +195,7 @@
                                                 </div>
 
                                                 <div class="col-6 text-right">
-                                                    <strong>{{$bills['newTotal']}}</strong>
+                                                    <strong>{{priceFormat($bills['newTotal'])}}</strong>
                                                 </div>
                                             </div>
                                         </li>
@@ -204,7 +204,7 @@
 
                                 @if(!\Cart::instance('default')->content()->isEmpty())
                                     <h5 class="col-12 mt-5 ">Have a coupon?</h5>
-                                    <div class="col-12 my-3">
+                                    <div class="col-12 my-3">php ar
                                         <form class="row" action="{{route('coupon.store')}}" method="post">
                                             @csrf
                                             <input
@@ -217,7 +217,7 @@
                                     <div class="alert alert-danger col-12" role="alert">
                                         <ul>
                                             @foreach($errors->all() as $error)
-                                                <li>{{$error}}</li>
+                                                <li>{!!  $error!!}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -243,13 +243,13 @@
 
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                                {{--                            @if (auth()->user())--}}
-                                <input type="email" class="form-control" id="email" name="email"
-                                       value="{{old('email')}}" readonly>
-                                {{--                            @else--}}
-                                <input type="email" class="form-control" id="email" name="email"
-                                       value="{{ old('email')}}" required>
-                                {{--                            @endif--}}
+                                @if (auth()->user())
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           value="{{\Illuminate\Support\Facades\Auth::user()->email}}" readonly>
+                                @else
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           value="{{ old('email')}}" required>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>

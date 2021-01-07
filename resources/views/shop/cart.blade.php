@@ -118,11 +118,11 @@
                                     <strong class="text-dark"><h4>Total</h4></strong>
                                 </div>
                                 <div class="col col-2 align-items-around text-right" style="line-height: 1.7rem">
-                                    <strong class="text-muted">{{$bills['subtotal']}}</strong>
+                                    <strong class="text-muted">{{priceFormat($bills['subtotal'])}}</strong>
                                     <br>
-                                    <strong class="text-muted ">{{$bills['tax']}}</strong>
+                                    <strong class="text-muted ">{{priceFormat($bills['tax'])}}</strong>
                                     <br>
-                                    <strong class="text-dark"><h4>{{$bills['total']}}</h4></strong>
+                                    <strong class="text-dark"><h4>{{priceFormat($bills['total'])}}</h4></strong>
                                 </div>
                             </div>
                             <hr>
@@ -150,7 +150,7 @@
                                 <div class="col-12 mb-1" style="height: 2px; background-color: #1a202c2f"></div>
                                 <div class="col-2 ">
                                     <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                            src="{{productImage($product->image)}}" class="img-fluid"
+                                            src="{{productImage($item->model->image)}}" class="img-fluid"
                                             alt=""></a>
                                 </div>
                                 <div class="col-4">

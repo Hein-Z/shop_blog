@@ -2,35 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df7ef52c-31d6-423d-ae2e-97d5b42da1f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-ecommence.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-ecommence.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LandingPageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LandingPageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CouponController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Traits/PriceFormatter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Traits/PriceFormatter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ChcekoutRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ChcekoutRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_29_135523_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_29_135523_create_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_01_203310_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_01_203310_create_category_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_01_210708_create_category_product_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_01_210708_create_category_product_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/ProductSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProductSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CategoriesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategoriesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shop/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/cart.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shop/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/checkout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shop/product-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/product-details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shop/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -239,7 +230,9 @@
       <workItem from="1609760471905" duration="28000" />
       <workItem from="1609760540024" duration="6308000" />
       <workItem from="1609770520415" duration="4424000" />
-      <workItem from="1609838022575" duration="14704000" />
+      <workItem from="1609838022575" duration="14797000" />
+      <workItem from="1609927836604" duration="12496000" />
+      <workItem from="1610014094959" duration="1884000" />
     </task>
     <servers />
   </component>
@@ -265,6 +258,11 @@
           <url>file://$PROJECT_DIR$/resources/views/shop/save-for-later.blade.php</url>
           <line>39</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/layouts/app.blade.php</url>
+          <line>55</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

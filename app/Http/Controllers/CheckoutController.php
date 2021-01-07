@@ -12,13 +12,12 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        $billArray = $this->getBills();
+        if (\Cart::count() <= 0) {
+            return redirect()->route('shop.index');
+        }
+        $bills = $this->getBills();
 
-        $bills = array_map(function ($bill) {
-            return $this->priceFormat($bill);
-        }, $billArray);
-
-        return view('shop.checkout')->with([ 'bills' => $bills]);
+        return view('shop.checkout')->with(['bills' => $bills]);
     }
 
     public function store(ChcekoutRequest $request)
@@ -41,7 +40,7 @@ class CheckoutController extends Controller
                 'metadata' => [
                     'contents' => $contents,
                     'quantity' => \Cart::instance('default')->count(),
-                    'discount' => $bills['discount']/100
+                    'discount' => $bills['discount'] / 100
                 ],
             ]);
             //successful

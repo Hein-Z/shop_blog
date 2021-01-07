@@ -16,9 +16,9 @@ class CartController extends Controller
 
         $mayLikes = Product::inRandomOrder()->take(4)->get();
 
-        $bills['total'] = $this->priceFormat(\Cart::total(false, '', ''));
-        $bills['subtotal'] = $this->priceFormat(\Cart::subtotal(false, '', ''));
-        $bills['tax'] = $this->priceFormat(\Cart::tax(false, '', ''));
+        $bills['total'] = \Cart::total(false, '', '');
+        $bills['subtotal'] = \Cart::subtotal(false, '', '');
+        $bills['tax'] = \Cart::tax(false, '', '');
 
         return view('shop.cart')->with(['mayLikes' => $mayLikes, 'bills' => $bills]);
     }

@@ -40,7 +40,7 @@ class CouponController extends Controller
             'discount' => $coupon->discount(\Cart::subtotal(false, '', '')),
         ]);
 
-        return redirect()->route('shop.checkout')->with('success', 'Coupon has been applied');
+        return redirect()->back()->with('success', 'Coupon has been applied');
     }
 
     /**

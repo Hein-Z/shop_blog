@@ -7,6 +7,6 @@ trait PriceFormatter
 {
     public function priceFormat($price)
     {
-        return '$' . bcdiv($price,100,2);
+        return '$' . $price;
     }
 }
