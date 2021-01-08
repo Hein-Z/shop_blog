@@ -35,308 +35,323 @@
     </style>
     <script src="https://js.stripe.com/v3/"></script>
 @section('content')
-    @include('layouts.header')
-    <!-- Page Content -->
-    <div class="page-heading about-heading header-text"
-         style="background-image: url({{asset('images/heading-6-1920x500.jpg')}})" id="offset-pos">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-content">
-                        <h4>Lorem ipsum dolor sit amet</h4>
-                        <h2>Checkout</h2>
-                        @if ($message = session()->has('success'))
-                            <div class="alert alert-dark" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                {{ session()->get('success') }}
-                            </div>
-                        @endif
-                        @if($errors->any())
-                            <div class="alert alert-danger" role="alert">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{!! $error!!}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
+    {{--    @include('layouts.preloader')--}}
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
-    <div class="container-fluid  h5">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item "><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
-                <li class="breadcrumb-item "><a href="{{route('shop.cart')}}" class="text-dark">Cart</a></li>
-                <li class="breadcrumb-item text-danger">Checkout</li>
-            </ol>
-        </nav>
-    </div>
+    <!-- ***** Preloader End ***** -->
 
-    <div class="products call-to-action">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 mb-5 mt-md-0">
-                    <div class="row">
-                        <div class="col-12">
-                            <h5 class="text-danger pb-4">Shopping Cart</h5>
-                            @if(\Cart::instance('default')->content()->isEmpty())
-                                <div class="my-5"> There is no item in your shopping cart</div>
+    @include('layouts.header')
+    <div id="app">
+
+        <!-- Page Content -->
+        <div class="page-heading about-heading header-text"
+             style="background-image: url({{asset('images/heading-6-1920x500.jpg')}})" id="offset-pos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-content">
+                            <h4>Lorem ipsum dolor sit amet</h4>
+                            <h2>Checkout</h2>
+                            @if ($message = session()->has('success'))
+                                <div class="alert alert-dark" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ session()->get('success') }}
+                                </div>
                             @endif
-                            <div class="row">
-                                @foreach(\Cart::instance('default')->content() as $item)
-                                    <div class="col-4">
-                                        <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                                src="{{productImage($item->model->image)}}"
-                                                class="img-fluid"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="col-5">
-                                        <a href="{{route('shop.show',$item->model->slug)}}"> {{$item->name}}</a>
-                                        <br>
-                                        <small>{{$item->model->details}}</small>
-                                        <p class="h5">{{$item->model->presetPrice}}</p>
-
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="bg-dark text-light text-center d-block h5 rounded-pill">
-                                            {{$item->qty}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                                <ul class="col-12 list-group mt-5 list-group-flush">
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <em>Sub-total</em>
-                                            </div>
-
-                                            <div class="col-6 text-right">
-                                                <strong>{{priceFormat($bills['subtotal'])}}</strong>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    @if(session()->has('coupon'))
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <em>Discount ({{session()->get('coupon')['name']}})</em>
-                                                    <form action="{{route('coupon.destroy')}}" class="mb-0"
-                                                          method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href='#' class="text-danger"
-                                                           onclick='this.parentNode.submit(); return false;'>remove</a>
-                                                    </form>
-                                                </div>
-                                                <div class="col-4 text-right">
-                                                    <strong>-{{priceFormat($bills['discount'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <em>New subtotal</em>
-                                                </div>
-
-                                                <div class="col-6 text-right">
-                                                    <strong>{{priceFormat($bills['newSubtotal'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endif
-                                    @if(!session()->has('coupon'))
-
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <em>Tax</em>
-                                                </div>
-
-                                                <div class="col-6 text-right">
-                                                    <strong>{{priceFormat($bills['tax'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <strong>Total</strong>
-                                                </div>
-
-                                                <div class="col-6 text-right">
-                                                    <strong>{{priceFormat($bills['total'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @elseif(session()->has('coupon'))
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <em>New Tax</em>
-                                                </div>
-
-                                                <div class="col-6 text-right">
-                                                    <strong>{{priceFormat($bills['newTax'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <strong>Total</strong>
-                                                </div>
-
-                                                <div class="col-6 text-right">
-                                                    <strong>{{priceFormat($bills['newTotal'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endif
-                                </ul>
-
-                                @if(!\Cart::instance('default')->content()->isEmpty())
-                                    <h5 class="col-12 mt-5 ">Have a coupon?</h5>
-                                    <div class="col-12 my-3">php ar
-                                        <form class="row" action="{{route('coupon.store')}}" method="post">
-                                            @csrf
-                                            <input
-                                                class="col-8 border-dark py-1 border" name="coupon_code" type="text">
-                                            <button type="submit" class="col-4 btn btn-outline-dark">Submit</button>
-                                        </form>
-                                    </div>
-                                @endif
-                                @if($errors->any())
-                                    <div class="alert alert-danger col-12" role="alert">
-                                        <ul>
-                                            @foreach($errors->all() as $error)
-                                                <li>{!!  $error!!}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                @if ($message = session()->has('success'))
-                                    <div class="alert alert-dark col-12" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        {{ session()->get('success') }}
-                                    </div>
-                                @endif
-
-                            </div>
+                            @if($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{!! $error!!}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-8 mt-0 p-0 px-5">
-                    <div class="contact-form">
-                        <form action="{{ route('shop.checkout') }}" method="POST" id="payment-form">
-                            @csrf
-                            <h2>Billing Details</h2>
+            </div>
+        </div>
+        <div class="container-fluid  h5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item "><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
+                    <li class="breadcrumb-item "><a href="{{route('shop.cart')}}" class="text-dark">Cart</a></li>
+                    <li class="breadcrumb-item text-danger">Checkout</li>
+                </ol>
+            </nav>
+        </div>
 
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                @if (auth()->user())
-                                    <input type="email" class="form-control" id="email" name="email"
-                                           value="{{\Illuminate\Support\Facades\Auth::user()->email}}" readonly>
-                                @else
-                                    <input type="email" class="form-control" id="email" name="email"
-                                           value="{{ old('email')}}" required>
+        <div class="products call-to-action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 mb-5 mt-md-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="text-danger pb-4">Shopping Cart</h5>
+                                @if(\Cart::instance('default')->content()->isEmpty())
+                                    <div class="my-5"> There is no item in your shopping cart</div>
                                 @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name')}}"
-                                       required>
-                            </div>
+                                <div class="row">
+                                    @foreach(\Cart::instance('default')->content() as $item)
+                                        <div class="col-4">
+                                            <a href="{{route('shop.show',$item->model->slug)}}"> <img
+                                                    src="{{productImage($item->model->image)}}"
+                                                    class="img-fluid"
+                                                    alt=""></a>
+                                        </div>
+                                        <div class="col-5">
+                                            <a href="{{route('shop.show',$item->model->slug)}}"> {{$item->name}}</a>
+                                            <br>
+                                            <small>{{$item->model->details}}</small>
+                                            <p class="h5">{{$item->model->presetPrice}}</p>
 
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input type="text" class="form-control" id="address" name="address"
-                                       value="{{ old('address')}}" required>
-                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="bg-dark text-light text-center d-block h5 rounded-pill">
+                                                {{$item->qty}}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <ul class="col-12 list-group mt-5 list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <em>Sub-total</em>
+                                                </div>
 
-                            <div class="half-form">
+                                                <div class="col-6 text-right">
+                                                    <strong>{{priceFormat($bills['subtotal'])}}</strong>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        @if(session()->has('coupon'))
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <em>Discount ({{session()->get('coupon')['name']}})</em>
+                                                        <form action="{{route('coupon.destroy')}}" class="mb-0"
+                                                              method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <a href='#' class="text-danger"
+                                                               onclick='this.parentNode.submit(); return false;'>remove</a>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-4 text-right">
+                                                        <strong>-{{priceFormat($bills['discount'])}}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <em>New subtotal</em>
+                                                    </div>
+
+                                                    <div class="col-6 text-right">
+                                                        <strong>{{priceFormat($bills['newSubtotal'])}}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endif
+                                        @if(!session()->has('coupon'))
+
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <em>Tax</em>
+                                                    </div>
+
+                                                    <div class="col-6 text-right">
+                                                        <strong>{{priceFormat($bills['tax'])}}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <strong>Total</strong>
+                                                    </div>
+
+                                                    <div class="col-6 text-right">
+                                                        <strong>{{priceFormat($bills['total'])}}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @elseif(session()->has('coupon'))
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <em>New Tax</em>
+                                                    </div>
+
+                                                    <div class="col-6 text-right">
+                                                        <strong>{{priceFormat($bills['newTax'])}}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <strong>Total</strong>
+                                                    </div>
+
+                                                    <div class="col-6 text-right">
+                                                        <strong>{{priceFormat($bills['newTotal'])}}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endif
+                                    </ul>
+
+                                    @if(!\Cart::instance('default')->content()->isEmpty())
+                                        <h5 class="col-12 mt-5 ">Have a coupon?</h5>
+                                        <div class="col-12 my-3">
+                                            <form class="row" action="{{route('coupon.store')}}" method="post">
+                                                @csrf
+                                                <input
+                                                    class="col-8 border-dark py-1 border" name="coupon_code"
+                                                    type="text">
+                                                <button type="submit" class="col-4 btn btn-outline-dark">Submit</button>
+                                            </form>
+                                        </div>
+                                    @endif
+                                    @if($errors->any())
+                                        <div class="alert alert-danger col-12" role="alert">
+                                            <ul>
+                                                @foreach($errors->all() as $error)
+                                                    <li>{!!  $error!!}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    @if ($message = session()->has('success'))
+                                        <div class="alert alert-dark col-12" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            {{ session()->get('success') }}
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8 mt-0 p-0 px-5">
+                        <div class="contact-form">
+                            <form action="{{ route('shop.checkout') }}" method="POST" id="payment-form">
+                                @csrf
+                                <h2>Billing Details</h2>
+
                                 <div class="form-group">
-                                    <label for="city">City</label>
-                                    <input type="text" class="form-control" id="city" name="city"
-                                           value="{{ old('city')}}" required>
+                                    <label for="email">Email Address</label>
+                                    @if (auth()->user())
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               value="{{\Illuminate\Support\Facades\Auth::user()->email}}" readonly>
+                                    @else
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               value="{{ old('email')}}" required>
+                                    @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="province">Province</label>
-                                    <input type="text" class="form-control" id="province" name="province"
-                                           value="{{ old('province')}}" required>
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           value="{{ old('name')}}"
+                                           required>
                                 </div>
-                            </div> <!-- end half-form -->
 
-                            <div class="half-form">
                                 <div class="form-group">
-                                    <label for="postalcode">Postal Code</label>
-                                    <input type="text" class="form-control" id="postalcode" name="postalcode"
-                                           value="{{ old('postalcode')}}" required>
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" name="address"
+                                           value="{{ old('address')}}" required>
                                 </div>
+
+                                <div class="half-form">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control" id="city" name="city"
+                                               value="{{ old('city')}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="province">Province</label>
+                                        <input type="text" class="form-control" id="province" name="province"
+                                               value="{{ old('province')}}" required>
+                                    </div>
+                                </div> <!-- end half-form -->
+
+                                <div class="half-form">
+                                    <div class="form-group">
+                                        <label for="postalcode">Postal Code</label>
+                                        <input type="text" class="form-control" id="postalcode" name="postalcode"
+                                               value="{{ old('postalcode')}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" class="form-control" id="phone" name="phone"
+                                               value="{{ old('phone')}}" required>
+                                    </div>
+                                </div> <!-- end half-form -->
+
+                                <div class="spacer"></div>
+
+                                <h2>Payment Details</h2>
+
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone"
-                                           value="{{ old('phone')}}" required>
-                                </div>
-                            </div> <!-- end half-form -->
-
-                            <div class="spacer"></div>
-
-                            <h2>Payment Details</h2>
-
-                            <div class="form-group">
-                                <label for="name_on_card">Name on Card</label>
-                                <input type="text" class="form-control" id="name_on_card" name="name_on_card"
-                                       value="{{ old('name_on_card')}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="card-element">
-                                    Credit or debit card
-                                </label>
-                                <div id="card-element">
-                                    <!-- a Stripe Element will be inserted here. -->
+                                    <label for="name_on_card">Name on Card</label>
+                                    <input type="text" class="form-control" id="name_on_card" name="name_on_card"
+                                           value="{{ old('name_on_card')}}">
                                 </div>
 
-                                <!-- Used to display form errors -->
-                                <div id="card-errors" role="alert"></div>
-                            </div>
-                            <div class="spacer"></div>
+                                <div class="form-group">
+                                    <label for="card-element">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                        <!-- a Stripe Element will be inserted here. -->
+                                    </div>
 
-                            <button type="submit" id="complete-order" class="btn btn-dark">Complete Order
-                            </button>
+                                    <!-- Used to display form errors -->
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+                                <div class="spacer"></div>
+
+                                <button type="submit" id="complete-order" class="btn btn-dark">Complete Order
+                                </button>
 
 
-                        </form>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="inner-content">
+                            <p>Copyright © 2020 Company Name - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="inner-content">
-                        <p>Copyright © 2020 Company Name - Template by: <a href="https://www.phpjabbers.com/">PHPJabbers.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
 @section('extra-js')
     <script>
         // Create a Stripe client.

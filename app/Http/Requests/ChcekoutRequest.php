@@ -32,7 +32,7 @@ class ChcekoutRequest extends FormRequest
             'city' => 'required',
             'province' => 'required',
             'postalcode' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
         ];
 
     }

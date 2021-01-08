@@ -7,5 +7,5 @@ function productImage($path)
 
 function priceFormat($price)
 {
-    return '$' . bcdiv($price,100,2);
+    return '$' . number_format($price , 2);
 }

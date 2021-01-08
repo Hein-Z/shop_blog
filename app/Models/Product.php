@@ -14,7 +14,7 @@ class Product extends Model
 
     public function getPresetPriceAttribute()
     {
-        return '$' . $this->price / 100;
+        return '$' . number_format($this->price , 2);
     }
 
     public function categories()

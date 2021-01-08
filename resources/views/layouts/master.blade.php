@@ -18,30 +18,10 @@
 </head>
 
 <body>
-<div id="app">
-<!-- ***** Preloader Start ***** -->
-<div id="preloader">
-    <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
-<!-- ***** Preloader End ***** -->
-
 
 @yield('content')
-</div>
+
 <script src="{{asset('js/app.js')}}"></script>
-<script>
-    $(document).ready(function () {
-        if ($('#offset-pos').offset()) {
-            $('html,body').animate({
-                scrollTop: $("#offset-pos").offset().top + 380
-            }, 100, 'swing');
-        }
-    });
-</script>
 @yield('extra-js')
 </body>
 </html>
