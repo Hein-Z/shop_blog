@@ -53,9 +53,24 @@ class ShopController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
+        $request->validate([
+            'q' => 'required'
+        ]);
+
+        $products = Product::search($request->q)->get();
+        return view('shop.search_results')->with(['products' => $products, 'query' => $request->q]);
     }
+
+    public function vueSearch(Request $request)
+    {
+
+        $products = Product::search($request['query'])->get();
+
+        return response()->json($products);
+    }
+
 
     /**
      * Display the specified resource.

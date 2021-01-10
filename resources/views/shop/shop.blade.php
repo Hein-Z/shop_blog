@@ -13,7 +13,6 @@
 
     @include('layouts.header')
     <div id="app">
-
         <!-- Page Content -->
         <div class="page-heading about-heading header-text"
              style="background-image: url({{asset('images/heading-6-1920x500.jpg')}});" id="offset-pos">
@@ -30,10 +29,21 @@
         </div>
         <div class="container h5">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item "><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
-                    <li class="breadcrumb-item "><a href="#" class="text-danger">Shop</a></li>
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item pt-1"><a href="{{route('landing-page')}}" class="text-dark">Home</a></li>
+                    <li class="breadcrumb-item pt-1"><a href="#" class="text-danger">Shop</a></li>
+                    <li class="align-self-end ml-auto pt-2 pt-sm-0">
+                        <form action="{{route('shop.search')}}" class="ml-auto position-relative" method="post">
+                            @csrf
+                            <input type="search" name="q"
+                                   style="border-radius: 6px;width: 300px;padding-right: 35px"
+                                   class="form-control">
+                            <a class="text-danger" style="cursor: pointer"><i class="fa fa-search position-absolute"
+                                                                              style="top:10px; right: 13px"></i></a>
+                        </form>
+                    </li>
                 </ol>
+
             </nav>
         </div>
         <div class="products mt-5">
@@ -106,9 +116,9 @@
                     {{--                        <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>--}}
                     {{--                    </ul>--}}
                     {{--                </div>--}}
-                    <div class="col-md-12">
-                        {{$products->appends(request()->input())->links('vendor.pagination.custom')}}
-                    </div>
+{{--                    <div class="col-md-12">--}}
+{{--                        {{$products->appends(request()->input())->links('vendor.pagination.custom')}}--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>
