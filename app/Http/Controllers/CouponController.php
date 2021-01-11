@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\CalculateBills;
 use App\Http\Controllers\Traits\PriceFormatter;
 use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Cart;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-    use PriceFormatter;
+    use PriceFormatter, CalculateBills;
 
     /**
      * Show the form for creating a new resource.
@@ -31,15 +32,15 @@ class CouponController extends Controller
     {
         $coupon = Coupon::where('code', $request->coupon_code)->first();
         if (!$coupon) {
-            return redirect()->back()->withErrors('Invalid coupon code. Please try again.');
+            return response()->json(['invalid' => true]);
         }
 
         session()->put('coupon', [
             'name' => $coupon->code,
             'discount' => $coupon->discount(\Cart::subtotal(false, '', '')),
         ]);
-
-        return redirect()->back()->with('success', 'Coupon has been applied');
+        $bills = $this->getBills();
+        return response()->json(['bills' => $bills,'coupon'=>session()->get('coupon')]);
     }
 
     /**
@@ -85,6 +86,9 @@ class CouponController extends Controller
     public function destroy()
     {
         session()->forget('coupon');
-        return redirect()->back()->with('success', 'Coupon has been removed');
+        $bills = $this->getBills();
+
+        return response()->json($bills);
+//        return redirect()->back()->with('success', 'Coupon has been removed');
     }
 }

@@ -55,6 +55,7 @@
 import axios from 'axios';
 
 export default {
+    name:'productTable',
     props: ['products', 'query'],
     data() {
         return {

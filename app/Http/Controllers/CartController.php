@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\CalculateBills;
 use App\Http\Controllers\Traits\PriceFormatter;
 use App\Models\Product;
 
@@ -9,17 +10,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    use PriceFormatter;
+    use PriceFormatter,CalculateBills;
 
     public function index()
     {
-
         $mayLikes = Product::inRandomOrder()->take(4)->get();
-
-        $bills['total'] = \Cart::total(false, '', '');
-        $bills['subtotal'] = \Cart::subtotal(false, '', '');
-        $bills['tax'] = \Cart::tax(false, '', '');
-
+        $bills = $this->getBills();
         return view('shop.cart')->with(['mayLikes' => $mayLikes, 'bills' => $bills]);
     }
 
@@ -33,7 +29,6 @@ class CartController extends Controller
             'name' => 'required',
 //            'extra' => 'required'
         ]);
-
         \Cart::instance('default')->add(
             $request->id,
             $request->name,

@@ -104,41 +104,18 @@
                             </div>
                         @endif
 
-                        <div class="col-12 my-5">
-                            <div class="alert alert-dark" role="alert">
-                                <div class="row">
-                                    <div class="col col-8">
-                                        <p>Shipping is free because we are awesome like that. UwU</p>
-                                    </div>
-                                    <div class="col col-2 align-items-around text-right" style="line-height: 1.7rem">
-                                        <strong class="text-muted">SubTotal</strong>
-                                        <br>
-                                        <strong class="text-muted ">Tax</strong>
-                                        <br>
-                                        <strong class="text-dark"><h4>Total</h4></strong>
-                                    </div>
-                                    <div class="col col-2 align-items-around text-right" style="line-height: 1.7rem">
-                                        <strong class="text-muted">{{priceFormat($bills['subtotal'])}}</strong>
-                                        <br>
-                                        <strong class="text-muted ">{{priceFormat($bills['tax'])}}</strong>
-                                        <br>
-                                        <strong class="text-dark"><h4>{{priceFormat($bills['total'])}}</h4></strong>
-                                    </div>
+                        <invoice :coupon='@json(session()->get('coupon'))' :bills='@json($bills)'></invoice>
+                        @if(!\Cart::instance('default')->content()->isEmpty())
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{route('shop.index')}}" class="btn btn-outline-dark">Continue
+                                        shopping</a>
+                                    <a href="{{route('shop.checkout')}}" class="btn btn-success">
+                                        Checkout
+                                    </a>
                                 </div>
-                                <hr>
-                                @if(!\Cart::instance('default')->content()->isEmpty())
-                                    <div class="col-12">
-                                        <div class="d-flex justify-content-between">
-                                            <a href="{{route('shop.index')}}" class="btn btn-outline-dark">Continue
-                                                shopping</a>
-                                            <a href="{{route('shop.checkout')}}" class="btn btn-success">
-                                                Checkout
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endif
                             </div>
-                        </div>
+                        @endif
                         @if(\Cart::instance('save')->content()->isEmpty())
                             <div class="col-12 my-5"> There is no item saved for later</div>
                         @endif

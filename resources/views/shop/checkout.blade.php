@@ -121,112 +121,8 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    <ul class="col-12 list-group mt-5 list-group-flush">
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <em>Sub-total</em>
-                                                </div>
-
-                                                <div class="col-6 text-right">
-                                                    <strong>{{priceFormat($bills['subtotal'])}}</strong>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        @if(session()->has('coupon'))
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <em>Discount ({{session()->get('coupon')['name']}})</em>
-                                                        <form action="{{route('coupon.destroy')}}" class="mb-0"
-                                                              method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a href='#' class="text-danger"
-                                                               onclick='this.parentNode.submit(); return false;'>remove</a>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-4 text-right">
-                                                        <strong>-{{priceFormat($bills['discount'])}}</strong>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <em>New subtotal</em>
-                                                    </div>
-
-                                                    <div class="col-6 text-right">
-                                                        <strong>{{priceFormat($bills['newSubtotal'])}}</strong>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endif
-                                        @if(!session()->has('coupon'))
-
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <em>Tax</em>
-                                                    </div>
-
-                                                    <div class="col-6 text-right">
-                                                        <strong>{{priceFormat($bills['tax'])}}</strong>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <strong>Total</strong>
-                                                    </div>
-
-                                                    <div class="col-6 text-right">
-                                                        <strong>{{priceFormat($bills['total'])}}</strong>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @elseif(session()->has('coupon'))
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <em>New Tax</em>
-                                                    </div>
-
-                                                    <div class="col-6 text-right">
-                                                        <strong>{{priceFormat($bills['newTax'])}}</strong>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <strong>Total</strong>
-                                                    </div>
-
-                                                    <div class="col-6 text-right">
-                                                        <strong>{{priceFormat($bills['newTotal'])}}</strong>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endif
-                                    </ul>
-
-                                    @if(!\Cart::instance('default')->content()->isEmpty())
-                                        <h5 class="col-12 mt-5 ">Have a coupon?</h5>
-                                        <div class="col-12 my-3">
-                                            <form class="row" action="{{route('coupon.store')}}" method="post">
-                                                @csrf
-                                                <input
-                                                    class="col-8 border-dark py-1 border" name="coupon_code"
-                                                    type="text">
-                                                <button type="submit" class="col-4 btn btn-outline-dark">Submit</button>
-                                            </form>
-                                        </div>
-                                    @endif
+                                    <checkout-invoice :bills='@json($bills)'
+                                                      :coupon='@json(session()->get('coupon'))'></checkout-invoice>
                                     @if($errors->any())
                                         <div class="alert alert-danger col-12" role="alert">
                                             <ul>
@@ -244,7 +140,6 @@
                                             {{ session()->get('success') }}
                                         </div>
                                     @endif
-
                                 </div>
                             </div>
                         </div>

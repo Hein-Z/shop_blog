@@ -23,6 +23,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('products-table', require('./components/ProductsTable.vue').default);
+Vue.component('invoice', require('./components/Invoice.vue').default);
+Vue.component('checkout-invoice', require('./components/CheckoutInvoice.vue').default);
+Vue.component('cart', require('./components/Cart.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
