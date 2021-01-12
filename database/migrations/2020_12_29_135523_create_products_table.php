@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('details')->nullable();
             $table->unsignedFloat('price');
             $table->text('description');
-            $table->string('image')->nullable()->unique();
+            $table->text('image')->nullable()->unique();
             $table->boolean('featured')->default(false);
             $table->timestamps();
         });

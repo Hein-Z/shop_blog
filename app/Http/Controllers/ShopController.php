@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
 
 
@@ -84,6 +83,16 @@ class ShopController extends Controller
         $mayLikes = Product::where('slug', '!=', $slug)->inRandomOrder()->take(3)->get();
 
         return view('shop.product-details')->with(['product' => $product, 'mayLikes' => $mayLikes]);
+    }
+
+    function productImageApi(Request $request)
+    {
+
+        if ($request->path && file_exists('storage/' . $request->path)) {
+            return response()->json(['imageUrl' => asset('storage/' . $request->path)]);
+        }
+
+        return response()->json(['imageUrl' => asset('images/product-default.jpg')]);
     }
 
 

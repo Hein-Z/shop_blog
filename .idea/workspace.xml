@@ -2,20 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df7ef52c-31d6-423d-ae2e-97d5b42da1f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Traits/CalculateBills.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Cart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/CheckoutInvoice.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/Invoice.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/CartItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/ProductDetails.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/SavedItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CouponController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CouponController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/CartUpdatedListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/CartUpdatedListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SavedItemsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SavedItemsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_29_135523_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_29_135523_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ProductsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProductsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Cart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Invoice.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Invoice.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/shop/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/cart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shop/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shop/product-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shop/product-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shop/save-for-later.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +241,9 @@
       <workItem from="1610183310928" duration="9657000" />
       <workItem from="1610197822160" duration="6339000" />
       <workItem from="1610273017491" duration="13480000" />
-      <workItem from="1610369273878" duration="945000" />
+      <workItem from="1610369273878" duration="14554000" />
+      <workItem from="1610387847891" duration="6303000" />
+      <workItem from="1610442478545" duration="20145000" />
     </task>
     <servers />
   </component>
@@ -258,11 +265,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/shop/save-for-later.blade.php</url>
-          <line>52</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/layouts/app.blade.php</url>
           <line>55</line>

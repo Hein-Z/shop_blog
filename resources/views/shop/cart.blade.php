@@ -19,8 +19,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="text-content">
-                            <h4><span class="text-light">{{\Cart::instance('default')->count()}} items </span> in
-                                shopping cart</h4>
                             <h2>Shopping Cart</h2>
                             @if ($message = session()->has('success'))
                                 <div class="alert alert-dark" role="alert">
@@ -47,128 +45,7 @@
 
         <div class="container-fluid px-5">
             <div class="row">
-                <div class="col-12 col-md-8 px-5">
-                    <div class="row">
-                        <h5 class="col-12 py-3"><span class="text-danger">Items</span> in your cart...</h5>
-
-                        <div class="col-12 " style="height: 2px; background-color: #1a202c2f"></div>
-                        @if(\Cart::instance('default')->content()->isEmpty())
-                            <div class="col-12 my-5"> There is no item in your shopping cart</div>
-                        @endif
-                        @foreach(\Cart::instance('default')->content() as $item)
-                            <div class="col-12">
-                                <div class="row mt-3">
-                                    <div class="col-2 ">
-                                        <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                                src="{{productImage($item->model->image)}}" class="img-fluid"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="{{route('shop.show',$item->model->slug)}}"> {{$item->name}}</a>
-                                        <p>{{$item->model->details}}</p>
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-1">
-                                        <input class="quantity" data-id="{{$item->rowId}}" type="number"
-                                               style="width: 50px"
-                                               value="{{$item->qty}}">
-                                    </div>
-                                    <div class="col-2">{{$item->model->presetPrice}}</div>
-                                    <div class="col-2 text-right">
-                                        <form action="{{route('shop.cart.remove',$item->rowId)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href='#' class="text-danger"
-                                               onclick='this.parentNode.submit(); return false;'>Remove</a>
-                                        </form>
-                                        <form action="{{route('shop.saved.switchToSaved',$item->rowId)}}" method="post">
-                                            @csrf
-                                            <a href='#' class="text-info"
-                                               onclick='this.parentNode.submit(); return false;'>save for later</a>
-                                        </form>
-
-                                    </div>
-                                    <div class="col-12 mt-2" style="height: 2px; background-color: #1a202c2f"></div>
-
-                                </div>
-
-                            </div>
-                        @endforeach
-                        @if(!\Cart::instance('default')->content()->isEmpty())
-                            <div class="col-12 text-right mt-5">
-                                <form action="{{route('shop.cart.empty')}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger">Clear shopping cast</button>
-                                </form>
-                            </div>
-                        @endif
-
-                        <invoice :coupon='@json(session()->get('coupon'))' :bills='@json($bills)'></invoice>
-                        @if(!\Cart::instance('default')->content()->isEmpty())
-                            <div class="col-12">
-                                <div class="d-flex justify-content-between">
-                                    <a href="{{route('shop.index')}}" class="btn btn-outline-dark">Continue
-                                        shopping</a>
-                                    <a href="{{route('shop.checkout')}}" class="btn btn-success">
-                                        Checkout
-                                    </a>
-                                </div>
-                            </div>
-                        @endif
-                        @if(\Cart::instance('save')->content()->isEmpty())
-                            <div class="col-12 my-5"> There is no item saved for later</div>
-                        @endif
-                        @foreach(\Cart::instance('save')->content() as $item)
-                            <div class="col-12">
-                                <div class="row mt-3">
-                                    <h5 class="col-12 py-3"><span class="text-danger">Saved items</span> in your cart...
-                                    </h5>
-
-                                    <div class="col-12 mb-1" style="height: 2px; background-color: #1a202c2f"></div>
-                                    <div class="col-2 ">
-                                        <a href="{{route('shop.show',$item->model->slug)}}"> <img
-                                                src="{{productImage($item->model->image)}}" class="img-fluid"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="{{route('shop.show',$item->model->slug)}}"> {{$item->name}}</a>
-                                        <p>{{$item->model->details}}</p>
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-2">{{$item->model->presetPrice}}</div>
-                                    <div class="col-3 text-right">
-                                        <form action="{{route('shop.saved.remove',$item->rowId)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href='#' class="text-danger"
-                                               onclick='this.parentNode.submit(); return false;'>Remove</a>
-                                        </form>
-                                        <form action="{{route('shop.saved.switchToCart',$item->rowId)}}" method="post">
-                                            @csrf
-                                            <a href='#' class="text-info"
-                                               onclick='this.parentNode.submit(); return false;'>Move to cast</a>
-                                        </form>
-                                    </div>
-
-                                    <div class="col-12 mt-2" style="height: 2px; background-color: #1a202c2f"></div>
-
-                                </div>
-
-                            </div>
-                        @endforeach
-                        @if(!\Cart::instance('save')->content()->isEmpty())
-
-                            <div class="col-12 mt-2 text-right mb-5">
-                                <form action="{{route('shop.cart.empty')}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger">Clear saved items</button>
-                                </form>
-                            </div>
-                        @endif
-                    </div>
-                </div>
+                <cart  :coupon='@json(session()->get("coupon"))'></cart>
                 <div class="col-md-4 col-12 px-5">
                     <div class="row">
                         <h5 class="col-md-12 py-3">You might also like...</h5>
@@ -193,20 +70,20 @@
         </div>
         @include('layouts.footer')
     </div>
-@section('extra-js')
-    <script>
-        (function () {
-            const className = document.querySelectorAll('.quantity');
-            Array.from(className).forEach(function (element) {
-                const id = element.getAttribute('data-id');
-                element.addEventListener('change', function () {
-                    axios.patch(`/cart/${id}`, {quantity: this.value}).then(res => {
-                        window.location.href = '{{route('shop.cart')}}';
-                    }).catch(err => {
-                        console.log(err);
-                    })
-                })
-            })
-        })();
-    </script>
+{{--@section('extra-js')--}}
+{{--    <script>--}}
+{{--        (function () {--}}
+{{--            const className = document.querySelectorAll('.quantity');--}}
+{{--            Array.from(className).forEach(function (element) {--}}
+{{--                const id = element.getAttribute('data-id');--}}
+{{--                element.addEventListener('change', function () {--}}
+{{--                    axios.patch(`/cart/${id}`, {quantity: this.value}).then(res => {--}}
+{{--                        window.location.href = '{{route('shop.cart')}}';--}}
+{{--                    }).catch(err => {--}}
+{{--                        console.log(err);--}}
+{{--                    })--}}
+{{--                })--}}
+{{--            })--}}
+{{--        })();--}}
+{{--    </script>--}}
 @endsection

@@ -10,59 +10,72 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    use PriceFormatter,CalculateBills;
+    use PriceFormatter, CalculateBills;
 
     public function index()
     {
         $mayLikes = Product::inRandomOrder()->take(4)->get();
-        $bills = $this->getBills();
-        return view('shop.cart')->with(['mayLikes' => $mayLikes, 'bills' => $bills]);
+        return view('shop.cart')->with(['mayLikes' => $mayLikes]);
     }
 
     public function store(Request $request)
     {
-
         $request->validate([
             'id' => 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric|min:0.1',
             'name' => 'required',
-//            'extra' => 'required'
         ]);
+
         \Cart::instance('default')->add(
             $request->id,
             $request->name,
             $request->quantity,
             $request->price,
-//            ['extra' => $request->extra],
             [],
             5
         )->associate('App\Models\Product');
 
-        return redirect()->route('shop.cart')->with('success', 'Successfully added to your shopping cast');
+//        dd(\Cart::instance('default')->content());
+        return response()->json(['message' => 'successfully added to cart', 'qty' => $request->quantity], 200);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-                'quantity'=>'required|numeric'
-            ]);
+            'quantity' => 'required|numeric'
+        ]);
 
-        \Cart::update($id, $request->quantity);
-        session()->flash('success', 'Quantity was update successfully!');
-        return response()->json(['success' => true]);
+        \Cart::instance('default')->update($id, $request->quantity);
+
+        return response()->json(['bills' => $this->getBills()]);
     }
 
     public function empty()
     {
         \Cart::instance('default')->destroy();
-        return redirect()->route('shop.cart')->with('success', 'Successfully clear your shopping cast');
+        $bills = $this->getBills();
+        return response()->json(['bills' => $bills]);
     }
 
     public function remove($id)
     {
         \Cart::instance('default')->remove($id);
 
-        return redirect()->route('shop.cart')->with('success', 'Successfully remove item');
+        return response()->json(['success']);
+    }
+
+    public function getCartData()
+    {
+        $bills = $this->getBills();
+        $cart = \Cart::instance('default')->content();
+        $saved = \Cart::instance('save')->content();
+        return response()->json(['bills' => $bills, 'cart' => $cart, 'saved' => $saved]);
+    }
+
+    public function getCartItems()
+    {
+        $cart = \Cart::instance('default')->content();
+        return response()->json(['cart' => $cart]);
     }
 }

@@ -4,7 +4,8 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <p>Shipping is free because we are awesome like that. UwU</p>
-                    <p class="text-danger">{{ feedback }}</p>
+                    <p class="text-dark">{{ success_feedback }}</p>
+                    <p class="text-danger">{{ error_feedback }}</p>
                 </div>
                 <div class="col-12 col-md-6 align-items-around text-right"
                      style="line-height: 1.7rem">
@@ -18,7 +19,7 @@
                             <strong class="text-muted pr-1">Discount
                                 ({{ dataCoupon['name'] }})</strong>
 
-                                <a @click="removeDiscount" class="text-danger mt-0">remove </a>
+                            <a @click="removeDiscount" class="text-danger mt-0">remove </a>
                         </div>
                         <strong class="text-muted">-${{ parseFloat(dataBills['discount']).toFixed(2) }}</strong>
                     </div>
@@ -60,6 +61,7 @@
 import axios from "axios";
 
 export default {
+    name: 'invoice',
     props: {
         bills: {
             type: Object
@@ -68,12 +70,19 @@ export default {
             type: Object
         }
     },
+    watch:{
+      bills(){
+          this.dataBills = this.bills;
+      }
+    },
     data() {
         return {
             feedback: '',
             loading: false,
             dataCoupon: {},
-            dataBills: {}
+            dataBills: {},
+            error_feedback: '',
+            success_feedback: ''
         }
     },
     methods: {
@@ -82,11 +91,11 @@ export default {
             axios.delete(`/coupon`).then(res => {
                 this.dataBills = res.data;
                 this.dataCoupon = null;
-                this.feedback = 'successfully removed discount coupon';
+                this.success_feedback = 'successfully removed discount coupon';
                 this.loading = false;
             }).catch(err => {
                 this.loading = false;
-                this.feedback = 'sorry something went wrong'
+                this.error_feedback = 'sorry something went wrong'
             })
         }
     },

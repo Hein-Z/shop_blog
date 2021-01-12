@@ -1,141 +1,46 @@
 <template>
     <div class="col-12 col-md-8 px-5">
         <div class="row">
-            <h5 class="col-12 py-3"><span class="text-danger">Items</span> in your cart...</h5>
+            <h5 class="col-12 py-3"><span class="text-danger">{{Object.keys(data_cart).length}} items</span> in your cart...</h5>
 
             <div class="col-12 " style="height: 2px; background-color: #1a202c2f"></div>
-<!--            @if(\Cart::instance('default')->content()->isEmpty())-->
-            <div class="col-12 my-5"> There is no item in your shopping cart</div>
-<!--            @endif-->
-<!--            @foreach(\Cart::instance('default')->content() as $item)-->
-            <div class="col-12">
-                <div class="row mt-3">
-                    <div class="col-2 ">
-<!--                        href="{{route('shop.show',$item->model->slug)}}"-->
-                        <a >
-<!--                            {{productImage($item->model->image)}}-->
-                            <img
-                            src="" class="img-fluid"
-                            alt=""></a>
-                    </div>
-                    <div class="col-4">
-<!--                        {{route('shop.show',$item->model->slug)}}-->
-                        <a href="">
-<!--                            {{$item->name}}-->
-                        </a>
-                        <p>
-<!--                            {{$item->model->details}}-->
-                        </p>
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="col-1">
-<!--                        {{$item->rowId}}-->
-<!--                        {{$item->qty}}-->
-                        <input class="quantity" data-id="" type="number"
-                               style="width: 50px"
-                               value="">
-                    </div>
-<!--                    {{$item->model->presetPrice}}-->
-                    <div class="col-2"></div>
-                    <div class="col-2 text-right">
-<!--                        {{route('shop.cart.remove',$item->rowId)}}-->
-<!--                        <form action="" method="post">-->
-<!--                            @csrf-->
-<!--                            @method('DELETE')-->
-                            <a href='#' class="text-danger"
-                               onclick='this.parentNode.submit(); return false;'>Remove</a>
-<!--                        </form>-->
-<!--                        {{route('shop.saved.switchToSaved',$item->rowId)}}-->
-
-
-                            <a href='#' class="text-info"
-                               onclick='this.parentNode.submit(); return false;'>save for later</a>
-
-                    </div>
-                    <div class="col-12 mt-2" style="height: 2px; background-color: #1a202c2f"></div>
-
-                </div>
-
+            <div class="col-12 my-5" v-if="Object.keys(data_cart).length<=0"> There is no item in your shopping cart
             </div>
-<!--            @endforeach-->
-<!--            @if(!\Cart::instance('default')->content()->isEmpty())-->
-            <div class="col-12 text-right mt-5">
-<!--                <form action="{{route('shop.cart.empty')}}" method="post">-->
-<!--                    @method('DELETE')-->
-<!--                    @csrf-->
-                    <button type="submit" class="btn btn-outline-danger">Clear shopping cast</button>
-<!--                </form>-->
+            <cart-item v-for="(item,index) in data_cart" :key="item.model.slug+item.rowId" :index="index" :item="item"
+                       @removeInCart="removeInCart"
+                       @saveForLater="getCartData"
+                       @submitQuantity="updateBills"
+            >
+            </cart-item>
+            <div class="col-12 text-right mt-5" v-if="Object.keys(data_cart).length>0">
+                <button type="submit" class="btn btn-outline-danger" @click="clearCart">Clear shopping cast</button>
             </div>
-<!--            @endif-->
 
-<!--            must bind coupon and bills-->
-            <invoice  ></invoice>
-<!--            @if(!\Cart::instance('default')->content()->isEmpty())-->
+            <invoice :bills="data_bills" :coupon="coupon"></invoice>
+            <!--            @if(!\Cart::instance('default')->content()->isEmpty())-->
             <div class="col-12">
                 <div class="d-flex justify-content-between">
-<!--                    {{route('shop.index')}}-->
-                    <a href="" class="btn btn-outline-dark">Continue
+                    <!--                    {{route('shop.index')}}-->
+                    <a href="/shop" class="btn btn-outline-dark">Continue
                         shopping</a>
-<!--                    {{route('shop.checkout')}}-->
-                    <a href="" class="btn btn-success">
+                    <!--                    {{route('shop.checkout')}}-->
+                    <a href="/checkout" class="btn btn-success">
                         Checkout
                     </a>
                 </div>
             </div>
-<!--            @endif-->
-<!--            @if(\Cart::instance('save')->content()->isEmpty())-->
-            <div class="col-12 my-5"> There is no item saved for later</div>
-<!--            @endif-->
-<!--            @foreach(\Cart::instance('save')->content() as $item)-->
-            <div class="col-12">
-                <div class="row mt-3">
-                    <h5 class="col-12 py-3"><span class="text-danger">Saved items</span> in your cart...
-                    </h5>
-
-                    <div class="col-12 mb-1" style="height: 2px; background-color: #1a202c2f"></div>
-                    <div class="col-2 ">
-<!--                        {{route('shop.show',$item->model->slug)}}-->
-                        <a href="">
-                            <!--                            {{productImage($item->model->image)}}-->
-
-                            <img
-                            src="" class="img-fluid"
-                            alt=""></a>
-                    </div>
-                    <div class="col-4">
-<!--                        {{route('shop.show',$item->model->slug)}}-->
-                        <a href="">
-<!--                            {{$item->name}}-->
-                        </a>
-                        <p>
-<!--                            {{$item->model->details}}-->
-                        </p>
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="col-2">
-<!--                        {{$item->model->presetPrice}}-->
-                    </div>
-                    <div class="col-3 text-right">
-<!--                        {{route('shop.saved.remove',$item->rowId)}}-->
-                            <a href='#' class="text-danger"
-                               onclick='this.parentNode.submit(); return false;'>Remove</a>
-<!--                        {{route('shop.saved.switchToCart',$item->rowId)}}-->
-
-
-                            <a href='#' class="text-info"
-                               onclick='this.parentNode.submit(); return false;'>Move to cast</a>
-
-                    </div>
-
-                    <div class="col-12 mt-2" style="height: 2px; background-color: #1a202c2f"></div>
-
-                </div>
-
-            </div>
-
-            <div class="col-12 mt-2 text-right mb-5">
-<!--                {{route('shop.cart.empty')}}-->
-                    <button type="submit" class="btn btn-outline-danger">Clear saved items</button>
+            <!--            @endif-->
+            <h5 class="col-12 py-3 mt-5"><span class="text-danger">{{Object.keys(data_saved).length}} saved items</span> in your cart...
+            </h5>
+            <div class="col-12 mb-1" style="height: 2px; background-color: #1a202c2f"></div>
+            <div class="col-12 my-5" v-if="Object.keys(data_saved).length<=0"> There is no item saved for later</div>
+            <saved-item v-for="(item,index) in data_saved" :key="index" :index="index" :item="item"
+                        @removeInSave="removeInSaved"
+                        @switchToCart="getCartData"
+            >
+            </saved-item>
+            <div class="col-12 mt-2 text-right mb-5" v-if="Object.keys(data_saved).length>0">
+                <button type="submit" class="btn btn-outline-danger" @click="clearSaved">Clear saved items</button>
             </div>
         </div>
     </div>
@@ -144,9 +49,87 @@
 
 <script>
 import axios from "axios";
-import invoice from './Invoice.vue';
+import invoice from './Invoice';
+import cartItem from './CartItem';
+import savedItem from './SavedItem'
+
 export default {
-    component(id) {
+    props: ['coupon'],
+    components: {
+        invoice,
+        cartItem,
+        savedItem
+    },
+    data() {
+        return {
+            data_coupon: {},
+            data_bills: {},
+            data_cart: {},
+            data_saved: {}
+        }
+    },
+    methods: {
+        removeInCart(id) {
+            this.data_cart = Object.keys(this.data_cart).filter(item_id => {
+                return id !== item_id;
+            }).reduce((obj, key) => {
+                obj[key] = this.data_cart[key];
+                return obj;
+            }, {});
+            this.$toast.success('successfully removed')
+
+        },
+        removeInSaved(id) {
+            this.data_saved = Object.keys(this.data_saved).filter(item_id => {
+                return id !== item_id;
+            }).reduce((obj, key) => {
+                obj[key] = this.data_saved[key];
+                return obj;
+            }, {});
+            this.$toast.success('successfully removed')
+        },
+        clearCart() {
+            this.loading = true;
+            if (confirm('Really?')) {
+                axios.delete('/cart/empty').then(res => {
+                    this.loading = false;
+                    this.data_cart = [];
+                    this.data_bills = res.data.bills;
+                }).catch(err => {
+                    this.loading = false;
+                    this.$toast.error('sorry something went wrong')
+                });
+            }
+        },
+        clearSaved() {
+            this.loading = true;
+            if (confirm('Really?')) {
+                axios.delete('/saved/empty').then(res => {
+                    this.loading = false;
+                    this.data_saved = [];
+                }).catch(err => {
+                    this.loading = false;
+                    this.$toast.error('sorry something went wrong')
+                });
+            }
+        },
+        getCartData() {
+            this.loading = true;
+            axios.get('/cart/data').then(res => {
+                this.data_bills = res.data.bills;
+                this.data_cart = res.data.cart;
+                this.data_saved = res.data.saved;
+                this.loading = false;
+            }).catch(err => {
+                this.$toast.error('sorry something went wrong')
+            })
+        },
+        updateBills(bills) {
+            this.data_bills = bills;
+        }
+    },
+    created() {
+        this.getCartData();
     }
 }
 </script>
