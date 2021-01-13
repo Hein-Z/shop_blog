@@ -39,8 +39,10 @@
         </div>
         <div class="products">
             <div class="container">
-                <product-details :cart='@json(\Cart::instance('default')->content())'
-                                :product='@json($product)'
+                <product-details
+                    :cart='@json(\Cart::instance('default')->content())'
+                    :product='@json($product)'
+                    :sub-img-urls='@json($subImgUrls)'
                 ></product-details>
             </div>
         </div>
@@ -78,24 +80,24 @@
         @include('layouts.footer')
     </div>
 
-{{--@section('extra-js')--}}
-{{--    <script>--}}
+    {{--@section('extra-js')--}}
+    {{--    <script>--}}
 
-{{--        // const currentImg = document.getElementById('current-image');--}}
-{{--        // const thumbnailImg = document.querySelectorAll(".product-section-thumbnail");--}}
-{{--        // thumbnailImg.forEach(element => {--}}
-{{--        //     element.addEventListener('click', showImage);--}}
-{{--        // });--}}
-{{--        //--}}
-{{--        // function showImage() {--}}
-{{--        //     currentImg.classList.remove('active-img');--}}
-{{--        //--}}
-{{--        //     currentImg.addEventListener('transitionend', () => {--}}
-{{--        //         currentImg.src = this.querySelector('.thumbnail-image').src;--}}
-{{--        //         currentImg.classList.add('active-img');--}}
-{{--        //--}}
-{{--        //     })--}}
-{{--        // }--}}
+    {{--        // const currentImg = document.getElementById('current-image');--}}
+    {{--        // const thumbnailImg = document.querySelectorAll(".product-section-thumbnail");--}}
+    {{--        // thumbnailImg.forEach(element => {--}}
+    {{--        //     element.addEventListener('click', showImage);--}}
+    {{--        // });--}}
+    {{--        //--}}
+    {{--        // function showImage() {--}}
+    {{--        //     currentImg.classList.remove('active-img');--}}
+    {{--        //--}}
+    {{--        //     currentImg.addEventListener('transitionend', () => {--}}
+    {{--        //         currentImg.src = this.querySelector('.thumbnail-image').src;--}}
+    {{--        //         currentImg.classList.add('active-img');--}}
+    {{--        //--}}
+    {{--        //     })--}}
+    {{--        // }--}}
 
-{{--    </script>--}}
+    {{--    </script>--}}
 @endsection

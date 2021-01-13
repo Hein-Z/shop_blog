@@ -37,7 +37,7 @@
                             @csrf
                             <input type="search" name="q"
                                    style="border-radius: 6px;width: 300px;padding-right: 35px"
-                                   class="form-control">
+                                   class="form-control" placeholder="Search Products...">
                             <a class="text-danger" style="cursor: pointer"><i class="fa fa-search position-absolute"
                                                                               style="top:10px; right: 13px"></i></a>
                         </form>

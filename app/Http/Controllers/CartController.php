@@ -36,8 +36,8 @@ class CartController extends Controller
             5
         )->associate('App\Models\Product');
 
-//        dd(\Cart::instance('default')->content());
-        return response()->json(['message' => 'successfully added to cart', 'qty' => $request->quantity], 200);
+
+        return response()->json(['message' => 'successfully added to cart', 'cart' => \Cart::instance('default')->content()], 200);
     }
 
     public function update(Request $request, $id)
@@ -62,7 +62,7 @@ class CartController extends Controller
     {
         \Cart::instance('default')->remove($id);
 
-        return response()->json(['success']);
+        return response()->json(['message' => 'successfully removed from cart']);
     }
 
     public function getCartData()
@@ -73,9 +73,9 @@ class CartController extends Controller
         return response()->json(['bills' => $bills, 'cart' => $cart, 'saved' => $saved]);
     }
 
-    public function getCartItems()
-    {
-        $cart = \Cart::instance('default')->content();
-        return response()->json(['cart' => $cart]);
-    }
+//    public function getCartItems()
+//    {
+//        $cart = \Cart::instance('default')->content();
+//        return response()->json(['cart' => $cart]);
+//    }
 }

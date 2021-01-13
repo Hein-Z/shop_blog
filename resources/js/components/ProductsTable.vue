@@ -32,8 +32,8 @@
 
             <tr v-for="(product, index) in products_data" :key="index">
                 <th scope="row">{{ index + 1 }}</th>
-                <td><a href="#"> {{ product.name }}</a></td>
-                <td class="m-0 p-0 py-1"><a href="#"><img
+                <td><a :href="`/shop/${product.slug}`"> {{ product.name }}</a></td>
+                <td class="m-0 p-0 py-1"><a :href="`/shop/${product.slug}`"><img
                     :src='"/storage/"+(product.image)' width="100px" alt=""></a>
                 </td>
                 <td>
@@ -55,7 +55,7 @@
 import axios from 'axios';
 
 export default {
-    name:'productTable',
+    name: 'productTable',
     props: ['products', 'query'],
     data() {
         return {
@@ -66,15 +66,17 @@ export default {
     },
     methods: {
         search() {
-            axios.post('/api/shop/products/search', {query: this.searched_value}).then(
-                res => {
-                    this.products_data = res.data;
-                    this.query_value = this.searched_value;
-                }
-            ).catch(
-                err => console.log(err)
-            )
-            ;
+            if (this.searched_value !== '') {
+                axios.post('/api/shop/products/search', {query: this.searched_value}).then(
+                    res => {
+                        this.products_data = res.data;
+                        this.query_value = this.searched_value;
+                    }
+                ).catch(
+                    err => console.log(err)
+                )
+                ;
+            }
         }
     },
     created() {

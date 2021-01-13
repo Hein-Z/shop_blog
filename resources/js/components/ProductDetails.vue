@@ -6,11 +6,6 @@
                      :class="{'opacity-zero':opacity_zero}"
                      class="img-fluid card-img">
             </div>
-            <div class="text-center" v-if="isLoading">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
             <br>
             <div class="row">
                 <div class="col-4" v-for="(thumbnailImageUrl,index) in thumbnailImagesUrl" :key="index">
@@ -49,23 +44,40 @@
                 <!--                        </select>-->
                 <!--                    </div>-->
                 <!--                </div>-->
-                <div class="col-sm-8">
+                <div class="col-sm-12" v-if="!isInCart">
                     <label class="control-label">Quantity</label>
                     <div class="row">
-                        <div class="col-sm-6" v-if="!isInCart">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <input type="number" class="form-control" v-model="quantity">
                             </div>
                         </div>
 
-                        <div class="col-sm-6" v-if="!isInCart">
-                            <button type="submit" class="btn btn-primary btn-block" @click="addToCart">Add to Cart
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary btn-block " @click="addToCart"
+                                    :class="{disabled:btn_disable}">
+                                <div class="spinner-border text-dark spinner-grow-sm mr-3" v-if="isLoading" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Add to Cart
                             </button>
                         </div>
-                        <div class="col-sm-12" v-if="isInCart">
-                            <button type="submit" class="btn btn-primary btn-block disabled">Already added
-                                {{ filteredCart['qty'] }} items in
-                                Cart
+                    </div>
+                </div>
+
+                <div class="col-sm-12" v-if="isInCart">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <button class="btn btn-outline-dark btn-block disabled">Already added
+                                {{ filteredCart['qty'] }} items in Cart
+                            </button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button @click="removeFormCart" class="btn btn-danger" :class="{disabled:btn_disable}">
+                                <div class="spinner-border spinner-grow-sm mr-3 text-dark" v-if="isLoading" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                Remove this item
                             </button>
                         </div>
                     </div>
@@ -88,19 +100,18 @@ img {
 import axios from "axios";
 
 export default {
-    props: ['product'],
+    props: ['product', 'cart', 'subImgUrls'],
     data() {
         return {
-            mainImageUrl: '',
-            subImages: [],
-            thumbnailImagesUrl: [],
+            mainImageUrl: this.product.mainImgUrl,
+            thumbnailImagesUrl: this.subImgUrls,
             opacity_zero: false,
-            isLoading: true,
+            isLoading: false,
             quantity: 1,
             isInCart: false,
-            // inCartQuantity: 0,
             filteredCart: {},
-            cart: {}
+            btn_disable: false,
+            data_cart: this.cart
         }
     },
     watch: {
@@ -109,16 +120,6 @@ export default {
         }
     },
     methods: {
-        productImage(path, isMain, isLast) {
-            this.isLoading = true;
-            axios.post('/product-image', {path: path}).then(res => {
-                if (isMain) {
-                    this.mainImageUrl = res.data.imageUrl;
-                }
-                this.thumbnailImagesUrl.push(res.data.imageUrl);
-                this.isLoading = isLast ? false : this.isLoading;
-            });
-        },
         isActive(image) {
             return image === this.mainImageUrl;
         },
@@ -135,36 +136,54 @@ export default {
             }
         },
         addToCart() {
-            axios.post('/cart', {
-                id: this.product.id,
-                price: this.product.price,
-                quantity: this.quantity,
-                name: this.product.name
-            }).then(res => {
-                this.$toast.success(res.data.message)
-                this.isInCart = true;
-                this.filteredCart['qty'] = res.data.qty
-            }).catch(err =>
-                this.$toast.error('cannot be added'))
-        }
-    },
-    created() {
-        this.productImage(this.product.image, true);
-        this.subImages = JSON.parse(this.product.images);
-        this.subImages.forEach((subImage, index, array) => {
-            this.productImage(subImage, false, (index === array.length - 1));
-        })
-        axios.get('/cart/items').then(res => {
-            this.cart = res.data.cart;
-            for (const property in this.cart) {
-                if (this.cart[property]['id'] === this.product.id) {
-                    this.filteredCart = this.cart[property];
+            if (this.btn_disable === false) {
+                this.btn_disable = true;
+                this.isLoading = true;
+                axios.post('/cart', {
+                    id: this.product.id,
+                    price: this.product.price,
+                    quantity: this.quantity,
+                    name: this.product.name
+                }).then(res => {
+                    this.$toast.success(res.data.message)
+                    this.isInCart = true;
+                    this.data_cart = res.data.cart
+                    this.filterCart(res.data.cart);
+                    this.btn_disable = false;
+                    this.isLoading = false;
+                }).catch(err => {
+                        this.$toast.error('cannot be added')
+                        this.isLoading = false;
+                    }
+                )
+            }
+        },
+        removeFormCart() {
+            if (this.btn_disable === false) {
+                this.btn_disable = true;
+                this.isLoading = true;
+                axios.delete(`/cart/${this.filteredCart.rowId}/remove`).then(res => {
+                        this.isInCart = false;
+                        this.$toast.success(res.data.message)
+                        this.btn_disable = false;
+                        this.isLoading = false;
+                    }
+                ).catch(err => {
+                    this.$toast.error('sorry something wrong')
+                    this.isLoading = false;
+                });
+            }
+        },
+        filterCart(cart) {
+            for (const property in cart) {
+                if (cart[property]['id'] === this.product.id) {
+                    this.filteredCart = cart[property];
                     this.isInCart = true;
                 }
             }
-        }).catch(err => {
-
-        })
+        }
+    }, created() {
+        this.filterCart(this.data_cart);
     }
 }
 </script>

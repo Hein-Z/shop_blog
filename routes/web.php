@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('landing-page');
-Route::post('/product-image', [\App\Http\Controllers\ShopController::class, 'productImageApi'])->name('product-image');
+//Route::post('/product-image', [\App\Http\Controllers\ShopController::class, 'productImageApi'])->name('product-image');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
 Route::post('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
@@ -23,7 +23,7 @@ Route::post('/shop/products/search', [\App\Http\Controllers\ShopController::clas
 //Cart
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('shop.cart');
 Route::get('/cart/data' , [\App\Http\Controllers\CartController::class, 'getCartData'])->name('shop.cart.data');
-Route::get('/cart/items' , [\App\Http\Controllers\CartController::class, 'getCartItems'])->name('shop.cart.items');
+//Route::get('/cart/items' , [\App\Http\Controllers\CartController::class, 'getCartItems'])->name('shop.cart.items');
 
 Route::post('/cart', [\App\Http\Controllers\CartController::class, 'store'])->name('shop.cart.store');
 Route::patch('/cart/{product}', [\App\Http\Controllers\CartController::class, 'update'])->name('shop.cart.update');

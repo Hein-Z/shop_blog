@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 
 
 class ShopController extends Controller
@@ -80,19 +81,25 @@ class ShopController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-        $mayLikes = Product::where('slug', '!=', $slug)->inRandomOrder()->take(3)->get();
+        $product->mainImgUrl = $this->productImageUrl($product->image);
+        $subImgUrls = [];
 
-        return view('shop.product-details')->with(['product' => $product, 'mayLikes' => $mayLikes]);
-    }
-
-    function productImageApi(Request $request)
-    {
-
-        if ($request->path && file_exists('storage/' . $request->path)) {
-            return response()->json(['imageUrl' => asset('storage/' . $request->path)]);
+        if ($product->images) {
+            foreach (json_decode($product->images) as $subImg) {
+                array_push($subImgUrls, $this->productImageUrl($subImg));
+            }
         }
 
-        return response()->json(['imageUrl' => asset('images/product-default.jpg')]);
+        array_push($subImgUrls, $product->mainImgUrl);
+
+        $mayLikes = Product::where('slug', '!=', $slug)->inRandomOrder()->take(3)->get();
+
+        return view('shop.product-details')->with(['product' => $product, 'mayLikes' => $mayLikes, 'subImgUrls' => $subImgUrls]);
+    }
+
+    function productImageUrl($path)
+    {
+        return $path && file_exists('storage/' . $path) ? asset('storage/' . $path) : asset('images/product-default.jpg');
     }
 
 
