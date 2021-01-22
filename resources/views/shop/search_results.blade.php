@@ -27,11 +27,6 @@
         </div>
         <div class="container">
             <products-table :products='@json($products)' query='{{$query}}'></products-table>
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12">--}}
-{{--                    {{$products->appends(request()->input())->links('vendor.pagination.custom')}}--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
     </div>
     @include('layouts.footer')

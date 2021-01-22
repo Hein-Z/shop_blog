@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb ">
+            <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item pt-1"><a href="/" class="text-dark">Home</a></li>
                 <li class="breadcrumb-item pt-1"><a href="#" class="text-danger">Shop</a></li>
                 <li class="align-self-end ml-auto pt-2 pt-sm-0">
@@ -17,14 +17,15 @@
             </ol>
 
         </nav>
+        <vue-ins-progress-bar></vue-ins-progress-bar>
         <h3 class="mt-5" id="offset-pos">search result for "{{ query_value }}"</h3>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Details</th>
                 <th scope="col">Image</th>
+                <th scope="col">Details</th>
                 <th scope="col">Price</th>
             </tr>
             </thead>
@@ -48,6 +49,8 @@
 
             </tbody>
         </table>
+        <pagination class="mt-3" :data="api_data" @pagination-change-page="changePage"
+                    align="center" size="large"></pagination>
     </div>
 </template>
 
@@ -59,28 +62,44 @@ export default {
     props: ['products', 'query'],
     data() {
         return {
-            searched_value: '',
-            products_data: [],
-            query_value: ''
+            searched_value: this.query,
+            products_data: this.products.data,
+            query_value: this.query,
+            api_data: this.products
         }
     },
     methods: {
         search() {
             if (this.searched_value !== '') {
-                axios.post('/api/shop/products/search', {query: this.searched_value}).then(
+                this.$insProgress.start()
+
+                axios.get('/api/shop/products/search?search=' + this.searched_value).then(
                     res => {
-                        this.products_data = res.data;
+                        console.log(res);
+                        this.products_data = res.data.data;
                         this.query_value = this.searched_value;
+                        this.api_data = res.data;
+                        this.$insProgress.finish()
                     }
-                ).catch(
-                    err => console.log(err)
+                ).catch(err => this.$insProgress.finish()
+                    // err => {console.log(err.response);}
                 )
                 ;
             }
+        },
+        changePage(page = 1) {
+            this.$insProgress.start()
+            axios.get('/api/shop/products/search?search=' + this.searched_value + '&page=' + page)
+                .then(res => {
+                    console.log(res);
+                    this.api_data = res.data;
+                    this.products_data = res.data.data;
+                    this.query_value = this.searched_value;
+                    this.$insProgress.finish()
+                });
         }
     },
     created() {
-        this.products_data = this.products;
     }
 }
 </script>

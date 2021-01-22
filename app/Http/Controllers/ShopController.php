@@ -59,14 +59,14 @@ class ShopController extends Controller
             'q' => 'required'
         ]);
 
-        $products = Product::search($request->q)->get();
+        $products = Product::search($request->q)->paginate(10);
         return view('shop.search_results')->with(['products' => $products, 'query' => $request->q]);
     }
 
     public function vueSearch(Request $request)
     {
 
-        $products = Product::search($request['query'])->get();
+        $products = Product::search($request->search)->paginate(10);
 
         return response()->json($products);
     }

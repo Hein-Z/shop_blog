@@ -10,10 +10,17 @@ require('./custom.js');
 require('./owl.js');
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import VueInsProgressBar from 'vue-ins-progress-bar'
+const options = {
+    position: 'fixed',
+    show: true,
+    height: '3px'
+}
 
 
 window.Vue = require('vue');
 Vue.use(VueToast);
+Vue.use(VueInsProgressBar, options)
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,6 +38,7 @@ Vue.component('products-table', require('./components/ProductsTable.vue').defaul
 Vue.component('checkout-invoice', require('./components/CheckoutInvoice.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('product-details', require('./components/ProductDetails').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
