@@ -7,12 +7,13 @@ use App\Http\Controllers\Traits\PriceFormatter;
 use App\Http\Requests\ChcekoutRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    use PriceFormatter,CalculateBills;
+    use PriceFormatter, CalculateBills;
 
     public function index()
     {
@@ -26,6 +27,9 @@ class CheckoutController extends Controller
 
     public function store(ChcekoutRequest $request)
     {
+        if ($this->productIsNoLongerAvaliable()) {
+            return back()->withErrors("Sorry one of the products in your cart is no longer available...:'(");
+        }
         $bills = $this->getBills();
 
         $contents = \Cart::instance('default')->content()->map(
@@ -51,7 +55,9 @@ class CheckoutController extends Controller
             $this->addToOrderTable($request, $bills, null);
 
             //successful
+            $this->decreaseQuantity();
             \Cart::instance('default')->destroy();
+
             session()->forget('coupon');
             return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         } catch (CardErrorException $e) {
@@ -93,6 +99,21 @@ class CheckoutController extends Controller
 
     }
 
+    public function decreaseQuantity()
+    {
+        foreach (\Cart::content() as $item) {
+            $product = Product::find($item->model->id);
+            $product->update(['quantity' => $product->quantity - $item->qty]);
+        }
+    }
 
-
+    public function productIsNoLongerAvaliable()
+    {
+        foreach (\Cart::content() as $item) {
+            $product = Product::find($item->model->id);
+            if ($product->quantity < $item->qty)
+                return true;
+        }
+        return false;
+    }
 }

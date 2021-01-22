@@ -34,7 +34,7 @@
                 <div class="d-flex flex-column  border border-dark justify-content-center rounded position-relative"
                      style="height: 30px">
                     <div class=" text-center h5">
-                        {{ item.qty }}
+                        {{ quantity }}
                     </div>
                     <span class="text-light bg-dark badge badge-dark rounded-pill  h5 position-absolute "
                           style="top:0; left:100%; transform: translate(-50%,-40%);cursor: pointer">
@@ -71,12 +71,19 @@ export default {
             isDisable: false,
             isChanging: false,
             quantity: this.item.qty,
-            btn_show: true
+            btn_show: true,
+            product_quantity: this.item.options.stockLevel
         }
     },
     watch: {
         quantity() {
-            this.quantity = this.quantity <= 0 ? 1 : this.quantity;
+            const limited = this.product_quantity;
+            if (limited < this.quantity) {
+                this.quantity = limited;
+                this.$toast.warning("Sorry...Exceeded stock level :'(");
+            } else {
+                this.quantity = this.quantity <= 0 ? 1 : this.quantity;
+            }
         }
     },
     methods: {
@@ -97,22 +104,36 @@ export default {
             this.isDisable = true;
             if (confirm('Really?')) {
                 axios.delete(`/cart/${this.item.rowId}/remove`).then(res => {
-                    $(this.$el).fadeOut(400, () => this.$emit('removeInCart', this.index));
-                }).catch();
+                    $(this.$el).fadeOut(400, () => this.$emit('removeInCart', this.index, res.data.bills));
+                }).catch(err =>
+                    location.reload()
+                );
             }
         },
         onChange() {
             this.isChanging = true;
         },
         submitQuantity() {
+            // const stockLevel = this.product_quantity ? this.product_quantity : null;
             if (this.quantity !== this.item.qty) {
-                axios.patch(`/cart/${this.item.rowId}`, {quantity: this.quantity}).then(
+                axios.patch(`/cart/${this.item.rowId}`, {
+                    quantity: this.quantity,
+                    // product_quantity: stockLevel
+                }).then(
                     res => {
                         this.item.qty = this.quantity;
                         this.$emit('submitQuantity', res.data.bills);
                     }
                 ).catch(
-                    err => this.$toast.error(err.response.data.errors.quantity[0])
+                    err => {
+                        if (err.response.data.message) {
+                            this.$toast.error(err.response.data.message)
+                            this.quantity = err.response.data.product_quantity;
+                            this.product_quantity = err.response.data.product_quantity;
+                        }
+                        if (err.response.data.errors)
+                            this.$toast.error(err.response.data.errors.quantity[0])
+                    }
                 )
             }
             this.isChanging = false;

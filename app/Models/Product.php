@@ -9,6 +9,7 @@ use TCG\Voyager\Traits\Resizable;
 
 class Product extends Model
 {
+    protected $fillable=['quantity'];
     protected $appends = ['presetPrice'];
     use HasFactory;
     use Resizable;

@@ -43,6 +43,7 @@
                     :cart='@json(\Cart::instance('default')->content())'
                     :product='@json($product)'
                     :sub-img-urls='@json($subImgUrls)'
+                    stock-threshold='{{$stockThreshold}}'
                 ></product-details>
             </div>
         </div>

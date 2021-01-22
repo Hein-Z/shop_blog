@@ -22,9 +22,11 @@
 
         <div class="col-md-8 col-xs-12">
             <h2>{{ product.name }}</h2>
+            <h5 class="badge badge-pill" :class="stock_level_badge">{{ stockLevel }}</h5>
             <br>
             <h5>{{ product.details }}</h5>
             <br>
+
             <p class="lead">
                 <strong class="text-danger">{{ product.presetPrice }}</strong>
             </p>
@@ -35,15 +37,7 @@
 
             <br>
 
-            <div class="row">
-                <!--                <div class="col-sm-4">-->
-                <!--                    <label class="control-label">Size</label>-->
-                <!--                    <div class="form-group">-->
-                <!--                        <select class="form-control" name="size">-->
-                <!--                            <option value="0" selected>Fixed</option>-->
-                <!--                        </select>-->
-                <!--                    </div>-->
-                <!--                </div>-->
+            <div class="row" v-if="isAvailable">
                 <div class="col-sm-12" v-if="!isInCart">
                     <label class="control-label">Quantity</label>
                     <div class="row">
@@ -56,7 +50,8 @@
                         <div class="col-sm-6">
                             <button type="submit" class="btn btn-primary btn-block " @click="addToCart"
                                     :class="{disabled:btn_disable}">
-                                <div class="spinner-border text-dark spinner-grow-sm mr-3" v-if="isLoading" role="status">
+                                <div class="spinner-border text-dark spinner-grow-sm mr-3" v-if="isLoading"
+                                     role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                                 Add to Cart
@@ -74,7 +69,8 @@
                         </div>
                         <div class="col-sm-4">
                             <button @click="removeFormCart" class="btn btn-danger" :class="{disabled:btn_disable}">
-                                <div class="spinner-border spinner-grow-sm mr-3 text-dark" v-if="isLoading" role="status">
+                                <div class="spinner-border spinner-grow-sm mr-3 text-dark" v-if="isLoading"
+                                     role="status">
                                     <span class="sr-only">Loading...</span>
                                 </div>
                                 Remove this item
@@ -100,7 +96,7 @@ img {
 import axios from "axios";
 
 export default {
-    props: ['product', 'cart', 'subImgUrls'],
+    props: ['product', 'cart', 'subImgUrls', 'stockThreshold'],
     data() {
         return {
             mainImageUrl: this.product.mainImgUrl,
@@ -111,12 +107,38 @@ export default {
             isInCart: false,
             filteredCart: {},
             btn_disable: false,
-            data_cart: this.cart
+            data_cart: this.cart,
+            stock_level_badge: 'badge-success',
+            isAvailable: true
         }
     },
     watch: {
         quantity() {
-            this.quantity = this.quantity <= 0 ? 1 : this.quantity;
+            const limited = this.product.quantity;
+            if (limited < this.quantity) {
+                this.quantity = limited;
+                this.$toast.warning("Sorry...Exceeded stock level :'(");
+            } else {
+                this.quantity = this.quantity <= 0 ? 1 : this.quantity;
+            }
+        }
+    },
+    computed: {
+        stockLevel() {
+            const stockThreshold = parseInt(this.stockThreshold);
+            const product_quantity = parseInt(this.product.quantity);
+
+            if (product_quantity >= stockThreshold) {
+                this.stock_level_badge = 'badge-success';
+                return 'In Stock';
+            } else if (product_quantity < stockThreshold && product_quantity > 0) {
+                this.stock_level_badge = 'badge-warning';
+                return 'Low Stock';
+            } else {
+                this.stock_level_badge = 'badge-danger';
+                this.isAvailable = false;
+                return 'Not Available';
+            }
         }
     },
     methods: {
@@ -143,7 +165,8 @@ export default {
                     id: this.product.id,
                     price: this.product.price,
                     quantity: this.quantity,
-                    name: this.product.name
+                    name: this.product.name,
+                    product_quantity: this.product.quantity,
                 }).then(res => {
                     this.$toast.success(res.data.message)
                     this.isInCart = true;
@@ -152,8 +175,12 @@ export default {
                     this.btn_disable = false;
                     this.isLoading = false;
                 }).catch(err => {
-                        this.$toast.error('cannot be added')
                         this.isLoading = false;
+                        this.$toast.error('cannot be added')
+                        if (err.response.data.message) {
+                            this.$toast.error(err.response.data.message)
+                        }
+                        location.reload();
                     }
                 )
             }
@@ -171,6 +198,8 @@ export default {
                 ).catch(err => {
                     this.$toast.error('sorry something wrong')
                     this.isLoading = false;
+                    location.reload();
+
                 });
             }
         },

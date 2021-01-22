@@ -83,6 +83,7 @@ class ShopController extends Controller
         $product = Product::where('slug', $slug)->firstOrFail();
         $product->mainImgUrl = $this->productImageUrl($product->image);
         $subImgUrls = [];
+        $stockThreshold = setting('site.stock_threshold');
 
         if ($product->images) {
             foreach (json_decode($product->images) as $subImg) {
@@ -94,7 +95,7 @@ class ShopController extends Controller
 
         $mayLikes = Product::where('slug', '!=', $slug)->inRandomOrder()->take(3)->get();
 
-        return view('shop.product-details')->with(['product' => $product, 'mayLikes' => $mayLikes, 'subImgUrls' => $subImgUrls]);
+        return view('shop.product-details')->with(['product' => $product, 'mayLikes' => $mayLikes, 'subImgUrls' => $subImgUrls, 'stockThreshold' => $stockThreshold]);
     }
 
     function productImageUrl($path)

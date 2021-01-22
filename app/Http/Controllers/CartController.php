@@ -6,6 +6,7 @@ use App\Http\Controllers\Traits\CalculateBills;
 use App\Http\Controllers\Traits\PriceFormatter;
 use App\Models\Product;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -23,16 +24,20 @@ class CartController extends Controller
         $request->validate([
             'id' => 'required',
             'price' => 'required|numeric',
-            'quantity' => 'required|numeric|min:0.1',
+            'quantity' => 'required|numeric|min:1',
             'name' => 'required',
         ]);
+
+        if ($request->quantity > $request->product_quantity) {
+            return response()->json(['message' => 'Sorry! This amount exceeded stock level'], 400);
+        }
 
         \Cart::instance('default')->add(
             $request->id,
             $request->name,
             $request->quantity,
             $request->price,
-            [],
+            ['stockLevel' => $request->product_quantity],
             5
         )->associate('App\Models\Product');
 
@@ -45,6 +50,18 @@ class CartController extends Controller
         $request->validate([
             'quantity' => 'required|numeric'
         ]);
+
+
+//        if ($request->product_quantity === null) {
+            $product = Product::find(\Cart::get($id)->id);
+            $product_quantity = $product->quantity;
+//        } else {
+//            $product_quantity = $request->product_quantity;
+//        }
+        if ($request->quantity > $product_quantity) {
+            return response()->json(['message' => 'Sorry! This amount exceeded stock level', 'product_quantity' => $product_quantity], 400);
+        }
+
 
         \Cart::instance('default')->update($id, $request->quantity);
 
@@ -62,7 +79,7 @@ class CartController extends Controller
     {
         \Cart::instance('default')->remove($id);
 
-        return response()->json(['message' => 'successfully removed from cart']);
+        return response()->json(['message' => 'successfully removed from cart', 'bills' => $this->getBills()]);
     }
 
     public function getCartData()
@@ -73,9 +90,4 @@ class CartController extends Controller
         return response()->json(['bills' => $bills, 'cart' => $cart, 'saved' => $saved]);
     }
 
-//    public function getCartItems()
-//    {
-//        $cart = \Cart::instance('default')->content();
-//        return response()->json(['cart' => $cart]);
-//    }
 }
