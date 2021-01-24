@@ -90,7 +90,7 @@
                                 <li><a href="#">It aquecorporis nulla aspernatur</a></li>
                                 <li><a href="#">Corporis, omnis doloremque</a></li>
                             </ul>
-                            <a href="about-us.html" class="filled-button">Read More</a>
+                            <a href="#" class="filled-button">Read More</a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -109,7 +109,7 @@
                         <div class="section-heading">
                             <h2>Latest blog posts</h2>
 
-                            <a href="blog.html">read more <i class="fa fa-angle-right"></i></a>
+                            <a href="#">read more <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
 
@@ -163,7 +163,7 @@
                         <div class="section-heading">
                             <h2>Happy Clients</h2>
 
-                            <a href="testimonials.html">read more <i class="fa fa-angle-right"></i></a>
+                            <a href="#">read more <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -259,7 +259,7 @@
                                         author nulla.</p>
                                 </div>
                                 <div class="col-lg-4 col-md-6 text-right">
-                                    <a href="contact.html" class="filled-button">Contact Us</a>
+                                    <a href="#" class="filled-button">Contact Us</a>
                                 </div>
                             </div>
                         </div>

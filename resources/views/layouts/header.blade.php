@@ -29,19 +29,19 @@
                                     class="text-danger px-3 h5">{{\Cart::instance('default')->count()}}</span>@endif</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="true" aria-expanded="false">More</a>
+{{--                    <li class="nav-item dropdown ">--}}
+{{--                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"--}}
+{{--                           aria-haspopup="true" aria-expanded="false">More</a>--}}
 
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="about-us.html">About Us</a>
-                            <a class="dropdown-item" href="blog.html">Blog</a>
-                            <a class="dropdown-item" href="testimonials.html">Testimonials</a>
-                            <a class="dropdown-item" href="terms.html">Terms</a>
-                            <a class="dropdown-item"
-                               href="contact.html">Contact Us</a>
-                        </div>
-                    </li>
+{{--                        <div class="dropdown-menu">--}}
+{{--                            <a class="dropdown-item" href="about-us.html">About Us</a>--}}
+{{--                            <a class="dropdown-item" href="blog.html">Blog</a>--}}
+{{--                            <a class="dropdown-item" href="testimonials.html">Testimonials</a>--}}
+{{--                            <a class="dropdown-item" href="terms.html">Terms</a>--}}
+{{--                            <a class="dropdown-item"--}}
+{{--                               href="contact.html">Contact Us</a>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
