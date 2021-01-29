@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2021 at 12:20 PM
+-- Generation Time: Jan 29, 2021 at 08:03 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -431,21 +431,22 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-01-09 03:03:56', '2021-01-09 03:03:56', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2021-01-09 03:03:56', '2021-01-22 06:16:42', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 4, '2021-01-09 03:03:56', '2021-01-22 06:16:49', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2021-01-09 03:03:56', '2021-01-22 06:16:49', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 11, '2021-01-09 03:03:56', '2021-01-22 06:16:40', NULL, NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 8, '2021-01-09 03:03:56', '2021-01-29 10:49:57', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 5, '2021-01-09 03:03:56', '2021-01-29 11:34:28', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 6, '2021-01-09 03:03:56', '2021-01-29 10:50:00', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 12, '2021-01-09 03:03:56', '2021-01-29 10:49:55', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-01-09 03:03:56', '2021-01-22 06:16:13', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, NULL, 6, '2021-01-09 03:03:56', '2021-01-22 06:16:42', 'voyager.database.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, NULL, 7, '2021-01-09 03:03:56', '2021-01-29 10:49:57', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-01-09 03:03:56', '2021-01-22 06:16:33', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-01-09 03:03:56', '2021-01-22 06:16:33', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 12, '2021-01-09 03:03:56', '2021-01-22 06:16:40', 'voyager.settings.index', NULL),
-(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 10, '2021-01-09 03:04:02', '2021-01-22 06:16:42', 'voyager.categories.index', NULL),
-(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 8, '2021-01-09 03:04:02', '2021-01-22 06:16:42', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 9, '2021-01-09 03:04:02', '2021-01-22 06:16:42', 'voyager.pages.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 13, '2021-01-09 03:03:56', '2021-01-29 10:49:55', 'voyager.settings.index', NULL),
+(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 11, '2021-01-09 03:04:02', '2021-01-29 10:49:57', 'voyager.categories.index', NULL),
+(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 9, '2021-01-09 03:04:02', '2021-01-29 10:49:57', 'voyager.posts.index', NULL),
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 10, '2021-01-09 03:04:02', '2021-01-29 10:49:57', 'voyager.pages.index', NULL),
 (14, 1, 'Orders', '', '_self', 'voyager-documentation', NULL, NULL, 2, '2021-01-09 03:16:14', '2021-01-22 06:16:24', 'voyager.orders.index', NULL),
 (15, 1, 'Products', '', '_self', 'voyager-shop', NULL, NULL, 3, '2021-01-12 05:25:25', '2021-01-22 06:16:45', 'voyager.products.index', NULL),
-(16, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 5, 2, '2021-01-12 05:26:29', '2021-01-22 06:16:33', 'voyager.category.index', NULL);
+(16, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 5, 2, '2021-01-12 05:26:29', '2021-01-22 06:16:33', 'voyager.category.index', NULL),
+(17, 1, 'Best Selling Products', '', '_self', 'voyager-credit-cards', '#f5ed0a', NULL, 4, '2021-01-29 10:49:48', '2021-01-29 11:34:28', 'products.best-selling', 'null');
 
 -- --------------------------------------------------------
 
@@ -1337,7 +1338,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
