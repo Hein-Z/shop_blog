@@ -7,7 +7,7 @@
 - <a href="https://voyager-docs.devdojo.com">voyager</a>
 - <a href="https://stripe.com/docs/js">Stripe js</a>
 - testing with PHP unit
-- Paypale checkout
+- Paypale che ckout
 - Transaction Email
 - <a href="https://packagist.org/packages/hardevine/shoppingcart">Laravel shopping cart</a>
 
@@ -24,8 +24,15 @@
 - dynamic product images gallery
 - allow guest checkout
 - authentication
+- feature product
+- best selling products
 
 ## coming soon
 
 - user dashboard
+
+## admin account
+
+- admin@gmail.com
+- password
 
