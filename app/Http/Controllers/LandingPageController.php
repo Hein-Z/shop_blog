@@ -14,8 +14,14 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        $products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
-        return view('index', compact('products'));
+        $feature_products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
+        $best_selling_products = Product::query()
+            ->join('order_product', 'order_product.product_id', '=', 'products.id')
+            ->selectRaw('products.*, SUM(order_product.quantity) AS quantity_sold')
+            ->groupBy(['products.id']) // should group by primary key
+            ->orderByDesc('quantity_sold')
+            ->take(6)->get(); // 10 best-selling products
+        return view('index', compact('feature_products','best_selling_products'));
     }
 
     /**

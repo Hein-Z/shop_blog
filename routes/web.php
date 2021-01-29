@@ -20,9 +20,10 @@ Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->nam
 Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
 Route::post('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 
+
 //Cart
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('shop.cart');
-Route::get('/cart/data' , [\App\Http\Controllers\CartController::class, 'getCartData'])->name('shop.cart.data');
+Route::get('/cart/data', [\App\Http\Controllers\CartController::class, 'getCartData'])->name('shop.cart.data');
 //Route::get('/cart/items' , [\App\Http\Controllers\CartController::class, 'getCartItems'])->name('shop.cart.items');
 
 Route::post('/cart', [\App\Http\Controllers\CartController::class, 'store'])->name('shop.cart.store');
@@ -51,7 +52,9 @@ Route::post('/coupon', [\App\Http\Controllers\CouponController::class, 'store'])
 Route::delete('/coupon', [\App\Http\Controllers\CouponController::class, 'destroy'])->name('coupon.destroy');
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('/products/best-selling', [\App\Http\Controllers\ReportController::class, 'bestSellingReport'])->name('products.best-selling')->middleware('admin.user');
     Voyager::routes();
 });
+
 
 Auth::routes();

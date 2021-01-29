@@ -40,16 +40,16 @@
         </div>
         <!-- Banner Ends Here -->
 
-        <div class="latest-products">
+        <div class="latest-products ">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="section-heading">
-                            <h2>Featured Products</h2>
+                        <div class="section-heading ">
+                            <h2 class="text-danger">Featured Products</h2>
                             <a href="{{route('shop.index')}}">view more <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
-                    @foreach($products as $product)
+                    @foreach($feature_products as $product)
                         <div class="col-md-4 col-sm-6 ">
                             <div class="product-item">
                                 <a href="{{route('shop.show',$product->slug)}}"><img
@@ -69,6 +69,36 @@
                 </div>
             </div>
         </div>
+        <div class="latest-products mt-2 ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading ">
+                            <h2 style="color: orange" class="font-weight-bolder">Best Selling Products</h2>
+                            <a href="{{route('shop.index')}}">view more <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    @foreach($best_selling_products as $product)
+                        <div class="col-md-4 col-sm-6 ">
+                            <div class="product-item">
+                                <a href="{{route('shop.show',$product->slug)}}"><img
+                                        src="{{productImage($product->image)}}"
+                                        alt=""></a>
+                                <div
+                                    class="down-content border border-danger border-bottom-0  border-left-0 border-right-0">
+                                    <a href="{{route('shop.show',$product->slug)}}"><h4>{{$product->name}}</h4></a>
+                                    <h6><small class="text-dark">
+                                            {{$product->presetPrice}}</small>
+                                    </h6>
+                                    <p>{{$product->details}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
 
         <div class="best-features">
             <div class="container">
