@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 29, 2021 at 08:03 PM
+-- Generation Time: May 21, 2021 at 08:25 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -205,8 +205,8 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `code`, `value`, `percent_off`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'ABCDEFG', '30', NULL, 'fixed', '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
-(2, '123456', NULL, '30', 'percent', '2021-01-09 03:02:51', '2021-01-09 03:02:51');
+(1, 'ABCDEFG', '30', NULL, 'fixed', '2021-01-09 03:02:00', '2021-05-21 11:53:09'),
+(2, '123456', NULL, '30', 'percent', '2021-01-09 03:02:00', '2021-05-21 11:53:14');
 
 -- --------------------------------------------------------
 
@@ -326,7 +326,14 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (89, 10, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{}', 3),
 (90, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
 (91, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
-(92, 9, 'product_belongstomany_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_product\",\"pivot\":\"1\",\"taggable\":null}', 12);
+(92, 9, 'product_belongstomany_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_product\",\"pivot\":\"1\",\"taggable\":null}', 12),
+(93, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(94, 12, 'code', 'text', 'Code', 1, 1, 1, 1, 1, 1, '{}', 2),
+(95, 12, 'value', 'number', 'Value', 0, 1, 1, 1, 1, 1, '{}', 3),
+(96, 12, 'percent_off', 'number', 'Percent Off', 0, 1, 1, 1, 1, 1, '{}', 4),
+(97, 12, 'type', 'radio_btn', 'Type', 1, 1, 1, 1, 1, 1, '{\"default\":\"fixed\",\"options\":{\"fixed\":\"fixed\",\"percent\":\"percent\"}}', 5),
+(98, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(99, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7);
 
 -- --------------------------------------------------------
 
@@ -365,7 +372,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
 (8, 'orders', 'orders', 'Order', 'Orders', 'voyager-documentation', 'App\\Models\\Order', NULL, '\\App\\Http\\Controllers\\Voyager\\OrdersController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-01-09 03:16:14', '2021-01-09 03:18:06'),
 (9, 'products', 'products', 'Product', 'Products', 'voyager-shop', 'App\\Models\\Product', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-01-12 05:25:25', '2021-01-12 05:25:25'),
-(10, 'category', 'category', 'Category', 'Categories', 'voyager-categories', 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-01-12 05:26:29', '2021-01-12 05:26:29');
+(10, 'category', 'category', 'Category', 'Categories', 'voyager-categories', 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-01-12 05:26:29', '2021-01-12 05:26:29'),
+(12, 'coupons', 'coupons', 'Coupon', 'Coupons', 'voyager-tag', 'App\\Models\\Coupon', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-05-21 11:37:01', '2021-05-21 11:52:18');
 
 -- --------------------------------------------------------
 
@@ -431,22 +439,25 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-01-09 03:03:56', '2021-01-09 03:03:56', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 8, '2021-01-09 03:03:56', '2021-01-29 10:49:57', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 5, '2021-01-09 03:03:56', '2021-01-29 11:34:28', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 6, '2021-01-09 03:03:56', '2021-01-29 10:50:00', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 12, '2021-01-09 03:03:56', '2021-01-29 10:49:55', NULL, NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2021-01-09 03:03:56', '2021-05-21 11:41:14', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 4, '2021-01-09 03:03:56', '2021-05-21 11:41:17', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2021-01-09 03:03:56', '2021-05-21 11:41:17', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2021-01-09 03:03:56', '2021-05-21 11:41:24', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-01-09 03:03:56', '2021-01-22 06:16:13', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, NULL, 7, '2021-01-09 03:03:56', '2021-01-29 10:49:57', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-01-09 03:03:56', '2021-01-22 06:16:33', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-01-09 03:03:56', '2021-01-22 06:16:33', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 13, '2021-01-09 03:03:56', '2021-01-29 10:49:55', 'voyager.settings.index', NULL),
-(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 11, '2021-01-09 03:04:02', '2021-01-29 10:49:57', 'voyager.categories.index', NULL),
-(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 9, '2021-01-09 03:04:02', '2021-01-29 10:49:57', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 10, '2021-01-09 03:04:02', '2021-01-29 10:49:57', 'voyager.pages.index', NULL),
-(14, 1, 'Orders', '', '_self', 'voyager-documentation', NULL, NULL, 2, '2021-01-09 03:16:14', '2021-01-22 06:16:24', 'voyager.orders.index', NULL),
-(15, 1, 'Products', '', '_self', 'voyager-shop', NULL, NULL, 3, '2021-01-12 05:25:25', '2021-01-22 06:16:45', 'voyager.products.index', NULL),
-(16, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 5, 2, '2021-01-12 05:26:29', '2021-01-22 06:16:33', 'voyager.category.index', NULL),
-(17, 1, 'Best Selling Products', '', '_self', 'voyager-credit-cards', '#f5ed0a', NULL, 4, '2021-01-29 10:49:48', '2021-01-29 11:34:28', 'products.best-selling', 'null');
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, NULL, 6, '2021-01-09 03:03:56', '2021-05-21 11:41:17', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 2, '2021-01-09 03:03:56', '2021-05-21 11:28:27', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 3, '2021-01-09 03:03:56', '2021-05-21 11:28:27', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2021-01-09 03:03:56', '2021-05-21 11:41:24', 'voyager.settings.index', NULL),
+(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 20, 2, '2021-01-09 03:04:02', '2021-05-21 11:41:24', 'voyager.categories.index', NULL),
+(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, 20, 1, '2021-01-09 03:04:02', '2021-05-21 11:41:20', 'voyager.posts.index', NULL),
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 8, '2021-01-09 03:04:02', '2021-05-21 11:41:20', 'voyager.pages.index', NULL),
+(14, 1, 'Orders', '', '_self', 'voyager-documentation', NULL, 19, 5, '2021-01-09 03:16:14', '2021-05-21 11:40:47', 'voyager.orders.index', NULL),
+(15, 1, 'Products', '', '_self', 'voyager-shop', NULL, 19, 1, '2021-01-12 05:25:25', '2021-05-21 11:40:47', 'voyager.products.index', NULL),
+(16, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 19, 2, '2021-01-12 05:26:29', '2021-05-21 11:40:47', 'voyager.category.index', NULL),
+(17, 1, 'Best Selling Products', '', '_self', 'voyager-credit-cards', '#f5ed0a', 19, 3, '2021-01-29 10:49:48', '2021-05-21 11:40:47', 'products.best-selling', 'null'),
+(18, 1, 'Coupons', '', '_self', 'voyager-tag', NULL, 19, 4, '2021-05-21 11:37:01', '2021-05-21 11:40:47', 'voyager.coupons.index', NULL),
+(19, 1, 'Shop', '', '_self', 'voyager-shop', '#000000', NULL, 2, '2021-05-21 11:39:23', '2021-05-21 11:42:16', NULL, ''),
+(20, 1, 'Blog', '', '_self', 'voyager-window-list', '#000000', NULL, 3, '2021-05-21 11:41:07', '2021-05-21 11:43:18', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -684,7 +695,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (52, 'read_category', 'category', '2021-01-12 05:26:29', '2021-01-12 05:26:29'),
 (53, 'edit_category', 'category', '2021-01-12 05:26:29', '2021-01-12 05:26:29'),
 (54, 'add_category', 'category', '2021-01-12 05:26:29', '2021-01-12 05:26:29'),
-(55, 'delete_category', 'category', '2021-01-12 05:26:29', '2021-01-12 05:26:29');
+(55, 'delete_category', 'category', '2021-01-12 05:26:29', '2021-01-12 05:26:29'),
+(56, 'browse_coupons', 'coupons', '2021-05-21 11:37:01', '2021-05-21 11:37:01'),
+(57, 'read_coupons', 'coupons', '2021-05-21 11:37:01', '2021-05-21 11:37:01'),
+(58, 'edit_coupons', 'coupons', '2021-05-21 11:37:01', '2021-05-21 11:37:01'),
+(59, 'add_coupons', 'coupons', '2021-05-21 11:37:01', '2021-05-21 11:37:01'),
+(60, 'delete_coupons', 'coupons', '2021-05-21 11:37:01', '2021-05-21 11:37:01');
 
 -- --------------------------------------------------------
 
@@ -706,7 +722,6 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (1, 3),
 (2, 1),
 (3, 1),
-(3, 3),
 (4, 1),
 (4, 3),
 (5, 1),
@@ -789,7 +804,17 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (54, 1),
 (54, 3),
 (55, 1),
-(55, 3);
+(55, 3),
+(56, 1),
+(56, 3),
+(57, 1),
+(57, 3),
+(58, 1),
+(58, 3),
+(59, 1),
+(59, 3),
+(60, 1),
+(60, 3);
 
 -- --------------------------------------------------------
 
@@ -1087,9 +1112,9 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified
 (8, NULL, 'Rosanna O\'Connell', 'sherwood78@example.org', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'twpUUktYdY', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (9, NULL, 'Georgiana Brekke', 'lisette22@example.com', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W9Ni6ivjZj', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (10, NULL, 'Alexandrea Cronin IV', 'morissette.justus@example.com', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9E7sBY92AH', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
-(11, 1, 'Hein Z', 'admin@gmail.com', 'users/default.png', NULL, '$2y$10$4wyNaGrVO2saJmuYOvkd2OpqqczReEkJRhYrwxlPm0Ii7g3JyRPdG', NULL, NULL, '2021-01-09 03:04:29', '2021-01-09 03:04:29'),
-(12, 2, 'hein', 'hein@gmail.com', 'users/default.png', NULL, '$2y$10$c9a5tJkFX.NfNY3k3lchEe601xVzj7JzyYkWZvYL3WbhCd8.K/lEm', NULL, NULL, '2021-01-11 08:21:34', '2021-01-11 08:21:34'),
-(13, 3, 'Manager', 'manager@gmail.com', 'users/January2021/rTpP98A1E7oyiMMU7rjM.png', NULL, '$2y$10$1om.YOFFBaALXjchBsOJ7uDyXr24RHJoAyA9KsUpsRFUawqaG51.q', NULL, '{\"locale\":\"en\"}', '2021-01-22 06:25:00', '2021-01-22 06:25:00');
+(11, 1, 'Hein Z', 'admin@gmail.com', 'users/default.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, '2021-01-09 03:04:29', '2021-01-09 03:04:29'),
+(12, 2, 'hein', 'hein@gmail.com', 'users/default.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, '2021-01-11 08:21:34', '2021-01-11 08:21:34'),
+(13, 3, 'Manager', 'manager@gmail.com', 'users/January2021/rTpP98A1E7oyiMMU7rjM.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, '{\"locale\":\"en\"}', '2021-01-22 06:25:00', '2021-01-22 06:25:00');
 
 -- --------------------------------------------------------
 
@@ -1314,13 +1339,13 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1338,7 +1363,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1368,7 +1393,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -1380,7 +1405,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `roles`

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="df7ef52c-31d6-423d-ae2e-97d5b42da1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +163,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../real-time-fourm" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -239,7 +238,8 @@
       <workItem from="1611486563736" duration="322000" />
       <workItem from="1611490057298" duration="96000" />
       <workItem from="1611662406388" duration="27000" />
-      <workItem from="1611940101615" duration="7155000" />
+      <workItem from="1611940101615" duration="7184000" />
+      <workItem from="1612016418534" duration="20000" />
     </task>
     <servers />
   </component>
