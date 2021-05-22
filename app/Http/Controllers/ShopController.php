@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\Array_;
-
+use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
 {
@@ -34,7 +34,6 @@ class ShopController extends Controller
             $categoryName = 'Feature';
         }
 
-
         if (\request()->sort === 'low_high') {
             $products = $products->inRandomOrder()->orderBy('price')->paginate($pagination);
         } elseif (\request()->sort === 'high_low') {
@@ -46,7 +45,6 @@ class ShopController extends Controller
         return view('shop.shop', compact('products', 'categories', 'categoryName'));
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -56,7 +54,7 @@ class ShopController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'q' => 'required'
+            'q' => 'required',
         ]);
 
         $products = Product::search($request->q)->paginate(10);
@@ -71,6 +69,28 @@ class ShopController extends Controller
         return response()->json($products);
     }
 
+    public function setRating($product_id, Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'rate' => 'required|numeric',
+        ]);
+
+        if ($validator->failed()) {
+            return response()->json($validator->errors(), 400);
+        }
+        auth()->user()->ratings()->updateOrCreate([
+            'product_id' => $product_id],
+            ['rating' => $request->rating],
+        );
+        try {
+            $product = Product::with('ratings')->findOrFail($product_id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'product not found'], 404);
+        }
+
+        return response()->json(['avgRating' => $product->ratings->avg('rating')]);
+    }
 
     /**
      * Display the specified resource.
@@ -80,8 +100,11 @@ class ShopController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('slug', $slug)->with('ratings')->firstOrFail();
         $product->mainImgUrl = $this->productImageUrl($product->image);
+        $product->avgRating = $product->ratings->avg('rating');
+
+        $product->userRating = auth()->user() ? optional($product->ratings->where('user_id', auth()->user()->id)->first())->rating : '';
         $subImgUrls = [];
         $stockThreshold = setting('site.stock_threshold');
 
@@ -98,7 +121,7 @@ class ShopController extends Controller
         return view('shop.product-details')->with(['product' => $product, 'mayLikes' => $mayLikes, 'subImgUrls' => $subImgUrls, 'stockThreshold' => $stockThreshold]);
     }
 
-    function productImageUrl($path)
+    public function productImageUrl($path)
     {
         return $path && file_exists('storage/' . $path) ? asset('storage/' . $path) : asset('images/product-default.jpg');
     }

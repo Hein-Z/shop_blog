@@ -9,7 +9,7 @@ use TCG\Voyager\Traits\Resizable;
 
 class Product extends Model
 {
-    protected $fillable=['quantity'];
+    protected $fillable = ['quantity'];
     protected $appends = ['presetPrice'];
     use HasFactory;
     use Resizable;
@@ -21,7 +21,7 @@ class Product extends Model
             'products.details' => 9,
             'products.price' => 5,
             'products.description' => 2,
-        ]
+        ],
     ];
 
     public function getPresetPriceAttribute()
@@ -32,6 +32,11 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_product');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
     }
 }
 
