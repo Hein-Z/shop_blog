@@ -16,6 +16,9 @@
                     <li class="nav-item @if($name==='landing-page') active @endif">
                         <a class="nav-link" href="{{route('landing-page')}}">Home</a>
                     </li>
+                    <li class="nav-item @if($name==='blog.index') active @endif">
+                        <a class="nav-link" href="{{route('blog.index')}}">Blog</a>
+                    </li>
                     <li class="nav-item dropdown @if($name==='shop.index') active @endif">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="false">Shop</a>

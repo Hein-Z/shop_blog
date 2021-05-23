@@ -20,6 +20,11 @@ Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'sho
 Route::post('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 Route::patch('/shop/products/{product_id}/rating', [\App\Http\Controllers\ShopController::class, 'setRating'])->middleware('auth');
 
+Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->name('blog.index');
+Route::get('/blog/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
+Route::post('/blog', [\App\Http\Controllers\PostController::class, 'search'])->name('blog.search');
+
+
 //Cart
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('shop.cart');
 Route::get('/cart/data', [\App\Http\Controllers\CartController::class, 'getCartData'])->name('shop.cart.data');

@@ -11,12 +11,12 @@
 - Transaction Email
 - <a href="https://packagist.org/packages/hardevine/shoppingcart">Laravel shopping cart</a>
 
-## About app
+## Core Feature
 
 - Payment checkout
 - Single page dynamic shopping cart (with saves for later feature) UX using vue js api
 - single page products search
-- automatic calculate bills
+- automatic calculated bills
 - discount with coupon code
 - admin backend with laravel voyager
 - admin management (order, products, blog, categories, user etc...)
@@ -26,10 +26,18 @@
 - authentication
 - feature product
 - best selling products
+- give rating stars to product
+- blog (posts with categories)
+
 
 ## coming soon
 
 - user dashboard
+
+## manager account
+
+- manager@gmail.com
+- password
 
 ## admin account
 
