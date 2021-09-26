@@ -58,7 +58,7 @@ for manager assessment
 <img src='./voyager-manager-assessment.png' style=“margin-right: 10px;” />
 
 for admin assessment
-<img src='./voyager-admin-assessment.png' style=“margin-right: 10px;” />
+<img src="./voyager-admin-assessment.png" style=“margin-right: 10px;” />
 
 
 
