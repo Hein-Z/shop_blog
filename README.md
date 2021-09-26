@@ -16,6 +16,7 @@
 - Payment checkout
 - Single page dynamic shopping cart (with saves for later feature) UX using vue js api
 - single page products search
+- product details with image gallery
 - automatic calculated bills
 - discount with coupon code
 - admin backend with laravel voyager
@@ -28,6 +29,12 @@
 - best selling products
 - give rating stars to product
 - blog (posts with categories)
+
+
+## Screenshot
+
+- HomePage
+<img src=./home-page.jpg” style=“margin-right: 10px;” />
 
 
 ## coming soon
