@@ -33,8 +33,25 @@
 
 ## Screenshot
 
-- HomePage
-<img src=./home-page.jpg” style=“margin-right: 10px;” />
+- Home Page
+<img src='./home-page.png' style=“margin-right: 10px;” />
+
+- Shop Page
+<img src='./shop-page.png' style=“margin-right: 10px;” />
+
+- Product Details Page
+<img src='./product-details.png' style=“margin-right: 10px;” />
+
+- Shopping Cart Page
+<img src='./cart.png' style=“margin-right: 10px;” />
+
+- Checkout Page
+<img src='./checkout-1.png' style=“margin-right: 10px;” />
+<img src='./checkout-2.png' style=“margin-right: 10px;” />
+
+- Blog Page
+<img src='./blog-page.png' style=“margin-right: 10px;” />
+
 
 
 ## coming soon
