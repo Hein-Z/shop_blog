@@ -52,6 +52,14 @@
 - Blog Page
 <img src='./blog-page.png' style=“margin-right: 10px;” />
 
+- Voyager Admin Panel
+
+for manager assessment
+<img src='./voyager-manager-assessment.png' style=“margin-right: 10px;” />
+
+for admin assessment
+<img src='./voyager-admin-assessment.png' style=“margin-right: 10px;” />
+
 
 
 ## coming soon
