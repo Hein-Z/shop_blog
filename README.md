@@ -34,31 +34,31 @@
 ## Screenshot
 
 - Home Page
-<img src='./home-page.png' style=“margin-right: 10px;” />
+<img src='home-page.png' style=“margin-right: 10px;” />
 
 - Shop Page
-<img src='./shop-page.png' style=“margin-right: 10px;” />
+<img src='shop-page.png' style=“margin-right: 10px;” />
 
 - Product Details Page
-<img src='./product-details.png' style=“margin-right: 10px;” />
+<img src='product-details.png' style=“margin-right: 10px;” />
 
 - Shopping Cart Page
-<img src='./cart.png' style=“margin-right: 10px;” />
+<img src='cart.png' style=“margin-right: 10px;” />
 
 - Checkout Page
-<img src='./checkout-1.png' style=“margin-right: 10px;” />
-<img src='./checkout-2.png' style=“margin-right: 10px;” />
+<img src='checkout-1.png' style=“margin-right: 10px;” />
+<img src='checkout-2.png' style=“margin-right: 10px;” />
 
 - Blog Page
-<img src='./blog-page.png' style=“margin-right: 10px;” />
+<img src="blog-page.png" style=“margin-right: 10px;” />
 
 - Voyager Admin Panel
 
 for manager assessment
-<img src='./voyager-manager-assessment.png' style=“margin-right: 10px;” />
+<img src="voyager-manager-assessment.png" style=“margin-right: 10px;” />
 
 for admin assessment
-<img src="./voyager-admin-assessment.png" style=“margin-right: 10px;” />
+<img src="voyager-admin-assessment.png" style=“margin-right: 10px;” />
 
 
 
