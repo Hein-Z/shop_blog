@@ -50,7 +50,7 @@
 <img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/checkout-2.png' style=“margin-right: 10px;” />
 
 - Blog Page
-<img src="https://raw.githubusercontent.com/Hein-Z/shop_blog/main/blog-page.png" style=“margin-right: 10px;” />
+- <img src="https://raw.githubusercontent.com/Hein-Z/shop_blog/main/blog-page.png" style=“margin-right: 10px;” />
 
 - Voyager Admin Panel
 
