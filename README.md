@@ -2,77 +2,71 @@
 
 ## What I learnt
 
-- Vue js api
-- Laravel
-- <a href="https://voyager-docs.devdojo.com">voyager</a>
-- <a href="https://stripe.com/docs/js">Stripe js</a>
-- testing with PHP unit
-- Paypale che ckout
-- Transaction Email
-- <a href="https://packagist.org/packages/hardevine/shoppingcart">Laravel shopping cart</a>
+-   Vue js api
+-   Laravel
+-   <a href="https://voyager-docs.devdojo.com">voyager</a>
+-   <a href="https://stripe.com/docs/js">Stripe js</a>
+-   testing with PHP unit
+-   Paypale che ckout
+-   Transaction Email
+-   <a href="https://packagist.org/packages/hardevine/shoppingcart">Laravel shopping cart</a>
 
 ## Core Feature
 
-- Payment checkout
-- Single page dynamic shopping cart (with saves for later feature) UX using vue js api
-- single page products search
-- product details with image gallery
-- automatic calculated bills
-- discount with coupon code
-- admin backend with laravel voyager
-- admin management (order, products, blog, categories, user etc...)
-- product category and arrange with price (low to high or high to low)
-- dynamic product images gallery
-- allow guest checkout
-- authentication
-- feature product
-- best selling products
-- give rating stars to product
-- blog (posts with categories)
-
+-   Payment checkout
+-   Single page dynamic shopping cart (with saves for later feature) UX using vue js api
+-   single page products search
+-   product details with image gallery
+-   automatic calculated bills
+-   discount with coupon code
+-   admin backend with laravel voyager
+-   admin management (order, products, blog, categories, user etc...)
+-   product category and arrange with price (low to high or high to low)
+-   dynamic product images gallery
+-   allow guest checkout
+-   authentication
+-   feature product
+-   best selling products
+-   give rating stars to product
+-   blog (posts with categories)
 
 ## Screenshot
 
-- Home Page
-<img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/home-page.png' style=“margin-right: 10px;” />
+-   Home Page
+    ![Home Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/home-page.png "Home Page")
 
-- Shop Page
-<img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/shop-page.png' style=“margin-right: 10px;” />
+-   Shop Page
+    ![Shop Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/shop-page.png "Shop Page")
 
-- Product Details Page
-<img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/product-details.png' style=“margin-right: 10px;” />
+-   Product Details Page
+    ![Shop Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/product-details.png "Product Details Page")
 
-- Shopping Cart Page
-<img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/cart.png' style=“margin-right: 10px;” />
+-   Shopping Cart Page
+    ![Shopping Cart Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/cart.png "Product Details Page")
 
-- Checkout Page
-<img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/checkout-1.png' style=“margin-right: 10px;” />
-<img src='https://raw.githubusercontent.com/Hein-Z/shop_blog/main/checkout-2.png' style=“margin-right: 10px;” />
+*   Checkout Page
+    ![Checkout Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/checkout-1.png "Checkout Page")
 
-- Blog Page
-- <img src="https://raw.githubusercontent.com/Hein-Z/shop_blog/main/blog-page.png" style=“margin-right: 10px;” />
+    ![Checkout Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/checkout-2.png "Checkout Page")
 
-- Voyager Admin Panel
+-   Blog Page
+    ![Blog Page](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/blog-page.png "Blog Page")
 
-for manager assessment
-<img src="https://raw.githubusercontent.com/Hein-Z/shop_blog/main/voyager-manager-assessment.png" style=“margin-right: 10px;” />
+-   Voyager Admin Panel
+    ![Voyager Admin Panel manager assessment](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/voyager-manager-assessment.png "manager assessment")
 
-for admin assessment
-<img src="https://raw.githubusercontent.com/Hein-Z/shop_blog/main/voyager-admin-assessment.png" style=“margin-right: 10px;” />
-
-
+    ![Voyager Admin Panel admin assessment](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/voyager-admin-assessment.png "admin assessment")
 
 ## coming soon
 
-- user dashboard
+-   user dashboard
 
 ## manager account
 
-- manager@gmail.com
-- password
+-   manager@gmail.com
+-   password
 
 ## admin account
 
-- admin@gmail.com
-- password
-
+-   admin@gmail.com
+-   password
