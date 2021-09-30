@@ -231,9 +231,8 @@ export default {
     methods: {
         checkAuth() {
             if (!this.isAuth) {
-
                 if (confirm("You need to login to rate this product")) {
-                    location.href=process.env.MIX_APP_URL+'/login';
+                    location.href = process.env.MIX_APP_URL + "/login";
                 }
             }
         },

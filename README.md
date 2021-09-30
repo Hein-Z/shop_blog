@@ -28,6 +28,8 @@
 -   feature product
 -   best selling products
 -   give rating stars to product
+-   (In stock, Low stock, Out of stock) badge
+-   Cannot buy more than available quantity
 -   blog (posts with categories)
 
 ## Screenshot
