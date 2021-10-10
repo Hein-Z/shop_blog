@@ -9,7 +9,7 @@
                     class="img-fluid card-img"
                 />
             </div>
-            <br />
+            <br/>
             <div class="row">
                 <div
                     class="col-4"
@@ -29,7 +29,7 @@
                             class="img-fluid img-thumbnail thumbnail-image"
                         />
                     </div>
-                    <br />
+                    <br/>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <h5 class="badge badge-pill" :class="stock_level_badge">
                 {{ stockLevel }}
             </h5>
-            <br />
+            <br/>
             <h5>{{ product.details }}</h5>
 
             <star-rating
@@ -49,17 +49,17 @@
                 :read-only="true"
                 :increment="0.1"
             ></star-rating>
-            <br />
+            <br/>
             <p class="lead mb-0">
                 <strong class="text-danger mb-0">{{
-                    product.presetPrice
-                }}</strong>
+                        product.presetPrice
+                    }}</strong>
             </p>
-            <br />
+            <br/>
 
             <p class="lead mb-0" v-html="product.description"></p>
 
-            <br />
+            <br/>
 
             <div class="row" v-if="isAvailable">
                 <div class="col-sm-12" v-if="!isInCart">
@@ -67,13 +67,21 @@
                         <div class="col-sm-12 mb-4">
                             <button
                                 class="btn btn-sm btn-warning mb-4"
-                                @click="checkAuth"
+                                @click="showRatingStar"
+                                v-if="!isStarShown"
                             >
                                 Give Rating
                             </button>
+                            <button
+                                class="btn btn-sm btn-outline-danger mb-4"
+                                @click="cancelRating"
+                                v-if="isStarShown"
+                            >
+                                Cancel
+                            </button>
 
                             <star-rating
-                                v-if="isAuth"
+                                v-if="isStarShown"
                                 :rating="rating"
                                 :star-size="40"
                                 :rounded-corners="true"
@@ -106,7 +114,7 @@
                                             role="status"
                                         >
                                             <span class="sr-only"
-                                                >Loading...</span
+                                            >Loading...</span
                                             >
                                         </div>
                                         Add to Cart
@@ -146,7 +154,11 @@
                     </div>
                 </div>
             </div>
+            <a :href='cartRoute' class="h4">To Shopping Cart</a>
+
         </div>
+
+
     </div>
 </template>
 <style>
@@ -157,6 +169,7 @@ img {
 .opacity-zero {
     opacity: 0;
 }
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 1s;
@@ -164,9 +177,9 @@ img {
 
 .fade-enter,
 .fade-leave-to
-/* .fade-leave-active in <2.1.8 */
+    /* .fade-leave-active in <2.1.8 */
 
- {
+{
     opacity: 0;
 }
 </style>
@@ -175,7 +188,7 @@ import axios from "axios";
 import StarRating from "vue-star-rating";
 
 export default {
-    props: ["product", "cart", "subImgUrls", "stockThreshold", "isAuth"],
+    props: ["product", "cart", "subImgUrls", "stockThreshold", "isAuth", "cartRoute"],
     data() {
         return {
             mainImageUrl: this.product.mainImgUrl,
@@ -190,7 +203,9 @@ export default {
             stock_level_badge: "badge-success",
             isAvailable: true,
             rating: 0,
-            avgRating: 0
+            avgRating: 0,
+            isStarShown: false,
+
         };
     },
     components: {
@@ -229,12 +244,17 @@ export default {
         }
     },
     methods: {
-        checkAuth() {
+        showRatingStar() {
             if (!this.isAuth) {
                 if (confirm("You need to login to rate this product")) {
                     location.href = process.env.MIX_APP_URL + "/login";
                 }
+            } else {
+                this.isStarShown = true
             }
+        },
+        cancelRating() {
+            this.isStarShown = false
         },
         setRating(rating) {
             this.$insProgress.start();
@@ -251,7 +271,10 @@ export default {
                     this.avgRating = res.data.avgRating;
                 })
                 .catch(err => console.log(err.response))
-                .finally(_ => this.$insProgress.finish());
+                .finally(_ => {
+                    this.$insProgress.finish()
+                    this.isStarShown = false
+                });
         },
         isActive(image) {
             return image === this.mainImageUrl;

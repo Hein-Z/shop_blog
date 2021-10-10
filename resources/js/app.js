@@ -8,9 +8,13 @@ require('./bootstrap');
 require('./app.js');
 require('./custom.js');
 require('./owl.js');
+
+
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import VueInsProgressBar from 'vue-ins-progress-bar'
+
+
 const options = {
     position: 'fixed',
     show: true,
@@ -39,6 +43,7 @@ Vue.component('checkout-invoice', require('./components/CheckoutInvoice.vue').de
 Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('product-details', require('./components/ProductDetails').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
