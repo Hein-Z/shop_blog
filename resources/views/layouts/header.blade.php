@@ -13,9 +13,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item @if($name==='landing-page') active @endif">
-                        <a class="nav-link" href="{{route('landing-page')}}">Home</a>
-                    </li>
+
                     <li class="nav-item @if($name==='blog.index') active @endif">
                         <a class="nav-link" href="{{route('blog.index')}}">Blog</a>
                     </li>
@@ -27,24 +25,25 @@
                             <a class="dropdown-item" href="{{route('shop.index')}}"> 🛍 Products</a>
                             <a class="dropdown-item" href="{{route('shop.checkout')}}"><i
                                     class="fa fa-check-circle-o"></i> Checkout</a>
-                            <a class="dropdown-item" href="{{route('shop.cart')}}"><i class="fa fa-shopping-cart"></i>
-                                Cart @if(\Cart::instance('default')->count())<span
-                                    class="text-danger px-3 h5">{{\Cart::instance('default')->count()}}</span>@endif</a>
                         </div>
                     </li>
-{{--                    <li class="nav-item dropdown ">--}}
-{{--                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"--}}
-{{--                           aria-haspopup="true" aria-expanded="false">More</a>--}}
+                    <li class="nav-item @if(\Request::route()->getName()==='shop.cart') active @endif">
+                        <a class="nav-link" href="{{route('shop.cart')}}">🛒Cart @if(\Cart::instance('default')->count())<span
+                                class=" badge-dark badge-pill">{{\Cart::instance('default')->count()}}</span>@endif</a>
+                    </li>
+                    {{--                    <li class="nav-item dropdown ">--}}
+                    {{--                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"--}}
+                    {{--                           aria-haspopup="true" aria-expanded="false">More</a>--}}
 
-{{--                        <div class="dropdown-menu">--}}
-{{--                            <a class="dropdown-item" href="about-us.html">About Us</a>--}}
-{{--                            <a class="dropdown-item" href="blog.html">Blog</a>--}}
-{{--                            <a class="dropdown-item" href="testimonials.html">Testimonials</a>--}}
-{{--                            <a class="dropdown-item" href="terms.html">Terms</a>--}}
-{{--                            <a class="dropdown-item"--}}
-{{--                               href="contact.html">Contact Us</a>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
+                    {{--                        <div class="dropdown-menu">--}}
+                    {{--                            <a class="dropdown-item" href="about-us.html">About Us</a>--}}
+                    {{--                            <a class="dropdown-item" href="blog.html">Blog</a>--}}
+                    {{--                            <a class="dropdown-item" href="testimonials.html">Testimonials</a>--}}
+                    {{--                            <a class="dropdown-item" href="terms.html">Terms</a>--}}
+                    {{--                            <a class="dropdown-item"--}}
+                    {{--                               href="contact.html">Contact Us</a>--}}
+                    {{--                        </div>--}}
+                    {{--                    </li>--}}
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -59,7 +58,8 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -73,8 +73,12 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
+                                <a href="{{route('user.edit')}}" class="dropdown-item">
+                                    My Profile
+                                </a>
                             </div>
                         </li>
+
                     @endguest
                 </ul>
             </div>

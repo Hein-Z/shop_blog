@@ -20,6 +20,8 @@ Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'sho
 Route::post('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 Route::patch('/shop/products/{product_id}/rating', [\App\Http\Controllers\ShopController::class, 'setRating'])->middleware('auth');
 
+Route::get('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'index']);
+
 Route::get('/blog', [\App\Http\Controllers\PostController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('blog.show');
 Route::post('/blog', [\App\Http\Controllers\PostController::class, 'search'])->name('blog.search');
@@ -53,6 +55,15 @@ Route::get('/thank-you', [\App\Http\Controllers\ConfirmationController::class, '
 //coupon
 Route::post('/coupon', [\App\Http\Controllers\CouponController::class, 'store'])->name('coupon.store');
 Route::delete('/coupon', [\App\Http\Controllers\CouponController::class, 'destroy'])->name('coupon.destroy');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/my-profile', [\App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+    Route::patch('/my-profile', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+    Route::get('/my-order', [\App\Http\Controllers\OrderController::class, 'index'])->name('order.index');
+    Route::get('/my-order/{id}', [\App\Http\Controllers\OrderController::class, 'show'])->name('order.show');
+
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/products/best-selling', [\App\Http\Controllers\ReportController::class, 'bestSellingReport'])->name('products.best-selling')->middleware('admin.user');
