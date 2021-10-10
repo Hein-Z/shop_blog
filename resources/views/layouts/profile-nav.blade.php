@@ -7,6 +7,6 @@
         <span class="d-md-none"> | </span>
         <a class="pt-1  h5 px-1 px-md-0
                {{\Request::route()->getName()==='order.index'?'text-danger':'text-dark'}}"
-           href="{{ route('order.index') }}">My Order</a>
+           href="{{ route('order.index') }}">My Orders</a>
     </div>
 </div>
