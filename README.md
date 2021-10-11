@@ -72,6 +72,44 @@
     ![Voyager Admin Panel admin assessment](https://raw.githubusercontent.com/Hein-Z/shop_blog/main/voyager-admin-assessment.png "admin assessment")
 
 
+## Installation
+
+1 . Clone the repo and cd into it
+
+2 . Rename or copy .env.example file to .env
+
+3 .
+```bash
+composer install
+```
+```bash
+php artisan key:generate
+```
+4 . Set your database credentials in your .env file
+
+5 . Set your Stripe credentials in your .env file. Specifically STRIPE_KEY and STRIPE_SECRET
+
+6 . Set your APP_URL in your .env file. This is needed for Voyager to correctly resolve asset URLs.
+
+7 . 
+```bash
+php artisan storage:link
+```
+8 . 
+```bash
+npm install
+```
+```bash
+npm run dev
+```
+php artisan serve or use Laravel Valet or Laravel Homestead
+
+Visit localhost:8000 in your browser
+
+Visit /admin if you want to access the Voyager admin backend. 
+
+
+
 ## manager account
 
 -   manager@gmail.com
