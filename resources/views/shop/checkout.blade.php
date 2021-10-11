@@ -250,7 +250,7 @@
 @section('extra-js')
     <script>
         // Create a Stripe client.
-        var stripe = Stripe('pk_test_51I4OsoEfzIpt7BfHins5shMNdT7tvCCKvQotJBsJYQYJ91xZBjGlXN8WUujbLpAad1fWALulthw1AFhCnm076WDT00e7VC6ljP');
+        var stripe = Stripe('{{ env("STRIPE_KEY") }}');
 
         // Create an instance of Elements.
         var elements = stripe.elements();

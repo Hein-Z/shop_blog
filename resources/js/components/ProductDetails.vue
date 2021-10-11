@@ -154,7 +154,7 @@
                     </div>
                 </div>
             </div>
-            <a :href='cartRoute' class="h4">To Shopping Cart</a>
+            <a :href='cartRoute' class="h4 mt-3">To Shopping Cart</a>
 
         </div>
 
