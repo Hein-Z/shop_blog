@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 11, 2021 at 12:23 PM
+-- Generation Time: Oct 11, 2021 at 07:05 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -575,7 +575,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `billing_email`, `billing_name`, `billing_address`, `billing_city`, `billing_province`, `billing_postalcode`, `billing_phone`, `billing_name_on_card`, `billing_discount`, `billing_discount_code`, `billing_subtotal`, `billing_tax`, `billing_total`, `payment_gateway`, `shipped`, `error`, `created_at`, `updated_at`) VALUES
 (7, NULL, 'customer@gmail.com', 'customer1', 'no19, Kyeemyindine, NyeinChanYay Street', 'Yangon', 'Yangon', '11101', '09422311212', 'customer', 0, NULL, 901, 45, 946, 'stripe', 1, NULL, '2021-01-22 09:29:04', '2021-10-06 11:01:11'),
 (8, NULL, 'customer2@gmail.com', 'customer2', 'No 19, HteeTan Street, Kyeemyindine Yangon,', 'Yangon', 'Yangon', '11101', '09960179228', 'Customer2', 30, 'ABCDEFG', 3297, 165, 3462, 'stripe', 0, NULL, '2021-10-06 10:59:56', '2021-10-06 11:00:46'),
-(9, 11, 'admin@gmail.com', 'Hein Htet Soe', 'No 19, HteeTan Street, Kyeemyindine Yangon,', 'Yangon', 'Yangon', '11101', '09233234423', 'Hein Htet Soe', 0, '', 600, 30, 630, 'stripe', 0, NULL, '2021-10-10 06:25:43', '2021-10-10 06:25:43');
+(9, 11, 'admin@gmail.com', 'Hein Htet Soe', 'No 19, HteeTan Street, Kyeemyindine Yangon,', 'Yangon', 'Yangon', '11101', '09233234423', 'Hein Htet Soe', 0, '', 600, 30, 630, 'stripe', 0, NULL, '2021-10-10 06:25:43', '2021-10-10 06:25:43'),
+(10, 11, 'admin@gmail.com', 'customer', 'No 19, HteeTan Street, Kyeemyindine Yangon,', 'Yangon', 'Yangon', '11101', '09599601792', 'customer', 0, '', 2347, 117, 2464, 'stripe', 0, NULL, '2021-10-11 10:27:53', '2021-10-11 10:27:53');
 
 -- --------------------------------------------------------
 
@@ -606,7 +607,8 @@ INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`, `create
 (7, 7, 71, 1, '2021-01-22 09:29:04', '2021-01-22 09:29:04'),
 (8, 8, 71, 2, '2021-10-06 10:59:56', '2021-10-06 10:59:56'),
 (9, 8, 20, 1, '2021-10-06 10:59:56', '2021-10-06 10:59:56'),
-(10, 9, 92, 1, '2021-10-10 06:25:43', '2021-10-10 06:25:43');
+(10, 9, 92, 1, '2021-10-10 06:25:43', '2021-10-10 06:25:43'),
+(11, 10, 8, 1, '2021-10-11 10:27:53', '2021-10-11 10:27:53');
 
 -- --------------------------------------------------------
 
@@ -909,7 +911,7 @@ INSERT INTO `products` (`id`, `name`, `slug`, `details`, `price`, `description`,
 (5, 'Product 5', 'product-5', 'Full Frame DSLR, with 18-55mm kit lens.', 1408.00, 'Lorem 5 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/product-5.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (6, 'Product 6', 'product-6', 'Full Frame DSLR, with 18-55mm kit lens.', 888.00, 'Lorem 6 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/product-6.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (7, 'Laptop 1', 'laptop-1', '13 inch, 2 TB SSD, 32GB RAM', 1533.00, 'Lorem 1 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-1.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
-(8, 'Laptop 2', 'laptop-2', '15 inch, 2 TB SSD, 32GB RAM', 2347.00, 'Lorem 2 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-2.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
+(8, 'Laptop 2', 'laptop-2', '15 inch, 2 TB SSD, 32GB RAM', 2347.00, 'Lorem 2 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-2.jpg', NULL, 0, 9, '2021-01-09 03:02:50', '2021-10-11 10:27:53'),
 (9, 'Laptop 3', 'laptop-3', '13 inch, 2 TB SSD, 32GB RAM', 1524.00, 'Lorem 3 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-3.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (10, 'Laptop 4', 'laptop-4', '15 inch, 1 TB SSD, 32GB RAM', 1925.00, 'Lorem 4 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-4.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (11, 'Laptop 5', 'laptop-5', '13 inch, 2 TB SSD, 32GB RAM', 1652.00, 'Lorem 5 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-5.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
@@ -1167,7 +1169,7 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified
 (8, NULL, 'Rosanna O\'Connell', 'sherwood78@example.org', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'twpUUktYdY', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (9, NULL, 'Georgiana Brekke', 'lisette22@example.com', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W9Ni6ivjZj', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (10, NULL, 'Alexandrea Cronin IV', 'morissette.justus@example.com', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9E7sBY92AH', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
-(11, 1, 'Hein Htet Soe', 'admin@gmail.com', 'users/default.png', NULL, '$2y$10$KkBQDPiK0oVdJdJsiUKVNuEskPVgNa2O7Iij75ZM5AfiUsElS/Jd.', NULL, NULL, '2021-01-09 03:04:29', '2021-10-10 09:36:44'),
+(11, 1, 'Hein Htet Soe', 'admin@gmail.com', 'users/October2021/l9Y0PLrTyheHjJCblo2x.gif', NULL, '$2y$10$KkBQDPiK0oVdJdJsiUKVNuEskPVgNa2O7Iij75ZM5AfiUsElS/Jd.', NULL, '{\"locale\":\"en\"}', '2021-01-09 03:04:29', '2021-10-11 10:28:49'),
 (12, 2, 'hein', 'hein@gmail.com', 'users/default.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, '2021-01-11 08:21:34', '2021-01-11 08:21:34'),
 (13, 3, 'Manager', 'manager@gmail.com', 'users/January2021/rTpP98A1E7oyiMMU7rjM.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Da94LK3n6lWkMpx8iQBnxnMaLWc82XsDesAmqjs0qsCzDqpvgoJdWzkAzcKQ', '{\"locale\":\"en\"}', '2021-01-22 06:25:00', '2021-01-22 06:25:00'),
 (14, 2, 'customer', 'customer@gmail.com', 'users/default.png', NULL, '$2y$10$FHZClQAs4HLS/qlD3pkao.rpty69z0ukV3fiauB9en4zImIKX94/S', NULL, NULL, '2021-09-26 07:31:29', '2021-09-26 07:31:29');
@@ -1449,13 +1451,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pages`
