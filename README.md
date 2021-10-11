@@ -85,19 +85,20 @@ composer install
 ```bash
 php artisan key:generate
 ```
-4 . Set your database credentials in your .env file
+4 . Set your database credentials in your .env file.
 
+5 . export ecommence.sql to your database
 
-5 . Set your Stripe credentials in your .env file. Specifically STRIPE_KEY and STRIPE_SECRET .
+6 . Set your Stripe credentials in your .env file. Specifically STRIPE_KEY and STRIPE_SECRET .
 Getting from https://dashboard.stripe.com/test/apikeys after login
 
-6 . Set your APP_URL in your .env file. This is needed for Voyager to correctly resolve asset URLs.
+7 . Set your APP_URL in your .env file. This is needed for Voyager to correctly resolve asset URLs.
 
-7 . 
+8 . 
 ```bash
 php artisan storage:link
 ```
-8 . 
+9 . 
 ```bash
 npm install
 ```
