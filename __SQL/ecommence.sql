@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 21, 2021 at 08:25 PM
+-- Generation Time: Oct 11, 2021 at 12:23 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -42,8 +42,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 'Category 1', 'category-1', '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
-(2, NULL, 1, 'Category 2', 'category-2', '2021-01-09 03:04:02', '2021-01-09 03:04:02');
+(1, NULL, 1, 'Nature', 'nature', '2021-01-09 03:04:02', '2021-05-23 04:29:10'),
+(2, NULL, 1, 'Product', 'product', '2021-01-09 03:04:02', '2021-05-23 04:29:33');
 
 -- --------------------------------------------------------
 
@@ -72,6 +72,28 @@ INSERT INTO `category` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 (6, 'TVs', 'tvs', '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (7, 'Digital Cameras', 'digital-cameras', '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (8, 'Appliances', 'appliances', '2021-01-09 03:02:50', '2021-01-09 03:02:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_posts`
+--
+
+CREATE TABLE `category_posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `post_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category_posts`
+--
+
+INSERT INTO `category_posts` (`id`, `category_id`, `post_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL),
+(2, 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -182,7 +204,8 @@ INSERT INTO `category_product` (`id`, `product_id`, `category_id`, `created_at`,
 (88, 88, 8, NULL, NULL),
 (89, 89, 8, NULL, NULL),
 (90, 90, 8, NULL, NULL),
-(91, 71, 4, NULL, NULL);
+(91, 71, 4, NULL, NULL),
+(92, 92, 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -263,21 +286,21 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
 (27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, NULL, 6),
 (28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, NULL, 2),
-(31, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, NULL, 3),
-(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 4),
-(33, 5, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 5),
-(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 6),
+(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
+(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, '{}', 2),
+(31, 5, 'category_id', 'text', 'Category', 0, 0, 1, 1, 1, 0, '{}', 3),
+(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 4),
+(33, 5, 'excerpt', 'text_area', 'Excerpt', 0, 0, 1, 1, 1, 1, '{}', 5),
+(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, '{}', 6),
 (35, 5, 'image', 'image', 'Post Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
 (36, 5, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 8),
-(37, 5, 'meta_description', 'text_area', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 9),
-(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 10),
+(37, 5, 'meta_description', 'text_area', 'Meta Description', 0, 0, 1, 1, 1, 1, '{}', 9),
+(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 0, 0, 1, 1, 1, 1, '{}', 10),
 (39, 5, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
-(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 12),
-(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 13),
-(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, NULL, 14),
-(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, NULL, 15),
+(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 12),
+(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, '{}', 14),
+(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, '{}', 15),
 (44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, NULL, 2),
 (46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
@@ -326,14 +349,16 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (89, 10, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{}', 3),
 (90, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
 (91, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
-(92, 9, 'product_belongstomany_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_product\",\"pivot\":\"1\",\"taggable\":null}', 12),
+(92, 9, 'product_belongstomany_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_product\",\"pivot\":\"1\",\"taggable\":\"0\"}', 12),
 (93, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (94, 12, 'code', 'text', 'Code', 1, 1, 1, 1, 1, 1, '{}', 2),
 (95, 12, 'value', 'number', 'Value', 0, 1, 1, 1, 1, 1, '{}', 3),
 (96, 12, 'percent_off', 'number', 'Percent Off', 0, 1, 1, 1, 1, 1, '{}', 4),
 (97, 12, 'type', 'radio_btn', 'Type', 1, 1, 1, 1, 1, 1, '{\"default\":\"fixed\",\"options\":{\"fixed\":\"fixed\",\"percent\":\"percent\"}}', 5),
 (98, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
-(99, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7);
+(99, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(100, 5, 'post_belongstomany_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_posts\",\"pivot\":\"1\",\"taggable\":\"on\"}', 16),
+(101, 9, 'quantity', 'number', 'Quantity', 1, 1, 1, 1, 1, 1, '{}', 10);
 
 -- --------------------------------------------------------
 
@@ -368,10 +393,10 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2021-01-09 03:03:56', '2021-01-09 03:03:56'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-01-09 03:03:56', '2021-01-09 03:03:56'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
-(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
+(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-01-09 03:04:02', '2021-05-23 04:50:43'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
 (8, 'orders', 'orders', 'Order', 'Orders', 'voyager-documentation', 'App\\Models\\Order', NULL, '\\App\\Http\\Controllers\\Voyager\\OrdersController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-01-09 03:16:14', '2021-01-09 03:18:06'),
-(9, 'products', 'products', 'Product', 'Products', 'voyager-shop', 'App\\Models\\Product', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-01-12 05:25:25', '2021-01-12 05:25:25'),
+(9, 'products', 'products', 'Product', 'Products', 'voyager-shop', 'App\\Models\\Product', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-01-12 05:25:25', '2021-09-30 07:35:30'),
 (10, 'category', 'category', 'Category', 'Categories', 'voyager-categories', 'App\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-01-12 05:26:29', '2021-01-12 05:26:29'),
 (12, 'coupons', 'coupons', 'Coupon', 'Coupons', 'voyager-tag', 'App\\Models\\Coupon', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-05-21 11:37:01', '2021-05-21 11:52:18');
 
@@ -439,18 +464,18 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-01-09 03:03:56', '2021-01-09 03:03:56', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2021-01-09 03:03:56', '2021-05-21 11:41:14', 'voyager.media.index', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 6, '2021-01-09 03:03:56', '2021-10-06 10:38:52', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 4, '2021-01-09 03:03:56', '2021-05-21 11:41:17', 'voyager.users.index', NULL),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2021-01-09 03:03:56', '2021-05-21 11:41:17', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2021-01-09 03:03:56', '2021-05-21 11:41:24', NULL, NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', '#000000', NULL, 8, '2021-01-09 03:03:56', '2021-10-06 10:39:11', NULL, ''),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-01-09 03:03:56', '2021-01-22 06:16:13', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, NULL, 6, '2021-01-09 03:03:56', '2021-05-21 11:41:17', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 2, '2021-01-09 03:03:56', '2021-05-21 11:28:27', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 3, '2021-01-09 03:03:56', '2021-05-21 11:28:27', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2021-01-09 03:03:56', '2021-05-21 11:41:24', 'voyager.settings.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2021-01-09 03:03:56', '2021-10-06 10:38:52', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-01-09 03:03:56', '2021-10-06 10:38:52', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-01-09 03:03:56', '2021-10-06 10:38:52', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 9, '2021-01-09 03:03:56', '2021-10-06 10:38:52', 'voyager.settings.index', NULL),
 (11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 20, 2, '2021-01-09 03:04:02', '2021-05-21 11:41:24', 'voyager.categories.index', NULL),
 (12, 1, 'Posts', '', '_self', 'voyager-news', NULL, 20, 1, '2021-01-09 03:04:02', '2021-05-21 11:41:20', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 8, '2021-01-09 03:04:02', '2021-05-21 11:41:20', 'voyager.pages.index', NULL),
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2021-01-09 03:04:02', '2021-10-06 10:38:52', 'voyager.pages.index', NULL),
 (14, 1, 'Orders', '', '_self', 'voyager-documentation', NULL, 19, 5, '2021-01-09 03:16:14', '2021-05-21 11:40:47', 'voyager.orders.index', NULL),
 (15, 1, 'Products', '', '_self', 'voyager-shop', NULL, 19, 1, '2021-01-12 05:25:25', '2021-05-21 11:40:47', 'voyager.products.index', NULL),
 (16, 1, 'Categories', '', '_self', 'voyager-categories', NULL, 19, 2, '2021-01-12 05:26:29', '2021-05-21 11:40:47', 'voyager.category.index', NULL),
@@ -510,7 +535,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (66, '2021_01_05_125733_add_images_to_products_table', 1),
 (67, '2021_01_08_110705_create_orders_table', 1),
 (68, '2021_01_08_111322_create_order_product_table', 1),
-(69, '2021_01_22_123955_ad_quantity_to_products_table', 2);
+(69, '2021_01_22_123955_ad_quantity_to_products_table', 2),
+(70, '2021_05_22_173326_create_ratings_table', 3),
+(71, '2021_05_23_110712_create_category_posts_table', 4);
 
 -- --------------------------------------------------------
 
@@ -546,13 +573,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `billing_email`, `billing_name`, `billing_address`, `billing_city`, `billing_province`, `billing_postalcode`, `billing_phone`, `billing_name_on_card`, `billing_discount`, `billing_discount_code`, `billing_subtotal`, `billing_tax`, `billing_total`, `payment_gateway`, `shipped`, `error`, `created_at`, `updated_at`) VALUES
-(1, 11, 'admin@gmail.com', 'hein', 'momo', 'ZDF', 'teste', 'testing', '098772832', 'dafsdassdfg', 0, NULL, 3050, 153, 3203, 'stripe', 1, NULL, '2021-01-09 03:20:23', '2021-01-09 03:21:38'),
-(2, 11, 'admin@gmail.com', 'Hein Htet Soe', 'htet', 'dsafas', 'testing', 'oho', '09677288624', 'DFA', 4522, '123456', 10551, 528, 11079, 'stripe', 0, NULL, '2021-01-22 09:09:06', '2021-01-22 09:09:06'),
-(3, 11, 'admin@gmail.com', 'Hein-Z', 'aa', 'aa', 'aa', 'aa', '09222211212', 'dfa', 3956, '123456', 9232, 462, 9694, 'stripe', 0, NULL, '2021-01-22 09:14:32', '2021-01-22 09:14:32'),
-(4, 11, 'admin@gmail.com', 'ss', 'jn', 'h', 'jhjh', 'jhjh', '09677288624', 'kjl', 0, '', 2703, 135, 2838, 'stripe', 0, NULL, '2021-01-22 09:16:34', '2021-01-22 09:16:34'),
-(5, 11, 'admin@gmail.com', 'wfsda', 'dsf', 'fdsaf', 'fdsa', 'dfa', '09222211212', 'nkdfla', 0, '', 4506, 225, 4731, 'stripe', 0, NULL, '2021-01-22 09:18:32', '2021-01-22 09:18:32'),
-(6, 11, 'admin@gmail.com', 'dhsjkh', '934', 'kdsj', 'kjdskl', 'djskl', '09222211212', 'jiikdfjs', 0, '', 3604, 180, 3784, 'stripe', 0, NULL, '2021-01-22 09:19:57', '2021-01-22 09:19:57'),
-(7, 11, 'admin@gmail.com', 'ssa', 'dsaf', 'fdsaf', 'fdsa', 'dfa', '09222211212', 'kl', 0, '', 901, 45, 946, 'stripe', 0, NULL, '2021-01-22 09:29:04', '2021-01-22 09:29:04');
+(7, NULL, 'customer@gmail.com', 'customer1', 'no19, Kyeemyindine, NyeinChanYay Street', 'Yangon', 'Yangon', '11101', '09422311212', 'customer', 0, NULL, 901, 45, 946, 'stripe', 1, NULL, '2021-01-22 09:29:04', '2021-10-06 11:01:11'),
+(8, NULL, 'customer2@gmail.com', 'customer2', 'No 19, HteeTan Street, Kyeemyindine Yangon,', 'Yangon', 'Yangon', '11101', '09960179228', 'Customer2', 30, 'ABCDEFG', 3297, 165, 3462, 'stripe', 0, NULL, '2021-10-06 10:59:56', '2021-10-06 11:00:46'),
+(9, 11, 'admin@gmail.com', 'Hein Htet Soe', 'No 19, HteeTan Street, Kyeemyindine Yangon,', 'Yangon', 'Yangon', '11101', '09233234423', 'Hein Htet Soe', 0, '', 600, 30, 630, 'stripe', 0, NULL, '2021-10-10 06:25:43', '2021-10-10 06:25:43');
 
 -- --------------------------------------------------------
 
@@ -574,13 +597,16 @@ CREATE TABLE `order_product` (
 --
 
 INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(1, 1, 20, 2, '2021-01-09 03:20:23', '2021-01-09 03:20:23'),
-(2, 2, 74, 8, '2021-01-22 09:09:06', '2021-01-22 09:09:06'),
-(3, 3, 74, 7, '2021-01-22 09:14:32', '2021-01-22 09:14:32'),
-(4, 4, 71, 3, '2021-01-22 09:16:34', '2021-01-22 09:16:34'),
-(5, 5, 16, 3, '2021-01-22 09:18:32', '2021-01-22 09:18:32'),
-(6, 6, 71, 4, '2021-01-22 09:19:57', '2021-01-22 09:19:57'),
-(7, 7, 71, 1, '2021-01-22 09:29:04', '2021-01-22 09:29:04');
+(1, NULL, 20, 2, '2021-01-09 03:20:23', '2021-01-09 03:20:23'),
+(2, NULL, 74, 8, '2021-01-22 09:09:06', '2021-01-22 09:09:06'),
+(3, NULL, 74, 7, '2021-01-22 09:14:32', '2021-01-22 09:14:32'),
+(4, NULL, 71, 3, '2021-01-22 09:16:34', '2021-01-22 09:16:34'),
+(5, NULL, 16, 3, '2021-01-22 09:18:32', '2021-01-22 09:18:32'),
+(6, NULL, 71, 4, '2021-01-22 09:19:57', '2021-01-22 09:19:57'),
+(7, 7, 71, 1, '2021-01-22 09:29:04', '2021-01-22 09:29:04'),
+(8, 8, 71, 2, '2021-10-06 10:59:56', '2021-10-06 10:59:56'),
+(9, 8, 20, 1, '2021-10-06 10:59:56', '2021-10-06 10:59:56'),
+(10, 9, 92, 1, '2021-10-10 06:25:43', '2021-10-10 06:25:43');
 
 -- --------------------------------------------------------
 
@@ -845,9 +871,9 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `featured`, `created_at`, `updated_at`) VALUES
-(1, 0, NULL, 'Lorem Ipsum Post', NULL, 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/post1.jpg', 'lorem-ipsum-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
-(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
-(3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
+(1, 11, 1, 'Lorem Ipsum Post', NULL, 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/post1.jpg', 'lorem-ipsum-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 1, '2021-01-09 03:04:02', '2021-05-23 04:51:11'),
+(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 1, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
+(3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 1, '2021-01-09 03:04:02', '2021-01-09 03:04:02'),
 (4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2021-01-09 03:04:02', '2021-01-09 03:04:02');
 
 -- --------------------------------------------------------
@@ -895,7 +921,7 @@ INSERT INTO `products` (`id`, `name`, `slug`, `details`, `price`, `description`,
 (17, 'Laptop 11', 'laptop-11', '14 inch, 1 TB SSD, 32GB RAM', 1577.00, 'Lorem 11 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-11.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (18, 'Laptop 12', 'laptop-12', '15 inch, 2 TB SSD, 32GB RAM', 2112.00, 'Lorem 12 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-12.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (19, 'Laptop 13', 'laptop-13', '13 inch, 2 TB SSD, 32GB RAM', 1910.00, 'Lorem 13 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-13.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
-(20, 'Laptop 14', 'laptop-14', '14 inch, 2 TB SSD, 32GB RAM', 1525.00, 'Lorem 14 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-14.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
+(20, 'Laptop 14', 'laptop-14', '14 inch, 2 TB SSD, 32GB RAM', 1525.00, 'Lorem 14 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-14.jpg', NULL, 0, 9, '2021-01-09 03:02:50', '2021-10-06 10:59:56'),
 (21, 'Laptop 15', 'laptop-15', '14 inch, 2 TB SSD, 32GB RAM', 2435.00, 'Lorem 15 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-15.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (22, 'Laptop 16', 'laptop-16', '13 inch, 2 TB SSD, 32GB RAM', 1781.00, 'Lorem 16 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-16.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (23, 'Laptop 17', 'laptop-17', '13 inch, 3 TB SSD, 32GB RAM', 2346.00, 'Lorem 17 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/laptop-17.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
@@ -946,7 +972,7 @@ INSERT INTO `products` (`id`, `name`, `slug`, `details`, `price`, `description`,
 (68, 'TV 5', 'tv-5', '60 inch screen, Smart TV, 4K', 1499.00, 'Lorem 5 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/tv-5.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (69, 'TV 6', 'tv-6', '50 inch screen, Smart TV, 4K', 946.00, 'Lorem 6 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/tv-6.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (70, 'TV 7', 'tv-7', '50 inch screen, Smart TV, 4K', 1198.00, 'Lorem 7 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/tv-7.jpg', NULL, 0, 10, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
-(71, 'TV 8', 'tv-8', '46 inch screen, Smart TV, 4K', 901.00, '<p>Lorem 8 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!</p>', 'products/tv-8.jpg', '[\"products\\/January2021\\/5rmID7LUiLLPKWTUDHpt.png\",\"products\\/January2021\\/G3OOP0AcGEpH0acMHBLb.jpg\",\"products\\/January2021\\/WyKKK2cxZPk2POCvSSnL.jpg\",\"products\\/January2021\\/bMpRvuOr2ba3bPu72msy.jpg\",\"products\\/January2021\\/IK0DN63sYj7GmsEhCYUR.jpg\"]', 1, 5, '2021-01-09 03:02:51', '2021-01-22 09:29:04'),
+(71, 'TV 8', 'tv-8', '46 inch screen, Smart TV, 4K', 901.00, '<p>Lorem 8 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!</p>', 'products/tv-8.jpg', '[\"products\\/January2021\\/5rmID7LUiLLPKWTUDHpt.png\",\"products\\/January2021\\/G3OOP0AcGEpH0acMHBLb.jpg\",\"products\\/January2021\\/WyKKK2cxZPk2POCvSSnL.jpg\",\"products\\/January2021\\/bMpRvuOr2ba3bPu72msy.jpg\",\"products\\/January2021\\/IK0DN63sYj7GmsEhCYUR.jpg\"]', 1, 3, '2021-01-09 03:02:51', '2021-10-06 10:59:56'),
 (72, 'TV 9', 'tv-9', '50 inch screen, Smart TV, 4K', 1482.00, 'Lorem 9 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/tv-9.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
 (73, 'Camera 1', 'camera-1', 'Full Frame DSLR, with 18-55mm kit lens.', 1169.00, 'Lorem 1 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/camera-1.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
 (74, 'Camera 2', 'camera-2', 'Full Frame DSLR, with 18-55mm kit lens.', 1884.00, 'Lorem 2 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/camera-2.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
@@ -965,7 +991,36 @@ INSERT INTO `products` (`id`, `name`, `slug`, `details`, `price`, `description`,
 (87, 'Appliance 6', 'appliance-6', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dolorum!', 1396.00, 'Lorem 6 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/appliance-6.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
 (88, 'Appliance 7', 'appliance-7', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dolorum!', 987.00, 'Lorem 7 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/appliance-7.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
 (89, 'Appliance 8', 'appliance-8', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dolorum!', 1347.00, 'Lorem 8 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/appliance-8.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
-(90, 'Appliance 9', 'appliance-9', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dolorum!', 857.00, 'Lorem 9 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/appliance-9.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51');
+(90, 'Appliance 9', 'appliance-9', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dolorum!', 857.00, 'Lorem 9 ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!', 'products/appliance-9.jpg', NULL, 0, 10, '2021-01-09 03:02:51', '2021-01-09 03:02:51'),
+(92, 'RCA 50” 4K UHD Smart Television - RWOSU5047', 'rca-4k-tv', 'RCA 50” 4K', 599.99, '<p style=\"box-sizing: border-box; margin: 0px; padding: 0px 0px 15px; font-size: 15px; line-height: 1.5; color: #333333; font-family: TradeGothicLTW04-Roman, sans-serif;\"><strong><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-family: \'TradeGothicLTW04-BoldNo.2\', sans-serif;\">Product Description</span></strong><br style=\"box-sizing: border-box; margin: 0px; padding: 0px;\" />This RCA ultra-high-definition Smart TV is perfect for streaming your favourite shows, movies and games. In stunning 4K resolution, this high-tech television has four times the number of pixels included in regular HD for uncompromising clarity. With sharp detail and vibrant colour in every scene, your thrillers, sports and action flicks look their best, even during fast-paced segments. Plus, easily access pre-loaded apps like YouTube and Netflix for fast streaming.</p>\r\n<p style=\"box-sizing: border-box; margin: 0.5em 0px 0px; padding: 0px 0px 15px; font-size: 15px; line-height: 1.5; color: #333333; font-family: TradeGothicLTW04-Roman, sans-serif;\"><strong><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-family: \'TradeGothicLTW04-BoldNo.2\', sans-serif;\">Dimensions</span></strong><br style=\"box-sizing: border-box; margin: 0px; padding: 0px;\" /><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">Width:&nbsp;44.5\"&nbsp;(113.0&nbsp;cm)</span><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">Height:&nbsp;26.13\"&nbsp;(66.4&nbsp;cm)</span><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">Depth:&nbsp;3.38\"&nbsp;(8.6&nbsp;cm)</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0.5em 0px 0px; padding: 0px 0px 15px; font-size: 15px; line-height: 1.5; color: #333333; font-family: TradeGothicLTW04-Roman, sans-serif;\"><strong><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-family: \'TradeGothicLTW04-BoldNo.2\', sans-serif;\">Shipping Dimensions</span></strong><br style=\"box-sizing: border-box; margin: 0px; padding: 0px;\" /><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">Width:&nbsp;51.75\"&nbsp;(131.4&nbsp;cm)</span><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">Height:&nbsp;31.25\"&nbsp;(79.4&nbsp;cm)</span><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">Depth:&nbsp;7.25\"&nbsp;(18.4&nbsp;cm)</span></p>\r\n<p style=\"box-sizing: border-box; margin: 0.5em 0px 0px; padding: 0px; font-size: 15px; line-height: 1.5; color: #333333; font-family: TradeGothicLTW04-Roman, sans-serif;\"><strong><span style=\"box-sizing: border-box; margin: 0px; padding: 0px; font-family: \'TradeGothicLTW04-BoldNo.2\', sans-serif;\">Weight</span></strong><br style=\"box-sizing: border-box; margin: 0px; padding: 0px;\" /><span class=\"dimensionsWrapper\" style=\"box-sizing: border-box; margin: 0px 0.8em 0px 0px; padding: 0px; display: inline-block;\">31.00 lbs (14.1 kg)</span></p>', 'products/October2021/VLO7RabR7Tc5PkMXRUvt.jpeg', '[\"products\\/October2021\\/DPM9nmYNr3PRoK7zTlmZ.jpg\",\"products\\/October2021\\/cGZyBMvGeVIygcxBXbId.jpg\",\"products\\/October2021\\/1dA2RdttZoaf3o4ZQT8E.jpg\"]', 1, 19, '2021-10-10 06:19:04', '2021-10-10 06:25:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `rating` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`id`, `user_id`, `product_id`, `rating`, `created_at`, `updated_at`) VALUES
+(1, 13, 71, 2, '2021-05-22 11:57:18', '2021-05-22 12:38:25'),
+(2, 11, 71, 5, '2021-05-22 11:57:18', '2021-10-10 06:52:18'),
+(3, 1, 71, 4, '2021-05-22 11:57:18', '2021-05-22 12:34:47'),
+(4, 13, 39, 4, '2021-05-22 12:39:25', '2021-05-22 12:39:28'),
+(5, 14, 71, 3, '2021-09-26 07:31:48', '2021-09-26 07:31:57'),
+(6, 11, 20, 2, '2021-10-06 10:56:19', '2021-10-10 06:52:08'),
+(7, 11, 92, 3, '2021-10-10 06:23:50', '2021-10-10 06:23:50');
 
 -- --------------------------------------------------------
 
@@ -1112,9 +1167,10 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified
 (8, NULL, 'Rosanna O\'Connell', 'sherwood78@example.org', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'twpUUktYdY', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (9, NULL, 'Georgiana Brekke', 'lisette22@example.com', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W9Ni6ivjZj', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
 (10, NULL, 'Alexandrea Cronin IV', 'morissette.justus@example.com', 'users/default.png', '2021-01-09 03:02:50', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9E7sBY92AH', NULL, '2021-01-09 03:02:50', '2021-01-09 03:02:50'),
-(11, 1, 'Hein Z', 'admin@gmail.com', 'users/default.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, '2021-01-09 03:04:29', '2021-01-09 03:04:29'),
+(11, 1, 'Hein Htet Soe', 'admin@gmail.com', 'users/default.png', NULL, '$2y$10$KkBQDPiK0oVdJdJsiUKVNuEskPVgNa2O7Iij75ZM5AfiUsElS/Jd.', NULL, NULL, '2021-01-09 03:04:29', '2021-10-10 09:36:44'),
 (12, 2, 'hein', 'hein@gmail.com', 'users/default.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, '2021-01-11 08:21:34', '2021-01-11 08:21:34'),
-(13, 3, 'Manager', 'manager@gmail.com', 'users/January2021/rTpP98A1E7oyiMMU7rjM.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, '{\"locale\":\"en\"}', '2021-01-22 06:25:00', '2021-01-22 06:25:00');
+(13, 3, 'Manager', 'manager@gmail.com', 'users/January2021/rTpP98A1E7oyiMMU7rjM.png', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Da94LK3n6lWkMpx8iQBnxnMaLWc82XsDesAmqjs0qsCzDqpvgoJdWzkAzcKQ', '{\"locale\":\"en\"}', '2021-01-22 06:25:00', '2021-01-22 06:25:00'),
+(14, 2, 'customer', 'customer@gmail.com', 'users/default.png', NULL, '$2y$10$FHZClQAs4HLS/qlD3pkao.rpty69z0ukV3fiauB9en4zImIKX94/S', NULL, NULL, '2021-09-26 07:31:29', '2021-09-26 07:31:29');
 
 -- --------------------------------------------------------
 
@@ -1153,6 +1209,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `category_name_unique` (`name`),
   ADD UNIQUE KEY `category_slug_unique` (`slug`);
+
+--
+-- Indexes for table `category_posts`
+--
+ALTER TABLE `category_posts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category_product`
@@ -1271,6 +1333,12 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `products_image_unique` (`image`);
 
 --
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -1324,10 +1392,16 @@ ALTER TABLE `category`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `category_posts`
+--
+ALTER TABLE `category_posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `category_product`
 --
 ALTER TABLE `category_product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -1339,7 +1413,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `data_types`
@@ -1369,19 +1443,19 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1405,7 +1479,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1429,7 +1509,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
