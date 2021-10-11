@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use TCG\Voyager\Facades\Voyager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Voyager::useModel('Post', Post::class);
+
         Paginator::defaultView('vendor.pagination.bootstrap-4');
 
 //        Paginator::defaultSimpleView('vendor.pagination.custom');

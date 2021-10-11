@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Post;
 use TCG\Voyager\Models\Category;
-use TCG\Voyager\Models\Post;
+
 
 class PostController extends Controller
 {
