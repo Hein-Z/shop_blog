@@ -99,7 +99,7 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_singular' => 'Post',
                 'display_name_plural' => 'Posts',
                 'icon' => 'voyager-news',
-                'model_name' => 'App\\Models\\Post',
+                'model_name' => 'TCG\\Voyager\\Models\\Post',
                 'policy_name' => 'TCG\\Voyager\\Policies\\PostPolicy',
                 'controller' => NULL,
                 'description' => NULL,

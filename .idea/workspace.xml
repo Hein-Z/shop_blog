@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df7ef52c-31d6-423d-ae2e-97d5b42da1f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Voyager/VoyagerController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/voyager/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel-ecommence.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-ecommence.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/voyager.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/voyager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +156,7 @@
       <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
       <path value="$PROJECT_DIR$/vendor/league/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/orangehill/iseed" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mKpCGyP3kcG1aQAMqQprhgywav" />
@@ -163,7 +169,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fancybar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hanacast" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -244,6 +250,12 @@
       <workItem from="1633870453341" duration="17139000" />
       <workItem from="1633888085168" duration="289000" />
       <workItem from="1633949934606" duration="624000" />
+      <workItem from="1634574374882" duration="2452000" />
+      <workItem from="1634576881070" duration="327000" />
+      <workItem from="1634577233489" duration="24000" />
+      <workItem from="1634577276026" duration="97000" />
+      <workItem from="1634577480462" duration="41000" />
+      <workItem from="1634578649712" duration="17000" />
     </task>
     <servers />
   </component>
