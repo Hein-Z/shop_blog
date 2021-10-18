@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Voyager;
 
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 
-class OrdersController extends VoyagerBaseController
+class ProductCategoriesController extends VoyagerBaseController
 {
     //***************************************
     //                _____
@@ -70,8 +71,8 @@ class OrdersController extends VoyagerBaseController
             $view = "voyager::$slug.read";
         }
 
-        $order = \App\Models\Order::find($id);
-        $products = $order->products;
+        $category = Category::find($id);
+        $products = $category->products()->paginate(10); ;
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted', 'products'));
     }

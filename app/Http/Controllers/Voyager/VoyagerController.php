@@ -1,15 +1,10 @@
 <?php
 
-namespace TCG\Voyager\Http\Controllers;
+namespace App\Http\Controllers\Voyager;
 
-use App\Models\Post;
-use TCG\Voyager\Facades\Voyager;
+use TCG\Voyager\Http\Controllers\VoyagerController as BaseVoyagerController;
 
-class VoyagerController extends Controller
+class VoyagerController extends BaseVoyagerController
 {
-    public function index()
-    {
-        $post = Post::all();
-        return Voyager::view('voyager::index',compact('post'));
-    }
+    //
 }
