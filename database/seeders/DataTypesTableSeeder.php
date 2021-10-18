@@ -173,13 +173,13 @@ class DataTypesTableSeeder extends Seeder
                 'icon' => 'voyager-categories',
                 'model_name' => 'App\\Models\\Category',
                 'policy_name' => NULL,
-                'controller' => NULL,
-                'description' => NULL,
+                'controller' => '\\App\\Http\\Controllers\\Voyager\\ProductCategoriesController',
+                'description' => 'Category for products',
                 'generate_permissions' => 1,
                 'server_side' => 0,
-                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
                 'created_at' => '2021-01-12 11:56:29',
-                'updated_at' => '2021-01-12 11:56:29',
+                'updated_at' => '2021-10-18 18:28:40',
             ),
             9 => 
             array (
