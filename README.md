@@ -87,7 +87,10 @@ php artisan key:generate
 ```
 4 . Set your database credentials in your .env file.
 
-5 . export ecommence.sql to your database
+5 . 
+```bash
+php artisan migrate --seed
+```
 
 6 . Set your Stripe credentials in your .env file. Specifically STRIPE_KEY and STRIPE_SECRET .
 Getting from https://dashboard.stripe.com/test/apikeys after login
