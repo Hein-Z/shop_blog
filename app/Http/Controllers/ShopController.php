@@ -69,6 +69,16 @@ class ShopController extends Controller
         return response()->json($products);
     }
 
+    public function algoliaSearch(Request $request)
+    {
+
+        // $products = Product::search($request->search)->paginate(10);
+
+        // return response()->json($products);
+    }
+
+
+
     public function setRating($product_id, Request $request)
     {
 

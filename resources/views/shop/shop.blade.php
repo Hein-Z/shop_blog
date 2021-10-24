@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@section('extra-css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous">
+
+@endsection
 @section('content')
     {{-- @include('layouts.preloader') --}}
     <!-- ***** Preloader Start ***** -->
@@ -31,15 +35,25 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb ">
                     <li class="breadcrumb-item pt-1"><a href="{{ route('landing-page') }}" class="text-dark">Home</a></li>
-                    <li class="breadcrumb-item pt-1"><a href="#" class="text-danger">Shop</a></li>
+                    <li class="breadcrumb-item pt-1"><a href="{{route('shop.index')}}" class="text-danger">Shop</a></li>
                     <li class="align-self-end ml-auto pt-2 pt-sm-0">
+                        <div class="d-flex flex-column">
                         <form action="{{ route('shop.search') }}" class="ml-auto position-relative" method="post">
                             @csrf
                             <input type="search" name="q" style="border-radius: 6px;width: 300px;padding-right: 35px"
                                 class="form-control" placeholder="Search Products...">
+                            <a class="text-danger"  style="cursor: pointer"><i class="fa fa-search position-absolute"
+                                    style="top:10px; right: 13px"></i></a>
+                        </form>
+                        <form action="{{ route('shop.algolia-search') }}" class=" ml-auto position-relative" method="post">
+                            @csrf
+                            <input type="search" name="q" style="border-radius: 6px;width: 300px;padding-right: 35px"
+                                class="form-control" placeholder="Algoria Search...">
                             <a class="text-danger" style="cursor: pointer"><i class="fa fa-search position-absolute"
                                     style="top:10px; right: 13px"></i></a>
                         </form>
+
+                        </div>
                     </li>
                 </ol>
 
@@ -134,5 +148,11 @@
         </footer>
 
     </div>
+
+@endsection
+@section('extra-js')
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+<script src="{{asset('js/custom-algolia.js')}}"></script>
 
 @endsection

@@ -65,15 +65,16 @@
                                     <button type="submit" class="btn btn-dark">
                                         {{ __('Login') }}
                                     </button>
+                                    <a class="btn btn-primary text-link ml-1" href="{{ route('shop.guest.checkout') }}">
+                                        Checkout as a guest
+                                    </a>
                                     <div class="mt-2">
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link text-danger" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                                             </a>
                                         @endif
-                                        <a class="btn btn-link text-link" href="{{ route('shop.guest.checkout') }}">
-                                            Checkout as a guest
-                                        </a>
+
                                     </div>
                                 </div>
                             </div>

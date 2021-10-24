@@ -18,8 +18,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="text-content">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h2>Products</h2>
                         </div>
                     </div>
                 </div>

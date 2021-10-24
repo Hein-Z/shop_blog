@@ -75,7 +75,6 @@ export default {
 
                 axios.get('/api/shop/products/search?search=' + this.searched_value).then(
                     res => {
-                        console.log(res);
                         this.products_data = res.data.data;
                         this.query_value = this.searched_value;
                         this.api_data = res.data;
@@ -91,7 +90,6 @@ export default {
             this.$insProgress.start()
             axios.get('/api/shop/products/search?search=' + this.searched_value + '&page=' + page)
                 .then(res => {
-                    console.log(res);
                     this.api_data = res.data;
                     this.products_data = res.data.data;
                     this.query_value = this.searched_value;

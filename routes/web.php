@@ -18,6 +18,7 @@ Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
 Route::post('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
+Route::post('/shop/products/algolia-search', [\App\Http\Controllers\ShopController::class, 'algoliaSearch'])->name('shop.algolia-search');
 Route::patch('/shop/products/{product_id}/rating', [\App\Http\Controllers\ShopController::class, 'setRating'])->middleware('auth');
 
 Route::get('/shop/products/search', [\App\Http\Controllers\ShopController::class, 'index']);
@@ -45,9 +46,9 @@ Route::delete('/saved/empty', [\App\Http\Controllers\SavedItemsController::class
 Route::delete('/saved/{id}/remove', [\App\Http\Controllers\SavedItemsController::class, 'remove'])->name('shop.saved.remove');
 
 //checkout
-Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('shop.checkout')->middleware('auth');
+Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('shop.checkout');
 Route::post('/checkout', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('shop.checkout.store');
-Route::get('/guest-checkout', [\App\Http\Controllers\CheckoutController::class, 'index'])->name('shop.guest.checkout');
+Route::get('/guest-checkout', [\App\Http\Controllers\CheckoutController::class, 'guestIndex'])->name('shop.guest.checkout');
 
 //confirmation
 Route::get('/thank-you', [\App\Http\Controllers\ConfirmationController::class, 'index'])->name('confirmation.index');

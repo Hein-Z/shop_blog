@@ -40,7 +40,7 @@
         <div class="products">
             <div class="container">
 
-                <product-details :cart='@json(\Cart::instance(' default')->content())'
+                <product-details :cart='@json(\Cart::instance('default')->content())'
                                  :product='@json($product)'
                                  :sub-img-urls='@json($subImgUrls)'
                                  stock-threshold='{{ $stockThreshold }}'

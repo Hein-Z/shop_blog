@@ -9,6 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -18,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('notifIt/css/notifIt.min.css') }}">
+
 
 </head>
 <body>
@@ -80,5 +83,42 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('notifIt/js/notifIt.min.js') }}"></script>
+
+    @yield('extra-js')
+    <script>
+        @if ($message = session()->has('success'))
+
+            notif({type:'success',
+            msg:'{{ session()->get('success') }}',
+            position:'right',
+            timeout: 3000,
+            opacity :0.9,
+            zindex:99999,});
+
+        @endif
+
+        @if ($message = session()->has('error'))
+
+            notif({type:'warning',
+            msg:'{!!session()->get('error') !!}',
+            position:'right',
+            timeout: 3000,
+            opacity :0.9,
+            zindex:99999,});
+
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+
+                notif({type:'warning',
+                msg:'{!! $error !!}',
+                position:'right',
+                timeout: 3000,
+                opacity :0.9,
+                zindex:99999,});
+            @endforeach
+        @endif
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($) {
 
 
     "use strict";
@@ -8,8 +8,8 @@ jQuery(document).ready(function ($) {
 
     $("#preloader").animate({
         'opacity': '0'
-    }, 800, function(){
-        setTimeout(function(){
+    }, 800, function() {
+        setTimeout(function() {
             $("#preloader").css("visibility", "hidden").fadeOut();
         }, 400);
     });
@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
         }, 0);
     }
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         var scroll = $(window).scrollTop();
         var box = $('.header-text').height();
         var header = $('header').height();

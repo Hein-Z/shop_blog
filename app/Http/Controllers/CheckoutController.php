@@ -17,8 +17,24 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        if (\Cart::count() <= 0) {
-            return redirect()->route('shop.index');
+        if(!\Cart::instance('default')->count()){
+            return redirect()->back()->with('error',"You have no item in your cart to check out...");
+        }
+
+        if(!auth()->check()){
+            return redirect()->route('login')->with('error','You should login to check out. Or you can check out as guest!');
+        }
+
+        $bills = $this->getBills();
+
+        return view('shop.checkout')->with(['bills' => $bills]);
+    }
+
+
+     public function guestIndex()
+    {
+        if(!\Cart::instance('default')->count()){
+            return redirect()->back()->with('error',"You have no item in your cart to check out...");
         }
         $bills = $this->getBills();
 

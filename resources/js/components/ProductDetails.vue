@@ -9,7 +9,7 @@
                     class="img-fluid card-img"
                 />
             </div>
-            <br/>
+            <br />
             <div class="row">
                 <div
                     class="col-4"
@@ -29,7 +29,7 @@
                             class="img-fluid img-thumbnail thumbnail-image"
                         />
                     </div>
-                    <br/>
+                    <br />
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <h5 class="badge badge-pill" :class="stock_level_badge">
                 {{ stockLevel }}
             </h5>
-            <br/>
+            <br />
             <h5>{{ product.details }}</h5>
 
             <star-rating
@@ -49,45 +49,46 @@
                 :read-only="true"
                 :increment="0.1"
             ></star-rating>
-            <br/>
+            <br />
             <p class="lead mb-0">
                 <strong class="text-danger mb-0">{{
-                        product.presetPrice
-                    }}</strong>
+                    product.presetPrice
+                }}</strong>
             </p>
-            <br/>
+            <br />
 
             <p class="lead mb-0" v-html="product.description"></p>
 
-            <br/>
+            <br />
+            <div class="row">
+                <div class="col-sm-12 mb-4">
+                    <button
+                        class="btn btn-sm btn-warning mb-4"
+                        @click="showRatingStar"
+                        v-if="!isStarShown"
+                    >
+                        Give Rating
+                    </button>
+                    <button
+                        class="btn btn-sm btn-outline-danger mb-4"
+                        @click="cancelRating"
+                        v-if="isStarShown"
+                    >
+                        Cancel
+                    </button>
 
+                    <star-rating
+                        v-if="isStarShown"
+                        :rating="rating"
+                        :star-size="40"
+                        :rounded-corners="true"
+                        @rating-selected="setRating"
+                    ></star-rating>
+                </div>
+            </div>
             <div class="row" v-if="isAvailable">
                 <div class="col-sm-12" v-if="!isInCart">
                     <div class="row">
-                        <div class="col-sm-12 mb-4">
-                            <button
-                                class="btn btn-sm btn-warning mb-4"
-                                @click="showRatingStar"
-                                v-if="!isStarShown"
-                            >
-                                Give Rating
-                            </button>
-                            <button
-                                class="btn btn-sm btn-outline-danger mb-4"
-                                @click="cancelRating"
-                                v-if="isStarShown"
-                            >
-                                Cancel
-                            </button>
-
-                            <star-rating
-                                v-if="isStarShown"
-                                :rating="rating"
-                                :star-size="40"
-                                :rounded-corners="true"
-                                @rating-selected="setRating"
-                            ></star-rating>
-                        </div>
                         <div class="col-sm-12">
                             <label class="control-label">Quantity</label>
                             <div class="row">
@@ -101,10 +102,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 text-center">
                                     <button
                                         type="submit"
-                                        class="btn btn-primary btn-block "
+                                        class="btn btn-primary btn-block mb-2"
                                         @click="addToCart"
                                         :class="{ disabled: btn_disable }"
                                     >
@@ -114,11 +115,14 @@
                                             role="status"
                                         >
                                             <span class="sr-only"
-                                            >Loading...</span
+                                                >Loading...</span
                                             >
                                         </div>
                                         Add to Cart
                                     </button>
+                                    <a :href="cartRoute" class="h5 mt-3"
+                                        >To Shopping Cart</a
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -135,10 +139,10 @@
                                 Cart
                             </button>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 text-center">
                             <button
                                 @click="removeFormCart"
-                                class="btn btn-danger"
+                                class="btn btn-danger btn-block mb-2"
                                 :class="{ disabled: btn_disable }"
                             >
                                 <div
@@ -150,15 +154,14 @@
                                 </div>
                                 Remove this item
                             </button>
+                            <a :href="cartRoute" class="h5 mt-3"
+                                >To Shopping Cart</a
+                            >
                         </div>
                     </div>
                 </div>
             </div>
-            <a :href='cartRoute' class="h4 mt-3">To Shopping Cart</a>
-
         </div>
-
-
     </div>
 </template>
 <style>
@@ -179,7 +182,7 @@ img {
 .fade-leave-to
     /* .fade-leave-active in <2.1.8 */
 
-{
+ {
     opacity: 0;
 }
 </style>
@@ -188,7 +191,14 @@ import axios from "axios";
 import StarRating from "vue-star-rating";
 
 export default {
-    props: ["product", "cart", "subImgUrls", "stockThreshold", "isAuth", "cartRoute"],
+    props: [
+        "product",
+        "cart",
+        "subImgUrls",
+        "stockThreshold",
+        "isAuth",
+        "cartRoute"
+    ],
     data() {
         return {
             mainImageUrl: this.product.mainImgUrl,
@@ -204,8 +214,7 @@ export default {
             isAvailable: true,
             rating: 0,
             avgRating: 0,
-            isStarShown: false,
-
+            isStarShown: false
         };
     },
     components: {
@@ -250,11 +259,11 @@ export default {
                     location.href = process.env.MIX_APP_URL + "/login";
                 }
             } else {
-                this.isStarShown = true
+                this.isStarShown = true;
             }
         },
         cancelRating() {
-            this.isStarShown = false
+            this.isStarShown = false;
         },
         setRating(rating) {
             this.$insProgress.start();
@@ -272,8 +281,8 @@ export default {
                 })
                 .catch(err => console.log(err.response))
                 .finally(_ => {
-                    this.$insProgress.finish()
-                    this.isStarShown = false
+                    this.$insProgress.finish();
+                    this.isStarShown = false;
                 });
         },
         isActive(image) {

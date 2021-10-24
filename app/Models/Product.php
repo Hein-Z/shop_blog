@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use TCG\Voyager\Traits\Resizable;
 
@@ -14,6 +15,8 @@ class Product extends Model
     use HasFactory;
     use Resizable;
     use SearchableTrait;
+    use Searchable;
+
 
     protected $searchable = [
         'columns' => [
