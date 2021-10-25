@@ -16,7 +16,7 @@
 
         <!-- Page Content -->
         <div class="page-heading about-heading header-text"
-             style="background-image: url({{ asset('images/heading-6-1920x500.jpg') }});" id="offset-pos">
+            style="background-image: url({{ asset('images/heading-6-1920x500.jpg') }});" id="offset-pos">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -40,13 +40,15 @@
         <div class="products">
             <div class="container">
 
-                <product-details :cart='@json(\Cart::instance('default')->content())'
-                                 :product='@json($product)'
-                                 :sub-img-urls='@json($subImgUrls)'
-                                 stock-threshold='{{ $stockThreshold }}'
-                                 :is-auth='@json(auth()->user())'
-                                 cart-route='{{ route('shop.cart') }}'
-                ></product-details>
+                @php
+                    $cart = \Cart::instance('default')->search(function ($cartItem, $rowId) use ($product) {
+                        return $cartItem->id === $product->id;
+                    });
+                @endphp
+
+                <product-details :cart='@json($cart)' :product='@json($product)' :sub-img-urls='@json($subImgUrls)'
+                    stock-threshold='{{ $stockThreshold }}' :is-auth='@json(auth()->user())'
+                    cart-route='{{ route('shop.cart') }}'></product-details>
 
 
             </div>

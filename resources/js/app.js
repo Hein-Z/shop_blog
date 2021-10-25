@@ -13,7 +13,8 @@ require('./owl.js');
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import VueInsProgressBar from 'vue-ins-progress-bar'
-
+import StarRating from 'vue-star-rating'
+import Vue from 'vue';
 
 const options = {
     position: 'fixed',
@@ -25,6 +26,7 @@ const options = {
 window.Vue = require('vue');
 Vue.use(VueToast);
 Vue.use(VueInsProgressBar, options)
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -44,7 +46,7 @@ Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('product-details', require('./components/ProductDetails').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
-
+Vue.component('star-rating', StarRating);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

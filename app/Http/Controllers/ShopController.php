@@ -24,13 +24,13 @@ class ShopController extends Controller
                 $products = Product::doesntHave('categories');
                 $categoryName = 'Uncategorized';
             } else {
-                $products = Product::with('categories')->whereHas('categories', function ($query) {
+                $products = Product::with(['categories','ratings'])->whereHas('categories', function ($query) {
                     $query->where('slug', \request()->category);
                 });
                 $categoryName = optional($categories->where('slug', \request()->category)->first())->name;
             }
         } else {
-            $products = Product::where('featured', true)->inRandomOrder();
+            $products = Product::with(['ratings'])->where('featured', true)->inRandomOrder();
             $categoryName = 'Feature';
         }
 

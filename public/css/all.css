@@ -214,7 +214,12 @@ ul {
     list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0px;
 }
 
@@ -321,7 +326,7 @@ a.filled-button:hover {
     height: 50px;
 }
 
-#preloader .jumper > div {
+#preloader .jumper>div {
     background-color: #fff;
     width: 10px;
     height: 10px;
@@ -336,12 +341,12 @@ a.filled-button:hover {
     animation: jumper 1s 0s linear infinite;
 }
 
-#preloader .jumper > div:nth-child(2) {
+#preloader .jumper>div:nth-child(2) {
     -webkit-animation-delay: 0.33333s;
     animation-delay: 0.33333s;
 }
 
-#preloader .jumper > div:nth-child(3) {
+#preloader .jumper>div:nth-child(3) {
     -webkit-animation-delay: 0.66666s;
     animation-delay: 0.66666s;
 }
@@ -378,6 +383,7 @@ a.filled-button:hover {
 
 
 /* Header Style */
+
 header {
     position: absolute;
     z-index: 99999;
@@ -414,10 +420,10 @@ header .navbar {
 }
 
 .background-header .navbar-nav .nav-link:hover,
-.background-header .navbar-nav .active > .nav-link,
+.background-header .navbar-nav .active>.nav-link,
 .background-header .navbar-nav .nav-link.active,
 .background-header .navbar-nav .nav-link.show,
-.background-header .navbar-nav .show > .nav-link {
+.background-header .navbar-nav .show>.nav-link {
     color: #f33f3f !important;
 }
 
@@ -466,10 +472,10 @@ header .navbar {
 }
 
 .navbar .navbar-nav .nav-link:hover,
-.navbar .navbar-nav .active > .nav-link,
+.navbar .navbar-nav .active>.nav-link,
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link.show,
-.navbar .navbar-nav .show > .nav-link {
+.navbar .navbar-nav .show>.nav-link {
     color: #fff;
     padding-bottom: 25px;
     border-bottom: 3px solid #f33f3f;
@@ -500,6 +506,7 @@ header .navbar {
 
 
 /* Banner Style */
+
 .banner {
     position: relative;
     text-align: center;
@@ -672,6 +679,7 @@ header .navbar {
     margin-top: 10%;
 }
 
+
 /* Best Features */
 
 .about-features {
@@ -829,6 +837,42 @@ footer .inner-content p a {
 .products .filters ul li.active,
 .products .filters ul li:hover {
     color: #f33f3f;
+}
+
+.product-card {
+    background: #fff;
+    width: 250px;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.product-card__header {
+    height: 250px;
+    width: 100%;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.product-card__header-img {
+    height: 100%;
+    width: 100%;
+    /* background: url(https://source.unsplash.com/y3aP9oo9Pjc/500x500) left center; */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: inherit;
+    background-position: center;
+    transition: all ease-in-out .3s;
+}
+
+.product-card:hover .product-card__header-img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.product-card:hover {
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-menu {
@@ -1033,6 +1077,7 @@ ul.pages li.active a {
     background: #f33f3f !important;
 }
 
+
 /* Clients */
 
 .happy-clients {
@@ -1192,77 +1237,63 @@ ul.pages li.active a {
 
 
 /* Responsive Style */
+
 @media (max-width: 768px) {
     .banner .text-content {
         width: 90%;
         margin-left: 5%;
     }
-
     .banner .text-content h4 {
         font-size: 22px;
     }
-
     .banner .text-content h2 {
         font-size: 36px;
         letter-spacing: 0.5px;
     }
-
     .banner-item-01,
     .banner-item-02,
     .banner-item-03 {
         padding: 180px 0px;
     }
-
     .page-heading .text-content h4 {
         font-size: 22px;
     }
-
     .page-heading .text-content h2 {
         font-size: 36px;
         letter-spacing: 0.5px;
     }
-
     .section-heading a {
         float: none;
         margin-top: 0px;
         display: block;
         margin-bottom: 20px;
     }
-
     .product-item .down-content h4 {
         margin-bottom: 20px !important;
     }
-
     .best-features .left-content {
         margin-bottom: 30px;
     }
-
     .call-to-action .inner-content {
         text-align: center;
     }
-
     .call-to-action .inner-content .filled-button {
         text-align: center;
         width: 100%;
         margin-top: 20px;
     }
-
     .about-features img {
         margin-bottom: 30px;
     }
-
     .service-item {
         margin-bottom: 30px;
     }
-
     .find-us #map {
         margin-bottom: 30px;
     }
-
     .find-us .left-content {
         margin-left: 0px;
     }
-
     .send-message .accordion {
         margin-top: 30px;
         margin-left: 0px;
@@ -1275,15 +1306,12 @@ ul.pages li.active a {
         left: 30px;
         top: 32px;
     }
-
     .navbar .navbar-brand {
         width: auto;
     }
-
     .navbar:after {
         display: none;
     }
-
     #navbarResponsive {
         z-index: 99999;
         position: absolute;
@@ -1294,34 +1322,28 @@ ul.pages li.active a {
         background-color: #fff;
         box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     }
-
     .navbar .navbar-nav .nav-item {
         border-bottom: 1px solid #eee;
     }
-
     .navbar .navbar-nav .nav-item:last-child {
         border-bottom: none;
     }
-
     .navbar .navbar-nav a.nav-link {
         padding: 15px 0px;
         color: #1e1e1e !important;
     }
-
     .navbar .navbar-nav .nav-link:hover,
-    .navbar .navbar-nav .active > .nav-link,
+    .navbar .navbar-nav .active>.nav-link,
     .navbar .navbar-nav .nav-link.active,
     .navbar .navbar-nav .nav-link.show,
-    .navbar .navbar-nav .show > .nav-link {
+    .navbar .navbar-nav .show>.nav-link {
         color: #f33f3f !important;
         border-bottom: none !important;
         padding-bottom: 15px;
     }
-
     .product-item .down-content h4 {
         margin-bottom: 10px;
     }
-
     .product-item .down-content h6 {
         margin-bottom: 20px;
     }
@@ -1332,17 +1354,14 @@ ul.pages li.active a {
 * The CSS shown here will not be introduced in the Quickstart guide, but shows
 * how you can use CSS to style your Element's container.
 */
+
 .StripeElement {
     box-sizing: border-box;
-
     height: 40px;
-
     padding: 10px 12px;
-
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: white;
-
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
@@ -1359,5 +1378,3 @@ ul.pages li.active a {
 .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
 }
-
-
